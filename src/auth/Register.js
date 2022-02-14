@@ -6,7 +6,7 @@ import { Link, useHistory } from "react-router-dom";
 const Register = () => {
   let history = useHistory();
   let showPassword = document.getElementById("password");
-  let showPassword2 = document.getElementById("password_confirmation")
+  let showPassword2 = document.getElementById("password_confirmation");
 
   const [input, setInput] = useState({
     name: "",
@@ -20,7 +20,6 @@ const Register = () => {
     if (e.target.checked === true) {
       showPassword.type = "text";
       showPassword2.type = "text";
-
     } else {
       showPassword.type = "password";
       showPassword2.type = "password";
@@ -42,7 +41,7 @@ const Register = () => {
         name: input.name,
         email: input.email,
         password: input.password,
-        password_confirmation: input.password_confirmation
+        password_confirmation: input.password_confirmation,
       })
 
       .then((res) => {
@@ -132,10 +131,10 @@ const Register = () => {
                 Show Your Password
               </Checkbox>
               <div id="pass-info" className="clearfix" />
-              {/* <a href="login.html" className="btn_1 rounded full-width add_top_30">Register Now!</a> */}
+              {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
               <Link
                 to="/login"
-                className="btn_1 rounded full-width add_top_30"
+                className="btn_1-admin rounded full-width add_top_30"
                 onClick={handleSubmit}
               >
                 Register Now!

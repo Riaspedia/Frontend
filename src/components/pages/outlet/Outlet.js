@@ -7,7 +7,7 @@ import CardOutlet from "./CardOutlet";
 const Outlet = () => {
   return (
     <div id="page">
-      <HeaderClient/>
+      <HeaderClient />
       {/* <div id="preloader">
                     <div data-loader="circle-side" />
                 </div> */}
@@ -392,22 +392,20 @@ const Outlet = () => {
             </div>
           </div>
         </div> */}
-        <CardOutlet/>
-        <CardOutlet/>
-        
+        <CardOutlet />
+        <CardOutlet />
       </div>
       {/* /isotope-wrapper */}
       <p className="text-center add_top_30">
-        <a href="#0" className="btn_1 rounded">
+        <a href="#0" className="btn_1-admin rounded">
           Load more
         </a>
       </p>
       {/* /container */}
-   
-   
+
       <FooterCliennt />
     </div>
-  )
-}
+  );
+};
 
 export default Outlet;

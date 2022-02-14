@@ -1,49 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Panagea - Premium site template for travel agencies, hotels and restaurant listing.">
-    <meta name="author" content="Ansonika">
-    <title>RiasPediaClient</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      name="description"
+      content="Panagea - Premium site template for travel agencies, hotels and restaurant listing."
+    />
+    <meta name="author" content="Ansonika" />
+    <title>RiasPedia</title>
 
     <!-- Favicons -->
     <!-- <link rel="shortcut icon" href="img/favicon.icon" type="image/x-icon"> -->
-    <link rel="apple-touch-icon" type="image/x-icon" href="img/apple-touch-icon-57x57-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="img/apple-touch-icon-72x72-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="img/apple-touch-icon-114x114-precomposed.png">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="img/apple-touch-icon-144x144-precomposed.png">
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      href="img/apple-touch-icon-57x57-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="72x72"
+      href="img/apple-touch-icon-72x72-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="114x114"
+      href="img/apple-touch-icon-114x114-precomposed.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      type="image/x-icon"
+      sizes="144x144"
+      href="img/apple-touch-icon-144x144-precomposed.png"
+    />
 
     <!-- GOOGLE WEB FONT -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap core CSS-->
+    <link
+      href="admin_asset/vendor/bootstrap/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Main styles -->
+    <link href="admin_asset/css/admin.css" rel="stylesheet" />
+    <!-- BASE CSS -->
+    <link href="admin_asset/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="admin_asset/css/style.css" rel="stylesheet" />
+    <link href="admin_asset/css/vendors.css" rel="stylesheet" />
+    <!-- Icon fonts-->
+    <link
+      href="admin_asset/vendor/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Plugin styles -->
+    <link
+      href="admin_asset/vendor/datatables/dataTables.bootstrap4.css"
+      rel="stylesheet"
+    />
+    <!-- Your custom styles -->
+    <link href="admin_asset/css/custom.css" rel="stylesheet" />
 
     <!-- BASE CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	  <link href="css/vendors.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet" />
+    <link href="css/vendors.css" rel="stylesheet" />
 
     <!-- YOUR CUSTOM CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/custom.css" rel="stylesheet" />
 
     <!-- Modernizr -->
-  	<script src="js/modernizr.js"></script>
+    <script src="js/modernizr.js"></script>
 
-    	
-  <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <!-- Main styles -->
-  <link href="css/admin.css" rel="stylesheet">
-  <!-- Icon fonts-->
-  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- Plugin styles -->
-  <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
-  <link href="vendor/dropzone.css" rel="stylesheet">
-  <!-- Your custom styles -->
-  <link href="css/custom.css" rel="stylesheet">
-	
-	
+    <!-- Main styles -->
+    <link href="css/admin.css" rel="stylesheet" />
 
+    <!-- Your custom styles -->
+    <link href="css/custom.css" rel="stylesheet" />
   </head>
 
   <body class="datepicker_mobile_full">
@@ -59,55 +102,91 @@
     <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="js/map_single_tour.js"></script>
     <script src="js/infobox.js"></script>
-    
+
     <!-- SPECIFIC SCRIPTS -->
-  	<script src="js/pw_strenght.js"></script>
+    <script src="js/pw_strenght.js"></script>
 
     <!-- DATEPICKER  -->
     <script>
-      $(function() {
-        'use strict';
+      $(function () {
+        "use strict";
         $('input[name="dates"]').daterangepicker({
           autoUpdateInput: false,
-          parentEl:'.scroll-fix',
-          minDate:new Date(),
-          opens: 'left',
+          parentEl: ".scroll-fix",
+          minDate: new Date(),
+          opens: "left",
           locale: {
-            cancelLabel: 'Clear'
+            cancelLabel: "Clear",
+          },
+        });
+        $('input[name="dates"]').on(
+          "apply.daterangepicker",
+          function (ev, picker) {
+            $(this).val(
+              picker.startDate.format("MM-DD-YY") +
+                " > " +
+                picker.endDate.format("MM-DD-YY")
+            );
           }
-        });
-        $('input[name="dates"]').on('apply.daterangepicker', function(ev, picker) {
-          $(this).val(picker.startDate.format('MM-DD-YY') + ' > ' + picker.endDate.format('MM-DD-YY'));
-        });
-        $('input[name="dates"]').on('cancel.daterangepicker', function(ev, picker) {
-          $(this).val('');
+        );
+        $('input[name="dates"]').on(
+          "cancel.daterangepicker",
+          function (ev, picker) {
+            $(this).val("");
+          }
+        );
+      });
+    </script>
+
+    <!-- INPUT QUANTITY  -->
+    <script src="js/input_qty.js"></script>
+
+    <!-- INSTAGRAM FEED  -->
+    <script>
+      $(window).on("load", function () {
+        "use strict";
+        $.instagramFeed({
+          username: "thelouvremuseum",
+          container: "#instagram-feed",
+          display_profile: false,
+          display_biography: false,
+          display_gallery: true,
+          get_raw_json: false,
+          callback: null,
+          styling: true,
+          items: 12,
+          items_per_row: 6,
+          margin: 1,
         });
       });
-      </script>
-      
-    
-	<!-- INPUT QUANTITY  -->
-	<script src="js/input_qty.js"></script>
-	
-	<!-- INSTAGRAM FEED  -->
-	<script>
-		$(window).on('load', function() {
-			"use strict";
-			$.instagramFeed({
-				'username': 'thelouvremuseum',
-				'container': "#instagram-feed",
-				'display_profile': false,
-				'display_biography': false,
-				'display_gallery': true,
-				'get_raw_json': false,
-				'callback': null,
-				'styling': true,
-				'items': 12,
-				'items_per_row': 6,
-				'margin': 1
-			});
-		});
-	</script>
+    </script>
 
+    <!-- Bootstrap core JavaScript-->
+    <script src="admin_asset/vendor/jquery/jquery.min.js"></script>
+    <script src="admin_asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="admin_asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Page level plugin JavaScript-->
+
+    <script src="admin_asset/vendor/datatables/jquery.dataTables.js"></script>
+    <script src="admin_asset/vendor/datatables/dataTables.bootstrap4.js"></script>
+    <script src="admin_asset/vendor/jquery.selectbox-0.2.js"></script>
+    <script src="admin_asset/vendor/retina-replace.min.js"></script>
+    <script src="admin_asset/vendor/jquery.magnific-popup.min.js"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="admin_asset/js/admin.js"></script>
+
+    <!-- Custom scripts for this page-->
+    <script src="admin_asset/vendor/dropzone.min.js"></script>
+    <script src="admin_asset/vendor/bootstrap-datepicker.js"></script>
+    <script>
+      $("input.date-pick").datepicker();
+    </script>
+    <script src="admin_asset/js/common_scripts.js"></script>
+    <script src="admin_asset/js/main.js"></script>
+    <script src="admin_asset/js/validate.js"></script>
+
+    <!-- SPECIFIC SCRIPTS -->
+    <script src="admin_asset/js/pw_strenght.js"></script>
   </body>
 </html>

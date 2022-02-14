@@ -2,11 +2,10 @@ import React from "react";
 import Header from "../../layout/Header";
 import FooterClient from "../../layout/FooterClient";
 
-
 const Home = () => {
   return (
-    <div id="page"> 
-     <Header/>
+    <div id="page">
+      <Header />
       <section className="hero_single version_2">
         <div className="wrapper">
           <div className="container">
@@ -85,7 +84,7 @@ const Home = () => {
                 Advenure Experience
               </h3>
               <p>Activities and accommodations</p>
-              <a href="adventure.html" className="btn_1">
+              <a href="adventure.html" className="btn_1-admin">
                 Read more
               </a>
             </div>
@@ -101,10 +100,9 @@ const Home = () => {
           </div>
         </div>
       </div>
-     <FooterClient/>
+      <FooterClient />
     </div>
   );
 };
 
 export default Home;
-            

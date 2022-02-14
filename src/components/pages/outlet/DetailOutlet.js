@@ -6,7 +6,7 @@ import FooterClient from "../../layout/FooterClient";
 const DetailOutlet = () => {
   return (
     <div id="page">
-      <HeaderClient/>
+      <HeaderClient />
       <section className="hero_in tours_detail">
         <div className="wrapper">
           <div className="container">
@@ -243,12 +243,15 @@ const DetailOutlet = () => {
                     </div>
                   </div>
                 </div>
-                <a href="cart-1.html" className="btn_1 full-width purchase">
+                <a
+                  href="cart-1.html"
+                  className="btn_1-admin full-width purchase"
+                >
                   Purchase
                 </a>
                 <a
                   href="wishlist.html"
-                  className="btn_1 full-width outline wishlist"
+                  className="btn_1-admin full-width outline wishlist"
                 >
                   <i className="icon_heart" /> Add to wishlist
                 </a>
@@ -284,7 +287,7 @@ const DetailOutlet = () => {
       <div id="toTop"></div>
       <FooterClient />
     </div>
-  )
-}
+  );
+};
 
-export default DetailOutlet
+export default DetailOutlet;
