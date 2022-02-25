@@ -58,7 +58,7 @@ const HeaderClient = () => {
               </span>
               <ul>
                 <li>
-                  <Link to="/profileclient">Profile</Link>
+                  <Link to="/profile">Profile</Link>
                 </li>
                 <li>
                   <Link to="/editprofileclient">Edit Profile</Link>

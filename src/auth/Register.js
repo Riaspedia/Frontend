@@ -37,7 +37,7 @@ const Register = () => {
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
     axios
-      .post(`htpps://127.0.0.1/api/auth/register`, {
+      .post(`http://127.0.0.1:8000/api/auth/register`, {
         name: input.name,
         email: input.email,
         password: input.password,
@@ -134,7 +134,7 @@ const Register = () => {
               {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
               <Link
                 to="/login"
-                className="btn_1-admin rounded full-width add_top_30"
+                className="btn_1 rounded full-width add_top_30"
                 onClick={handleSubmit}
               >
                 Register Now!

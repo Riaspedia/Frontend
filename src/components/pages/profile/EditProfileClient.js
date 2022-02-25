@@ -18,6 +18,8 @@ import LabelText from "../../global/LabelText";
 import SelectDropdown from "../../global/SelectDropdown";
 import { useHistory } from "react-router";
 import { ContextProfile } from "../../context/ContextProfile";
+import HeaderClient from "../../layout/HeaderClient";
+import FooterClient from "../../layout/FooterClient";
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -48,14 +50,18 @@ const EditProfileClient = () => {
 
   const [sizeError, setSizeError] = useState(false);
   return (
+    <div id="page">
+       <div className="container container-custom margin_80_0"></div>
     <div
       className="container-profile"
       style={{ display:"flex", alignItems: "center" }}
     >
+     
       <Card
-        title={<Title level={4}>Edit Profile</Title>}
+        // title={<Title level={4}>Edit Profile</Title>
         style={{ width: "50%", borderRadius: 8 }}
       >
+        
         <Space size={24} direction="vertical" style={{ width: "100%" }}>
           <Row>
             <Col xs={13} sm={8} md={10} lg={6}>
@@ -211,6 +217,7 @@ const EditProfileClient = () => {
           </Button>
         </Space>
       </Card>
+    </div>
     </div>
   );
 };
