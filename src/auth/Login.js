@@ -2,6 +2,8 @@ import axios, { Axios } from "axios";
 import React, { useState } from "react";
 import { message } from "antd";
 import { Link, useHistory } from "react-router-dom";
+import HeaderClient from "../components/layout/HeaderClient";
+import FooterClient from "../components/layout/FooterClient";
 
 const Login = () => {
   let history = useHistory();
@@ -20,7 +22,7 @@ const Login = () => {
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
     axios
-      .post(`htpps://127.0.0.1/api/auth/login`, {
+      .post(`http://127.0.0.1:8000/api/auth/login`, {
         email: input.email,
         password: input.password,
       })

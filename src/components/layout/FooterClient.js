@@ -150,7 +150,7 @@ const FooterClient = () => {
                   <a href="#0">Privacy</a>
                 </li> */}
                 <li>
-                  <span>© RiasPedia</span>
+                  <span>@PT. Otak Kanan</span>
                 </li>
               </ul>
             </div>

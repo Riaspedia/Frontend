@@ -68,8 +68,8 @@ const Home = () => {
           <span>
             <em />
           </span>
-          <h2>Our Popular Tours</h2>
-          <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+          <h2>Browse & Discover</h2>
+          {/* <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p> */}
         </div>
         <div className="banner mb-0">
           <div
@@ -77,13 +77,13 @@ const Home = () => {
             data-opacity-mask="rgba(0, 0, 0, 0.3)"
           >
             <div>
-              <small>Adventure</small>
+              <small>Discover</small>
               <h3>
-                Your Perfect
+                Discover Salon, Beauty Clinics, Make Up Artist,
                 <br />
-                Advenure Experience
+                And Many More
               </h3>
-              <p>Activities and accommodations</p>
+              <p>Find Your MUA in Rias Pedia</p>
               <a href="adventure.html" className="btn_1-admin">
                 Read more
               </a>
@@ -91,13 +91,128 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <div className="container margin_60_35">
+        <div className="wrapper-grid">
+          <div className="row">
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/photoshoot.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Photoshoot Makeup</small>
+                </figure>
+              </div>
+            </div>
+
+            {/* /box_grid */}
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/bold.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Look Bold Makeup</small>
+                </figure>
+              </div>
+            </div>
+            {/* /box_grid */}
+
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/natural.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Basic Makeup</small>
+                </figure>
+              </div>
+            </div>
+            {/* /box_grid */}
+
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/eyelash.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Eyelash Extension</small>
+                </figure>
+              </div>
+            </div>
+
+            {/* /box_grid */}
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/wedding.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Wedding Makeup</small>
+                </figure>
+              </div>
+            </div>
+            {/* /box_grid */}
+
+            <div className="col-xl-4 col-lg-6 col-md-6">
+              <div className="box_grid">
+                <figure style={{ borderRadius: 12 }}>
+                  <a href="hotel-detail.html">
+                    <img
+                      src="img/background/nailart.jpg"
+                      style={{ borderRadius: 12 }}
+                    />
+                    <div className="read_more">
+                      <span>Read more</span>
+                    </div>
+                  </a>
+                  <small>Nail Art</small>
+                </figure>
+              </div>
+            </div>
+            {/* /box_grid */}
+          </div>
+          {/* /row */}
+        </div>
+        {/* /wrapper-grid */}
+      </div>
+
       <div className="bg_color_1">
-        <div className="container margin_80_55">
-          <div className="main_title_2">
-            {/* <span>
+        <div className="main_title_2">
+          {/* <span>
               <em />
             </span> */}
-          </div>
         </div>
       </div>
       <FooterClient />

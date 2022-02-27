@@ -1,9 +1,32 @@
 import React from "react";
+import FooterClient from "../../layout/FooterClient";
+import HeaderClient from "../../layout/HeaderClient";
+import { Button } from "antd";
 
 const Profile = () => {
   return (
     <div>
-      <div className="content-wrapper">
+      <HeaderClient />
+      <section className="hero_in tours_detail">
+        <div className="wrapper">
+          <div className="container">
+            <h1 className="fadeInUp">
+              <span />
+              PROFILE CLIENT
+            </h1>
+          </div>
+        </div>
+      </section>
+      <div className="container container-custom margin_80_0">
+        {/* <div className="main_title_2">
+          <span>
+            <em />
+          </span>
+          <h2>Profile Details</h2>
+        </div> */}
+      </div>
+
+      <div>
         <div className="container-fluid">
           {/* Breadcrumbs*/}
           {/* <ol class="breadcrumb">
@@ -18,6 +41,15 @@ const Profile = () => {
                 <i className="fa fa-user" />
                 Profile details
               </h2>
+              <Button
+                href="/editprofileclient"
+                //   onClick={handleDetail}
+                type="danger"
+                ghost
+                style={{ borderRadius: 8, float: "right", height: "100%" }}
+              >
+                Edit Biodata Diri
+              </Button>
             </div>
             <div className="row">
               <div className="col-md-4">
@@ -91,7 +123,7 @@ const Profile = () => {
             </div>
           </div>
           {/* /box_general*/}
-          <div className="row">
+          {/* <div className="row">
             <div className="col-md-6">
               <div className="box_general padding_bottom">
                 <div className="header_box version_2">
@@ -151,7 +183,7 @@ const Profile = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* /row*/}
           <p>
             <a href="#0" className="btn_1-admin medium">
@@ -161,6 +193,7 @@ const Profile = () => {
         </div>
         {/* /.container-fluid*/}
       </div>
+      <FooterClient />
     </div>
   );
 };

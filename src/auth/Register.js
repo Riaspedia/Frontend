@@ -37,7 +37,7 @@ const Register = () => {
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
     axios
-      .post(`htpps://127.0.0.1/api/auth/register`, {
+      .post(`http://127.0.0.1:8000/api/auth/register`, {
         name: input.name,
         email: input.email,
         password: input.password,
