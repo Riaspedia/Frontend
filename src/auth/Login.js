@@ -98,7 +98,7 @@ const Login = () => {
               </div>
               <Link
                 to="/home"
-                className="btn_1-admin-admin rounded full-width"
+                className="btn_1 rounded full-width"
                 onClick={handleSubmit}
               >
                 Login to RiasPedia

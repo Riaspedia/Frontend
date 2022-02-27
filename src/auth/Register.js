@@ -134,7 +134,7 @@ const Register = () => {
               {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
               <Link
                 to="/login"
-                className="btn_1-admin rounded full-width add_top_30"
+                className="btn_1 rounded full-width add_top_30"
                 onClick={handleSubmit}
               >
                 Register Now!

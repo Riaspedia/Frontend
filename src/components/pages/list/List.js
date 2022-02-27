@@ -179,9 +179,9 @@ export default function List() {
           {/* /container-fluid*/}
         </div>
         <FooterAdmin />
-        <GoTop />
       </div>
 
+      <GoTop />
       {/* /container-wrapper*/}
     </div>
   );

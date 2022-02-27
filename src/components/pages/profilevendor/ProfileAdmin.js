@@ -1,12 +1,12 @@
 import React from "react";
 import AdminHeader from "../../layout/AdminHeader";
 
-import { Breadcrumb, Button } from "antd";
-import GoTop from "../../layout/GoTop";
-import FooterAdmin from "../../layout/FooterAdmin";
-import { TextEditor } from "../../global/TextEditor";
+import { Breadcrumb, Button, Divider, Image, Space } from "antd";
 
-export default function ProfileA() {
+import FooterAdmin from "../../layout/FooterAdmin";
+import GoTop from "../../layout/GoTop";
+
+export default function ProfileAdmin() {
   return (
     <div className="fixed-nav sticky-footer" id="page-top">
       <AdminHeader />
@@ -25,103 +25,95 @@ export default function ProfileA() {
 
           <div className="box_general padding_bottom">
             <div className="header_box version_2">
-              <h2>
-                <i className="fa fa-user" />
-                Vendor details
-              </h2>
+              <Space direction="horizontal">
+                <h2>
+                  <i className="fa fa-user" />
+                  Vendor details
+                </h2>
+                <Button href="editprofilevendor" type="secondary">
+                  Edit
+                </Button>
+              </Space>
             </div>
             <div className="row">
-              <div className="col-md-4">
+              <div className="col-md-3">
                 <div className="form-group">
-                  <label>Vendor photo</label>
-                  <form action="/file-upload" className="dropzone" />
+                  <Image
+                    width={400}
+                    src="https://cdn.pixabay.com/photo/2018/03/19/20/17/beauty-parlor-3241097_960_720.jpg"
+                  />
                 </div>
               </div>
-              <div className="col-md-8 add_top_30">
+              <Divider type="vertical" />
+              <div className="col-md-8 add_top_40">
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>Name : </label>
+                        <label>Beauty Vendor</label>
+                      </Space>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>Email : </label>
+                        <label>Rheza@mail.com</label>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>Telephone : </label>
+                        <label>08583212312498</label>
+                      </Space>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>Zip Code : </label>
+                        <label>60225</label>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>City : </label>
+                        <label>Surabaya</label>
+                      </Space>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label>Address : </label>
+                        <label>Dukuh Kupang</label>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Your name"
-                      />
+                      <Space direction="vertical">
+                        <label>Description : </label>
+                        <label>The Best Beauty Vendor</label>
+                      </Space>
                     </div>
                   </div>
                 </div>
-                {/* /row*/}
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Telephone</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Your telephone number"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Your email"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Select City</label>
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Miami</option>
-                          <option>New York</option>
-                          <option>Los Angeles</option>
-                          <option>San Francisco</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Address</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="ex. 250, Fifth Avenue..."
-                      />
-                    </div>
-                  </div>
-                </div>
-                {/* /row*/}
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>State</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Zip Code</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                </div>
-                {/* /row*/}
-                <div className="row">
-                  <div className="col-md-12">
-                    <div className="form-group">
-                      <label>Description</label>
-                      <TextEditor />
-                    </div>
-                  </div>
-                </div>
+
                 {/* /row*/}
               </div>
             </div>
@@ -139,72 +131,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Monday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             {/* /row*/}
@@ -213,72 +143,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Tuesday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             {/* /row*/}
@@ -287,72 +155,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Wednesday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             {/* /row*/}
@@ -361,72 +167,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Thursday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             {/* /row*/}
@@ -435,72 +179,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Friday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             <div className="row">
@@ -508,72 +190,10 @@ export default function ProfileA() {
                 <label className="fix_spacing">Saturday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
             <div className="row">
@@ -581,89 +201,22 @@ export default function ProfileA() {
                 <label className="fix_spacing">Sunday</label>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin">
-                    <select>
-                      <option>Opening Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
               <div className="col-md-5">
-                <div className="form-group">
-                  <div className="styled-select-admin0">
-                    <select>
-                      <option>Closing Time</option>
-                      <option>Closed</option>
-                      <option>1 AM</option>
-                      <option>2 AM</option>
-                      <option>3 AM</option>
-                      <option>4 AM</option>
-                      <option>5 AM</option>
-                      <option>6 AM</option>
-                      <option>7 AM</option>
-                      <option>8 AM</option>
-                      <option>9 AM</option>
-                      <option>10 AM</option>
-                      <option>11 AM</option>
-                      <option>12 AM</option>
-                      <option>1 PM</option>
-                      <option>2 PM</option>
-                      <option>3 PM</option>
-                      <option>4 PM</option>
-                      <option>5 PM</option>
-                      <option>6 PM</option>
-                      <option>7 PM</option>
-                      <option>8 PM</option>
-                      <option>9 PM</option>
-                      <option>10 PM</option>
-                      <option>11 PM</option>
-                      <option>12 PM</option>
-                    </select>
-                  </div>
-                </div>
+                <div className="form-group"></div>
               </div>
             </div>
           </div>
 
           {/* /row*/}
-
-          <Button href="#0" className="btn_1-admin medium">
-            Save
-          </Button>
         </div>
-
+        <FooterAdmin />
         {/* /.container-fluid*/}
       </div>
       {/* /.container-wrapper*/}
-      <FooterAdmin />
-      {/* Scroll to Top Button*/}
       <GoTop />
+      {/* Scroll to Top Button*/}
     </div>
   );
 }

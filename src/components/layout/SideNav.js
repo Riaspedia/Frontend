@@ -44,7 +44,7 @@ export default function SideNav() {
           data-placement="right"
           title="My Vendor"
         >
-          <a className="nav-link" href="profile-vendor">
+          <a className="nav-link" href="profilevendor">
             <i className="fa fa-fw fa-user" />
             <span className="nav-link-text">My Vendor</span>
           </a>
