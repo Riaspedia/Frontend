@@ -57,15 +57,6 @@ export default function Review() {
                     solet veniam mel, ad everti nostrud vim. Eam no menandri
                     pertinacia deterruisset.
                   </p>
-                  <p className="inline-popups">
-                    <a
-                      href="#modal-reply"
-                      data-effect="mfp-zoom-in"
-                      className="btn_1-admin gray"
-                    >
-                      <i className="fa fa-fw fa-reply" /> Reply to this review
-                    </a>
-                  </p>
                 </li>
                 <li>
                   <span>June 15 2017</span>
@@ -85,15 +76,6 @@ export default function Review() {
                     sensibus erroribus principes. No pro albucius eloquentiam
                     accommodare. Mei id illud posse persius. Nec eu dico
                     lucilius delicata, qui propriae voluptaria eu.
-                  </p>
-                  <p className="inline-popups">
-                    <a
-                      href="#modal-reply"
-                      data-effect="mfp-zoom-in"
-                      className="btn_1-admin gray"
-                    >
-                      <i className="fa fa-fw fa-reply" /> Reply to this review
-                    </a>
                   </p>
                 </li>
                 <li>
@@ -116,14 +98,46 @@ export default function Review() {
                     abhorreant ne his. Mel simul iisque albucius at, probatus
                     indoctum efficiendi mei ei. Veniam percipit ei sea.
                   </p>
-                  <p className="inline-popups">
-                    <a
-                      href="#modal-reply"
-                      data-effect="mfp-zoom-in"
-                      className="btn_1-admin gray"
-                    >
-                      <i className="fa fa-fw fa-reply" /> Reply to this review
-                    </a>
+                </li>
+                <li>
+                  <span>June 15 2017</span>
+                  <span className="rating">
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star" />
+                    <i className="fa fa-fw fa-star" />
+                  </span>
+
+                  <h4>
+                    Bridal Makeup <small>by M.Giuliani</small>
+                  </h4>
+                  <p>
+                    Ex omnis error aliquam quo, eu eos atqui accusam, ex nec
+                    sensibus erroribus principes. No pro albucius eloquentiam
+                    accommodare. Mei id illud posse persius. Nec eu dico
+                    lucilius delicata, qui propriae voluptaria eu.
+                  </p>
+                </li>
+                <li>
+                  <span>June 15 2017</span>
+                  <span className="rating">
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star yellow" />
+                    <i className="fa fa-fw fa-star" />
+                  </span>
+
+                  <h4>
+                    Special Event Makeup Application <small>by G.Lukas</small>
+                  </h4>
+                  <p>
+                    Cum id mundi admodum menandri, eum errem aperiri at. Ut quas
+                    facilis qui, euismod admodum persequeris cum at. Summo
+                    aliquid eos ut, eum facilisi salutatus ne. Mazim option
+                    abhorreant ne his. Mel simul iisque albucius at, probatus
+                    indoctum efficiendi mei ei. Veniam percipit ei sea.
                   </p>
                 </li>
               </ul>
@@ -162,9 +176,10 @@ export default function Review() {
           {/* /pagination*/}
         </div>
         {/* /container-fluid*/}
+        <FooterAdmin />
       </div>
       {/* /container-wrapper*/}
-      <FooterAdmin />
+
       <GoTop />
     </div>
   );

@@ -1075,6 +1075,14 @@ label.fix_spacing {
   margin-top: 30px;
 }
 
+.add_top_40 {
+  margin-top: 40px;
+}
+
+.add_top_50 {
+  margin-top: 50px;
+}
+
 .add_top_60 {
   margin-top: 60px;
 }

@@ -1,4 +1,5 @@
 import React from "react";
+import LogoutModal from "./LogoutModal";
 import SideNav from "./SideNav";
 
 const AdminHeader = () => {
@@ -31,10 +32,8 @@ const AdminHeader = () => {
         </button>
         <div className="collapse navbar-collapse" id="navbarResponsive">
           <SideNav />
-          <ul className="navbar-nav ml-auto">
-            <li className="nav-item"></li>
-          </ul>
         </div>
+        <LogoutModal />
       </nav>
     </div>
   );

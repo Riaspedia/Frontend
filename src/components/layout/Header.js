@@ -115,7 +115,7 @@ const Header = () => {
           visible={isLoginVisible}
           onCancel={handleCancel}
         >
-          <Button type="danger" block href="">
+          <Button type="danger" block href="login-vendor">
             Login as Admin
           </Button>
           <div className="divider">
@@ -135,7 +135,7 @@ const Header = () => {
           visible={isRegisterVisible}
           onCancel={handleCancel}
         >
-          <Button type="danger" block href="/login">
+          <Button type="danger" block href="/register-vendor">
             Register as Admin
           </Button>
           <div className="divider">

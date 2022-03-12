@@ -13,6 +13,7 @@ import DetailOutlet from "../pages/outlet/DetailOutlet";
 import Outlet from "../pages/outlet/Outlet";
 import EditProfileClient from "../pages/profile/EditProfileClient";
 import ProfileClient from "../pages/profile/ProfileClient";
+import EditProfileAdmin from "../pages/profilevendor/EditProfileAdmin";
 import ProfileAdmin from "../pages/profilevendor/ProfileAdmin";
 import Review from "../pages/review/Review";
 
@@ -63,8 +64,11 @@ export default function Routes() {
           <Route path="/list" exact>
             <List />
           </Route>
-          <Route path="/profile-vendor" exact>
+          <Route path="/profilevendor" exact>
             <ProfileAdmin />
+          </Route>
+          <Route path="/editprofilevendor" exact>
+            <EditProfileAdmin />
           </Route>
           {/* <Route path="/register" {Register}/> */}
         </Switch>

@@ -97,8 +97,8 @@ const LoginVendor = () => {
                 </div>
               </div>
               <Link
-                to="/home"
-                className="btn_1-admin rounded full-width"
+                to="/dashboard"
+                className="btn_1 rounded full-width"
                 onClick={handleSubmit}
               >
                 Login to RiasPedia
@@ -106,7 +106,7 @@ const LoginVendor = () => {
               <div className="text-center add_top_10">
                 New to RiasPedia?
                 <strong>
-                  <Link to="/register">Sign up!</Link>
+                  <Link to="/register-vendor">Sign up!</Link>
                 </strong>
               </div>
             </form>

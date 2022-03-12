@@ -11,7 +11,7 @@ export default function Popup() {
           <div className="sign-in-wrapper">
             <a
               className="btn btn-danger btn-lg btn-block btn-sm"
-              href="register.html"
+              href="login-vendor"
               role="button"
             >
               Login as Admin
@@ -22,7 +22,7 @@ export default function Popup() {
             </div>
             <a
               className="btn btn-outline-danger btn-lg btn-block btn-sm"
-              href="login.html"
+              href="login"
               role="button"
             >
               Login as Client
