@@ -34,10 +34,21 @@ const Header = () => {
              </div>  */}
         {/* /Page Preload */}
         <div id="logo">
-          <a href="index.html">
-            RiasPedia
-            {/* <img src="img/logo.svg" width="150" height="36" alt="" class="logo_normal">
-            <img src="img/logo_sticky.svg" width="150" height="36" alt="" class="logo_sticky"> */}
+          <a href="/">
+            <img
+              src="img/logo/LogoRiasPedia.png"
+              width="150"
+              height="36"
+              alt=""
+              class="logo_normal"
+            ></img>
+            <img
+              src="img/logo/LogoRiasPedia.png"
+              width="150"
+              height="36"
+              alt=""
+              class="logo_sticky"
+            ></img>
           </a>
         </div>
         <a href="#menu" className="btn_mobile">

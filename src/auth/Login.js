@@ -55,7 +55,15 @@ const Login = () => {
         <div id="login">
           <aside>
             <figure>
-              <a href="index.html">RiasPedia</a>
+              <a href="/">
+                <img
+                  src="img/logo/LogoRiasPedia.png"
+                  width="150"
+                  height="36"
+                  alt=""
+                  class="logo_normal"
+                ></img>
+              </a>
             </figure>
             <form>
               <div className="form-group">

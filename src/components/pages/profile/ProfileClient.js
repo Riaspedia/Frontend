@@ -1,119 +1,183 @@
-import React from "react";
-import { Card, Button, Row, Col, Typography, Space } from "antd";
-import { ContextProfile } from "../../context/ContextProfile";
-
-const { Title, Text } = Typography;
+import React, {useState, useContext, useEffect} from "react";
+import FooterClient from "../../layout/FooterClient";
+import HeaderClient from "../../layout/HeaderClient";
+import { Button } from "antd";
+import { Row, Col, Radio, Space} from "antd";
+import LabelText from "../../global/LabelText";
+import {ContextProfile} from "../../context/ContextProfile";
 
 const ProfileClient = () => {
-  // const {input, setLoading, functions} = useContext(ContextProfile)
+
+//   const {
+//     input
+// } = useContext(ContextProfile)
+
+// const [sizeError, setSizeError] = useState(false);
 
   return (
-    <>
-      <Card
-        Card
-        style={{
-          width: "100%",
-          borderRadius: 8,
-          boxShadow: "0px 5px 10px 0px #F1F2FA",
-          border: "none",
-        }}
-        title={
-          <>
-            <Row style={{ width: "100%" }}>
-              <Col span={12}>
-                <Title level={4}> Biodata Diri </Title>
-              </Col>
-              <Col span={12}>
-                <Button
-                  href="/editprofileclient"
-                  //   onClick={handleDetail}
-                  type="danger"
-                  ghost
-                  style={{ borderRadius: 8, float: "right", height: "100%" }}
-                >
-                  Edit Biodata Diri
-                </Button>
-              </Col>
-            </Row>
-          </>
-        }
-      >
-        <Row>
-          <Col
-            xs={{ span: 24, order: 1 }}
-            sm={{ span: 24, order: 1 }}
-            md={{ span: 24, order: 1 }}
-            lg={{ span: 24, order: 1 }}
-            xl={{ span: 11, order: 1 }}
-          >
-            {/* {input.photo === SERVER_NAME + null && (
-                  <img
-                    src={noImage}
-                    alt="profile-picture"
-                    style={{
-                      width: 200,
-                      height: 200,
-                      objectFit: "cover",
-                      borderRadius: 12,
-                      marginBottom: 24,
-                      boxShadow: "0 0 0 1px #CED4DA",
-                      position: "relative",
-                    }}
-                  />
-                )}
-                {input.photo !== SERVER_NAME + null && (
-                  <img
-                    src={input.photo}
-                    alt="profile-picture"
-                    style={{
-                      width: 200,
-                      height: 200,
-                      objectFit: "cover",
-                      borderRadius: 12,
-                      marginBottom: 24,
-                      boxShadow: "0 0 0 1px #CED4DA",
-                      position: "relative",
-                    }}
-                  />
-                )} */}
-          </Col>
-          <Col
-            xs={{ span: 24, order: 2 }}
-            sm={{ span: 24, order: 2 }}
-            md={{ span: 24, order: 2 }}
-            lg={{ span: 24, order: 2 }}
-            xl={{ span: 13, order: 2 }}
-          >
-            <Space size={24} direction="vertical" style={{ width: "100%" }}>
-              <Space size={4} direction="vertical">
-                <Text type="secondary">Name</Text>
-                {/* <Text strong>{input.name}</Text> */}
-              </Space>
+    <div>
+      <HeaderClient />
+      <div style={{
+          backgroundImage: "url(img/background/RegisterBg.jpg)",
+          backgroundSize: "cover",
+          height: "100vh",
+        }} >
+        <div className="container-fluid" style={{width: '50%', paddingTop: '7%'}}>
+          <div className="box_general padding_bottom">
+            <div className="header_box version_2"S>
+              <h2>
+                <i className="fa fa-user" />
+                Profil Diri
+              </h2>
+              <Button
+                href="/editprofileclient"
+                //   onClick={handleDetail}
+                type="danger"
+                ghost
+                style={{ borderRadius: 8, float: "right", height: "100%" }}
+              >
+                Edit Biodata Diri
+              </Button>
+            </div>
+            <div className="row">
+            {/* <Row>
+                                <Col xs={13} sm={8} md={10} lg={6}>
+                                    {
+                                        // input.photo === SERVER_NAME + null &&
+                                        <img src="" alt="profile-picture"
+                                             style={{
+                                                 width: 144,
+                                                 height: 144,
+                                                 objectFit: "cover",
+                                                 borderRadius: 8,
+                                                 boxShadow: "0 0 0 1px #CED4DA"
+                                             }}/>
+                                    }
+                                    {
+                                        // input.photo !== SERVER_NAME + null &&
+                                        <img src={input.photo} alt="profile-picture"
+                                             style={{
+                                                 width: 144,
+                                                 height: 144,
+                                                 borderRadius: 8,
+                                                 boxShadow: "0 0 0 1px #CED4DA"
+                                             }}/>
+                                    }
+                                </Col>
+                                <Col xs={11} sm={16} md={14} lg={18}>
+                                    <Space size={8} direction="vertical" style={{width: "100%"}}>
+                                        <input type="file" name="myImage"  title=" "/>
+                                        {
+                                            sizeError === true &&
+                                            <LabelText text="Ukuran foto melebihi 512KB!"
+                                                       fontSize={12}
+                                                       fontColor="#EA3A3A"/>
+                                        }
 
-              <Space size={4} direction="vertical">
-                <Text type="secondary">Email</Text>
-                {/* <Text strong>{input.email}</Text> */}
-              </Space>
+                                        <h4 style={{color: "gray"}}>Pilih file dengan ukuran maksimal 512KB</h4>
+                                    </Space>
+                                </Col>
+                            </Row> */}
 
-              <Space size={4} direction="vertical">
-                <Text type="secondary">Gender</Text>
-                {/* <Text strong>{input.gender}</Text> */}
-              </Space>
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label>Your photo</label>
+                  <form action="/file-upload" className="dropzone" />
+                </div>
+              </div>
+              <div className="col-md-8 add_top_30">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                    <label>Nama Lengkap</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Nama Lengkap"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                    <label>Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <Space
+                        size={8}
+                        direction="vertical"
+                        style={{ width: "100%" }}
+                      >
+                       <label>Jenis Kelamin</label>
+                        <Radio.Group
+                        // onChange={onChangeGender} value={gender}
+                        >
+                          <Row style={{ width: "100%" }}>
+                            <Col span={12}>
+                              <Radio value="Pria">Pria </Radio>
+                            </Col>
+                            <Col span={12}>
+                              <Radio value="Wanita">Wanita</Radio>
+                            </Col>
+                          </Row>
+                        </Radio.Group>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                    <label>Provinsi</label> 
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Provinsi"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-              <Space size={4} direction="vertical">
-                <Text type="secondary">Province</Text>
-                {/* <Text strong>{input.province}</Text> */}
-              </Space>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                    <label>Kota</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Kota"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-              <Space size={4} direction="vertical">
-                <Text type="secondary">City</Text>
-                {/* <Text strong>{input.city}</Text> */}
-              </Space>
-            </Space>
-          </Col>
-        </Row>
-      </Card>
-    </>
+              </div>
+            </div>
+          </div>
+          <p>
+            <a href="/profileclient" className="btn_1-admin medium">
+              Simpan
+            </a>
+          </p>
+        </div>
+        {/* /.container-fluid*/}
+      </div>
+      <FooterClient />
+    </div>
   );
 };
 

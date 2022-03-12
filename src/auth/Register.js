@@ -70,9 +70,14 @@ const Register = () => {
         <div id="login">
           <aside>
             <figure>
-              <a href="index.html">
-                RiasPedia
-                {/* <img src="img/logo_sticky.png" width="155" height="36" data-retina="true" alt="" class="logo_sticky"> */}
+              <a href="/">
+                <img
+                  src="img/logo/LogoRiasPedia.png"
+                  width="150"
+                  height="36"
+                  alt=""
+                  class="logo_normal"
+                ></img>
               </a>
             </figure>
             <form autoComplete="off">

@@ -10,9 +10,9 @@ const HeaderClient = () => {
                 </div> */}
         {/* /Page Preload */}
         <div id="logo">
-          <a href="index.html">RiasPedia
-            {/* <img src="img/logo.svg" width="150" height="36" alt="" class="logo_normal">
-            <img src="img/logo_sticky.svg" width="150" height="36" alt="" class="logo_sticky"> */}
+          <a href="/">
+            <img src="img/logo/LogoRiasPedia.png" width="150" height="36" alt="" class="logo_normal"></img>
+            <img src="img/logo/LogoRiasPedia.png" width="150" height="36" alt="" class="logo_sticky"></img>
           </a>
         </div>
         <ul id="top_menu">
@@ -58,7 +58,7 @@ const HeaderClient = () => {
               </span>
               <ul>
                 <li>
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profileclient">Profile</Link>
                 </li>
                 <li>
                   <Link to="/editprofileclient">Edit Profile</Link>

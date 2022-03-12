@@ -23,66 +23,6 @@ const Outlet = () => {
         </div>
       </section>
       {/*/hero_in*/}
-      <div className="filters_listing sticky_horizontal">
-        <div className="container">
-          <ul className="clearfix">
-            <li>
-              <div className="switch-field">
-                <input
-                  type="radio"
-                  id="all"
-                  name="listing_filter"
-                  defaultValue="all"
-                  defaultChecked
-                  data-filter="*"
-                  className="selected"
-                />
-                <label htmlFor="all">All</label>
-                <input
-                  type="radio"
-                  id="popular"
-                  name="listing_filter"
-                  defaultValue="popular"
-                  data-filter=".popular"
-                />
-                <label htmlFor="popular">Popular</label>
-                <input
-                  type="radio"
-                  id="latest"
-                  name="listing_filter"
-                  defaultValue="latest"
-                  data-filter=".latest"
-                />
-                <label htmlFor="latest">Latest</label>
-              </div>
-            </li>
-            <li>
-              <div className="layout_view">
-                <a href="tours-grid-isotope.html">
-                  <i className="icon-th" />
-                </a>
-                <a href="rias-pedia-outlet.html" className="active">
-                  <i className="icon-th-list" />
-                </a>
-              </div>
-            </li>
-            <li>
-              <a
-                className="btn_map"
-                data-toggle="collapse"
-                href="#collapseMap"
-                aria-expanded="false"
-                aria-controls="collapseMap"
-                data-text-swap="Hide map"
-                data-text-original="View on map"
-              >
-                View on map
-              </a>
-            </li>
-          </ul>
-        </div>
-        {/* /container */}
-      </div>
       {/* /filters */}
       <div className="collapse" id="collapseMap">
         <div id="map" className="map" />
@@ -396,11 +336,11 @@ const Outlet = () => {
         <CardOutlet />
       </div>
       {/* /isotope-wrapper */}
-      <p className="text-center add_top_30">
+      {/* <p className="text-center add_top_30">
         <a href="#0" className="btn_1-admin rounded">
           Load more
         </a>
-      </p>
+      </p> */}
       {/* /container */}
 
       <FooterCliennt />

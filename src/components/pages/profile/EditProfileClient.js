@@ -1,223 +1,130 @@
-import React, { useState, useContext, useEffect } from "react";
-import {
-  Row,
-  Col,
-  Space,
-  Form,
-  Card,
-  Typography,
-  Modal,
-  Input,
-  Button,
-  Radio,
-  Select,
-  PageHeader,
-  Upload,
-} from "antd";
-import LabelText from "../../global/LabelText";
-import SelectDropdown from "../../global/SelectDropdown";
-import { useHistory } from "react-router";
-import { ContextProfile } from "../../context/ContextProfile";
-import HeaderClient from "../../layout/HeaderClient";
+import React from "react";
 import FooterClient from "../../layout/FooterClient";
-
-const { Text, Title } = Typography;
-const { Option } = Select;
-const { TextArea } = Input;
+import HeaderClient from "../../layout/HeaderClient";
+import { Button } from "antd";
+import { Row, Col, Radio, Space } from "antd";
+import LabelText from "../../global/LabelText";
 
 const EditProfileClient = () => {
-  // let history = useHistory()
-  //   const {
-  //       input,
-  //       setInput,
-  //       inputProvince,
-  //       inputCategories,
-  //       errorMessage,
-  //       loading,
-  //       functions
-  //   } = useContext(ContextProfile)
-  //   const {
-  //       fetchData,
-  //       functionEditBiodata,
-  //       functionDeleteExperience,
-  //       functionDeleteSkill,
-  //       functionDeleteEducation,
-  //       functionUploadImage,
-  //       dataCity,
-  //       dataCategories
-  //   } = functions
-  //   const [gender, setGender] = React.useState(input.gender);
-
-  const [sizeError, setSizeError] = useState(false);
   return (
-    <div id="page">
-       <div className="container container-custom margin_80_0"></div>
-    <div
-      className="container-profile"
-      style={{ display:"flex", alignItems: "center" }}
-    >
-     
-      <Card
-        // title={<Title level={4}>Edit Profile</Title>
-        style={{ width: "50%", borderRadius: 8 }}
+    <div>
+      <HeaderClient />
+      <div
+        style={{
+          backgroundImage: "url(img/background/RegisterBg.jpg)",
+          backgroundSize: "cover",
+          height: "100vh",
+        }}
       >
-        
-        <Space size={24} direction="vertical" style={{ width: "100%" }}>
-          <Row>
-            <Col xs={13} sm={8} md={10} lg={6}>
-              {/* {
-              input.photo === SERVER_NAME + null && (
-                <img
-                  src={noImage}
-                  alt="profile-picture"
-                  style={{
-                    width: 144,
-                    height: 144,
-                    objectFit: "cover",
-                    borderRadius: 8,
-                    boxShadow: "0 0 0 1px #CED4DA",
-                  }}
-                />
-              )}
-              {input.photo !== SERVER_NAME + null && (
-                <img
-                  src={input.photo}
-                  alt="profile-picture"
-                  style={{
-                    width: 144,
-                    height: 144,
-                    borderRadius: 8,
-                    boxShadow: "0 0 0 1px #CED4DA",
-                  }}
-                />
-              )} */}
-            </Col>
+        <div
+          className="container-fluid"
+          style={{ width: "50%", paddingTop: "7%" }}
+        >
+          <div className="box_general padding_bottom">
+            <div className="header_box version_2">
+              <h2>
+                <i className="fa fa-user" />
+                Edit Profil Diri
+              </h2>
+            </div>
+            <div className="row">
+              <div className="col-md-4">
+                <div className="form-group">
+                  <label>Your photo</label>
+                  <form action="/file-upload" className="dropzone" />
+                </div>
+              </div>
+              <div className="col-md-8 add_top_30">
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>Nama Lengkap</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Nama Lengkap"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        className="form-control"
+                        placeholder="Email"
+                      />
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <Space
+                        size={8}
+                        direction="vertical"
+                        style={{ width: "100%" }}
+                      >
+                        <label>Jenis Kelamin</label>
+                        <Radio.Group
+                        // onChange={onChangeGender} value={gender}
+                        >
+                          <Row style={{ width: "100%" }}>
+                            <Col span={12}>
+                              <Radio value="Pria">Pria </Radio>
+                            </Col>
+                            <Col span={12}>
+                              <Radio value="Wanita">Wanita</Radio>
+                            </Col>
+                          </Row>
+                        </Radio.Group>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>Provinsi</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Provinsi"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-            <Col xs={11} sm={16} md={14} lg={18}>
-              <Space size={8} direction="vertical" style={{ width: "100%" }}>
-                <input
-                  type="file"
-                  name="myImage"
-                  // onChange={onImageChange}
-                  title=" "
-                />
-                {sizeError === true && (
-                  <LabelText
-                    text="Ukuran foto melebihi 512KB!"
-                    fontSize={12}
-                    fontColor="#EA3A3A"
-                  />
-                )}
-
-                <p style={{ color: "gray" }}>
-                  Pilih file dengan ukuran maksimal 1MB
-                </p>
-              </Space>
-            </Col>
-          </Row>
-
-          <Space size={8} direction="vertical" style={{ width: "100%" }}>
-            <LabelText text="Full Name" />
-            <Input
-              style={{ borderRadius: 8, height: 48 }}
-              name="name"
-              // onChange={handleChange}
-              placeholder="Enter Your Full Name"
-              // value={input.name}
-            />
-          </Space>
-
-          <Space size={8} direction="vertical" style={{ width: "100%" }}>
-            <LabelText text="Email" />
-            <Input
-              style={{ borderRadius: 8, height: 48 }}
-              name="email"
-              // onChange={handleChange}
-              placeholder="Enter Your Email"
-              // value={input.name}
-            />
-          </Space>
-
-          <Space size={8} direction="vertical" style={{ width: "100%" }}>
-            <LabelText text="Jenis Kelamin" />
-            <Radio.Group
-            // onChange={onChangeGender} value={gender}
-            >
-              <Row style={{ width: "100%" }}>
-                <Col span={12}>
-                  <Radio value="Pria">Male </Radio>
-                </Col>
-                <Col span={12}>
-                  <Radio value="Wanita">Female</Radio>
-                </Col>
-              </Row>
-            </Radio.Group>
-          </Space>
-
-          <Row style={{ width: "100%" }}>
-            <Col span={11}>
-              <Space size={8} direction="vertical" style={{ width: "100%" }}>
-                <LabelText text="Provinsi" />
-                {/* <SelectDropdown
-                  // defaultValue={input.province}
-                  // onChange={handleProvinceChange}
-                  placeholder="Provinsi"
-                  option={
-                    inputProvince.province && (
-                      <>
-                        {inputProvince.province.map((e, index) => {
-                          return (
-                            <>
-                              <Option value={[e.name, e.id]}>{e.name}</Option>
-                            </>
-                          );
-                        })}
-                      </>
-                    )
-                  }
-                /> */}
-              </Space>
-            </Col>
-            <Col span={1} />
-            <Col span={12}>
-              <Space size={8} direction="vertical" style={{ width: "100%" }}>
-                <LabelText text="Kota" />
-                {/* <SelectDropdown
-                  defaultValue={input.city}
-                  onChange={handleCityChange}
-                  placeholder="Kota"
-                  option={
-                    inputProvince.cities && (
-                      <>
-                        {inputProvince.cities.map((e, index) => {
-                          return (
-                            <>
-                              <Option value={e.name}>{e.name}</Option>
-                            </>
-                          );
-                        })}
-                      </>
-                    )
-                  }
-                /> */}
-              </Space>
-            </Col>
-          </Row>
-
-          <Button
-            href="/profileclient"
-            size="large"
-            className="button"
-            type="danger"
-            block
-            style={{ borderRadius: 8}}
-            // onClick={handleSubmit}
-          >
-            Simpan
-          </Button>
-        </Space>
-      </Card>
-    </div>
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label>Kota</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder="Kota"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <p>
+            <a href="/profileclient" className="btn_1-admin medium">
+              Simpan
+            </a>
+          </p>
+        </div>
+        {/* /.container-fluid*/}
+      </div>
+      <FooterClient />
     </div>
   );
 };

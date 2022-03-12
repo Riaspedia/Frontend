@@ -9,13 +9,11 @@ const FooterClient = () => {
           <div className="row">
             <div className="col-lg-5 col-md-12 p-r-5">
               <p>
-                <img src="img/logo.svg" width={150} height={36} alt />
+                <img src="img/logo/LogoRiasPedia.png" width={160} height={50} alt />
               </p>
               <p>
-                Mea nibh meis philosophia eu. Duis legimus efficiantur ea sea.
-                Id placerat tacimates definitionem sea, prima quidam vim no. Duo
-                nobis persecuti cu. Nihil facilisi indoctum an vix, ut delectus
-                expetendis vis.
+                Rias Pedia merupakan website yang berisi kumpulan Make Up Artist (MUA) di seluruh Indonesia, sehingga mempermudah client 
+                untuk menemukan MUA terdekat. 
               </p>
               <div className="follow_us">
                 <ul>
@@ -78,35 +76,10 @@ const FooterClient = () => {
                 </li>
                 <li>
                   <a href="mailto:info@Panagea.com">
-                    <i className="ti-email" /> riaspedia@gmail.com
+                    <i className="ti-email" /> info@otakkanan.co.id
                   </a>
                 </li>
               </ul>
-              <div id="newsletter">
-                <h6>Newsletter</h6>
-                <div id="message-newsletter" />
-                <form
-                  method="post"
-                  action="assets/newsletter.php"
-                  name="newsletter_form"
-                  id="newsletter_form"
-                >
-                  <div className="form-group">
-                    <input
-                      type="email"
-                      name="email_newsletter"
-                      id="email_newsletter"
-                      className="form-control"
-                      placeholder="Your email"
-                    />
-                    <input
-                      type="submit"
-                      defaultValue="Submit"
-                      id="submit-newsletter"
-                    />
-                  </div>
-                </form>
-              </div>
             </div>
           </div>
           {/*/row*/}
@@ -150,7 +123,7 @@ const FooterClient = () => {
                   <a href="#0">Privacy</a>
                 </li> */}
                 <li>
-                  <span>@PT. Otak Kanan</span>
+                  <span>@ 2022 Rias Pedia</span>
                 </li>
               </ul>
             </div>

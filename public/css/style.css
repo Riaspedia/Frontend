@@ -711,7 +711,7 @@ hr.large {
 ul,
 ol {
   list-style: none;
-  margin: 0 0 25px 0;
+  margin: 0 25px 0 25px;
   padding: 0;
 }
 
@@ -3842,7 +3842,7 @@ a.box_feat h3 {
 }
 .box_list a.wish_bt {
   position: absolute;
-  right: 15px;
+  right: 20px;
   top: 15px;
   z-index: 1;
   background-color: black;
