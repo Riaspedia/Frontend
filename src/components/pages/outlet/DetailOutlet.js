@@ -294,7 +294,7 @@ const DetailOutlet = () => {
                   action="https://www.hellobeauty.id/profile_salon/add_to_reservation"
                   method="post"
                 >
-                  <div className="salon-book">
+                  <div className="salon-book"  style={{height:"500px"}}>
                     <div className="row">
                       <div className="col-md-12">
                         <div className="salon-map">
@@ -302,7 +302,7 @@ const DetailOutlet = () => {
                           <iframe
                             src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
                             frameBorder={0}
-                            style={{ border: 0, borderRadius: 20 }}
+                            style={{ border: 0, borderRadius: 20, height: 430 }}
                             allowFullScreen
                           />
                         </div>
@@ -315,21 +315,21 @@ const DetailOutlet = () => {
             </div>
 
             <aside className="col-lg-4" id="sidebar">
-              <div className="box_detail booking">
+              <div className="box_detail booking" style={{height:"450px", width:"450px", borderRadius:"20px"}}>
                 <form
                   id="form-reserve"
                   action="https://www.hellobeauty.id/profile_salon/add_to_reservation"
                   method="post"
                 >
-                  <div className="salon-book">
+                  <div className="salon-book" style={{height:"400px", width:"400px"}}>
                     <div className="row">
                       <div className="col-md-12">
                         <div className="salon-map">
                           <label className="category">Map</label>
-                          <iframe
+                          <iframe 
                             src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
                             frameBorder={0}
-                            style={{ border: 0, borderRadius: 20 }}
+                            style={{ border: 0, borderRadius: 20, height: 320 }}
                             allowFullScreen
                           />
                         </div>

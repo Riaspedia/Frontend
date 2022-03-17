@@ -8,7 +8,7 @@ import GoTop from "../../layout/GoTop";
 import UploadBox from "../../global/UploadBox";
 import { TextEditor } from "../../global/TextEditor";
 
-export default function EditProfileAdmin() {
+const EditProfileAdmin = () => {
   return (
     <div className="fixed-nav sticky-footer" id="page-top">
       <AdminHeader />
@@ -668,3 +668,5 @@ export default function EditProfileAdmin() {
     </div>
   );
 }
+
+export default EditProfileAdmin

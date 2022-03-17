@@ -1,30 +1,54 @@
-import React, {useState, useContext, useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import FooterClient from "../../layout/FooterClient";
 import HeaderClient from "../../layout/HeaderClient";
 import { Button } from "antd";
-import { Row, Col, Radio, Space} from "antd";
+import { Row, Col, Radio, Space } from "antd";
+import Cookies from "js-cookie";
+import axios from "axios";
 import LabelText from "../../global/LabelText";
-import {ContextProfile} from "../../context/ContextProfile";
+import { ContextProfile } from "../../context/ContextProfile";
+import Image from "../../../assests/img/MUA1.jpg"
+import { baseURL } from "../../routes/Config";
 
 const ProfileClient = () => {
+  const [input, setInput] = useState([]);
 
-//   const {
-//     input
-// } = useContext(ContextProfile)
+  const fetchData = async () => {
+    let result = await axios.get(baseURL + `/api/auth/profile`, {
+      headers: { Authorization: "Bearer " + Cookies.get("token") },
+    });
 
-// const [sizeError, setSizeError] = useState(false);
+    let data = result.data;
+    console.log(result);
+    setInput({
+      name: data.name,
+      email: data.email,
+      gender: data.gender,
+      province: data.province,
+      city: data.city,
+    });
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <div>
       <HeaderClient />
-      <div style={{
+      <div
+        style={{
           backgroundImage: "url(img/background/RegisterBg.jpg)",
           backgroundSize: "cover",
-          height: "100vh",
-        }} >
-        <div className="container-fluid" style={{width: '50%', paddingTop: '7%'}}>
+          paddingBottom: "20px",
+          boxSizing: "border-box",
+        }}
+      >
+        <div
+          className="container-fluid"
+          style={{ width: "50%", paddingTop: "7%" }}
+        >
           <div className="box_general padding_bottom">
-            <div className="header_box version_2"S>
+            <div className="header_box version_2" S>
               <h2>
                 <i className="fa fa-user" />
                 Profil Diri
@@ -40,61 +64,28 @@ const ProfileClient = () => {
               </Button>
             </div>
             <div className="row">
-            {/* <Row>
-                                <Col xs={13} sm={8} md={10} lg={6}>
-                                    {
-                                        // input.photo === SERVER_NAME + null &&
-                                        <img src="" alt="profile-picture"
-                                             style={{
-                                                 width: 144,
-                                                 height: 144,
-                                                 objectFit: "cover",
-                                                 borderRadius: 8,
-                                                 boxShadow: "0 0 0 1px #CED4DA"
-                                             }}/>
-                                    }
-                                    {
-                                        // input.photo !== SERVER_NAME + null &&
-                                        <img src={input.photo} alt="profile-picture"
-                                             style={{
-                                                 width: 144,
-                                                 height: 144,
-                                                 borderRadius: 8,
-                                                 boxShadow: "0 0 0 1px #CED4DA"
-                                             }}/>
-                                    }
-                                </Col>
-                                <Col xs={11} sm={16} md={14} lg={18}>
-                                    <Space size={8} direction="vertical" style={{width: "100%"}}>
-                                        <input type="file" name="myImage"  title=" "/>
-                                        {
-                                            sizeError === true &&
-                                            <LabelText text="Ukuran foto melebihi 512KB!"
-                                                       fontSize={12}
-                                                       fontColor="#EA3A3A"/>
-                                        }
-
-                                        <h4 style={{color: "gray"}}>Pilih file dengan ukuran maksimal 512KB</h4>
-                                    </Space>
-                                </Col>
-                            </Row> */}
-
               <div className="col-md-4">
                 <div className="form-group">
-                  <label>Your photo</label>
-                  <form action="/file-upload" className="dropzone" />
+                <img
+                      src={Image}
+                      alt="profile-picture"
+                      style={{
+                        width: 144,
+                        height: 144,
+                        objectFit: "cover",
+                        borderRadius: 8,
+                        boxShadow: "0 0 0 1px #CED4DA",
+                      }}
+                    />
+                 
                 </div>
               </div>
-              <div className="col-md-8 add_top_30">
+              <div className="col-md-8 p-0">
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                    <label>Nama Lengkap</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Nama Lengkap"
-                      />
+                      <label>Nama Lengkap</label>
+                      <p>{input.name}</p>
                     </div>
                   </div>
                 </div>
@@ -102,12 +93,8 @@ const ProfileClient = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                    <label>Email</label>
-                      <input
-                        type="email"
-                        className="form-control"
-                        placeholder="Email"
-                      />
+                      <label>Email</label>
+                      <p>{input.email}</p>
                     </div>
                   </div>
                 </div>
@@ -120,19 +107,8 @@ const ProfileClient = () => {
                         direction="vertical"
                         style={{ width: "100%" }}
                       >
-                       <label>Jenis Kelamin</label>
-                        <Radio.Group
-                        // onChange={onChangeGender} value={gender}
-                        >
-                          <Row style={{ width: "100%" }}>
-                            <Col span={12}>
-                              <Radio value="Pria">Pria </Radio>
-                            </Col>
-                            <Col span={12}>
-                              <Radio value="Wanita">Wanita</Radio>
-                            </Col>
-                          </Row>
-                        </Radio.Group>
+                        <label>Jenis Kelamin</label>
+                        <p>{input.gender}</p>
                       </Space>
                     </div>
                   </div>
@@ -141,12 +117,8 @@ const ProfileClient = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                    <label>Provinsi</label> 
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Provinsi"
-                      />
+                      <label>Provinsi</label>
+                      <p>{input.province}</p>
                     </div>
                   </div>
                 </div>
@@ -155,16 +127,11 @@ const ProfileClient = () => {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                    <label>Kota</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Kota"
-                      />
+                      <label>Kota</label>
+                      <p>{input.city}</p>
                     </div>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

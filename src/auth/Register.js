@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { message, Checkbox } from "antd";
 import axios, { Axios } from "axios";
 import { Link, useHistory } from "react-router-dom";
+import { baseURL } from "../components/routes/Config";
 
 const Register = () => {
   let history = useHistory();
@@ -37,7 +38,7 @@ const Register = () => {
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
     axios
-      .post(`http://127.0.0.1:8000/api/auth/register`, {
+      .post(baseURL + `/api/auth/register`, {
         name: input.name,
         email: input.email,
         password: input.password,
