@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Image from "../../assests/img/MUA1.jpg";
 
 const HeaderClient = () => {
   return (
@@ -11,18 +12,28 @@ const HeaderClient = () => {
         {/* /Page Preload */}
         <div id="logo">
           <a href="/">
-            <img src="img/logo/LogoRiasPedia.png" width="150" height="36" alt="" class="logo_normal"></img>
-            <img src="img/logo/LogoRiasPedia.png" width="150" height="36" alt="" class="logo_sticky"></img>
+            <img
+              src="img/logo/LogoRiasPedia.png"
+              width="150"
+              height="36"
+              alt=""
+              class="logo_normal"
+            ></img>
+            <img
+              src="img/logo/LogoRiasPedia.png"
+              width="150"
+              height="36"
+              alt=""
+              class="logo_sticky"
+            ></img>
           </a>
         </div>
         <ul id="top_menu">
-          {/* <li><a href="cart-1.html" class="cart-menu-btn" title="Cart"><strong>4</strong></a></li> */}
           <li>
             <Link to="/" id="sign-out" className="login" title="Sign Out">
               Sign Out
             </Link>
           </li>
-          {/* <li><a href="wishlist.html" class="wishlist_bt_top" title="Your wishlist">Your wishlist</a></li> */}
         </ul>
         {/* /top_menu */}
         <a href="#menu" className="btn_mobile">
@@ -36,7 +47,7 @@ const HeaderClient = () => {
           <ul>
             <li>
               <span>
-                <a href="/">Home</a>
+                <a href="/">Beranda</a>
               </span>
             </li>
             <li>
@@ -53,24 +64,38 @@ const HeaderClient = () => {
               </ul>
             </li>
             <li>
-              <span>
-                <a href="#">Profile</a>
+              <span >
+                <a href="/profileclient" className="p-0">
+                <img
+                  src={Image}
+                  alt="profile-picture"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    objectFit: "cover",
+                    borderRadius: "50%",
+                    marginLeft: "24px",
+                  }}
+                />
+
+                </a>
+               
               </span>
-              <ul>
+              {/* <Link to="/profileclient"></Link> */}
+              {/* <ul>
                 <li>
                   <Link to="/profileclient">Profile</Link>
                 </li>
                 <li>
                   <Link to="/editprofileclient">Edit Profile</Link>
                 </li>
-              </ul>
-
+              </ul> */}
             </li>
           </ul>
         </nav>
       </header>
     </div>
-  )
-}
+  );
+};
 
-export default HeaderClient
+export default HeaderClient;

@@ -4,6 +4,8 @@ import { message } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import HeaderClient from "../components/layout/HeaderClient";
 import FooterClient from "../components/layout/FooterClient";
+import Cookies from "js-cookie"
+import { baseURL } from "../components/routes/Config";
 
 const Login = () => {
   let history = useHistory();
@@ -21,14 +23,21 @@ const Login = () => {
 
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
+    let inOneHours = new Date(new Date().getTime() + 60 * 60 * 1000);
     axios
-      .post(`http://127.0.0.1:8000/api/auth/login`, {
+      .post(baseURL + `/api/auth/login`, {
         email: input.email,
         password: input.password,
       })
 
       .then((res) => {
-        history.push("/");
+        let token = res.data.access_token
+        let userId = res.data.user_id
+
+        Cookies.set('token', token, {expires: inOneHours})
+        Cookies.set('user_id', userId, {expires: inOneHours})
+        history.push("/home");
+
       })
 
       .catch((err) => {

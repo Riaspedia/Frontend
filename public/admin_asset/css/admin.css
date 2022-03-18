@@ -887,8 +887,8 @@ label.fix_spacing {
 }
 .header_box.version_2 {
   border-bottom: 1px solid #ededed;
-  margin: 0 -30px;
-  padding: 0 30px 10px 30px;
+  margin: 0 -26px;
+  padding: 0 30px 10px ;
   margin-bottom: 15px;
 }
 .header_box.version_2 i {
