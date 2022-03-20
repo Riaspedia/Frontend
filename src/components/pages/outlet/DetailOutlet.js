@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import HeaderClient from "../../layout/HeaderClient";
 import FooterClient from "../../layout/FooterClient";
+import Image from "../../../assests/img/MUA1.jpg";
 
 const DetailOutlet = () => {
   return (
@@ -40,8 +41,8 @@ const DetailOutlet = () => {
 
       <div className="bg_color_1">
         <nav className="secondary_nav sticky_horizontal">
-          <div className="container">
-            <ul className="clearfix">
+          <div className="container mt-2">
+            <ul className="clearfix m-0">
               <li>
                 <a href="#description" className="active">
                   Description
@@ -59,7 +60,78 @@ const DetailOutlet = () => {
         <div className="container margin_60_35">
           <div className="row">
             <div className="col-lg-8">
-              <section id="description">
+              <div className="col-md-12 px-0 d-flex flex-row justify-content-between">
+                <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-center">
+                  <img
+                    className="m-0"
+                    src={Image}
+                    alt="profile-picture"
+                    style={{
+                      width: 120,
+                      height: 120,
+                      objectFit: "cover",
+                      borderRadius: "50%",
+                      marginLeft: "24px",
+                    }}
+                  />
+
+                  <div className="mt-2 rating-wrapper align-items-center">
+                    {/* <span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-half.svg"></span> */}
+                    <div className="rating d-flex flex-row">
+                      <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                      <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                      <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                      <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                      <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                    </div>
+                    <div className="rating-total">
+                      <div className="hb-small">
+                        {/* 3.5 / 5 · 120 Reviews */}
+                        5.0 / 5 · 16 Reviews
+                      </div>
+                    </div>
+
+                    <div className="salon-profile-card mt-5">
+                      <label className="hb-info">Today open</label>
+                      <div className="hb-semi-font black">
+                        <i className="fa fa-clock-o" /> 09.00 AM - 08.00 PM
+                        {/* 10.00 AM - 19.00 PM */}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="detail col-md-10 ml-4">
+                  <div className="hb-head">
+                    <h3>Kriwil Salon </h3>
+                    {/* Salon angel */}
+                  </div>
+                  <div className="profile-contact">
+                    <a href="tel:081585196656" className="hb-semi-font black">
+                      <span>
+                        <i className="fa fa-phone" /> 081585196656{" "}
+                      </span>
+                    </a>
+                    <span style={{ fontSize: 20, margin: "0 5px" }}>·</span>
+                    <a href="mailto:" className="hb-semi-font black">
+                      <span>
+                        <i className="fa fa-envelope-o" /> kriwilsalon@gmail.com{" "}
+                      </span>
+                    </a>
+                  </div>
+                  <div className="profile-address">
+                    <div className="hb-semi-font black">
+                      <i className="fa fa-map-marker" /> Jl. Panglima Polim
+                      No.125C, RT.2/RW.1, Pulo, Kec. Kby. Baru, Kota Jakarta
+                      Selatan, Daerah Khusus Ibukota Jakarta 12160 Kota Jakarta
+                      Selatan, Dki Jakarta
+                      {/*  EV Hive at IFC Tower 1,11th Floor. Jl. Jend. Sudirman Kav 22-23, DKI Jakarta 12920 */}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-4 d-flex flex-row">
+              <section id="description" className="col-md-8">
                 <h2>Description</h2>
                 <p>
                   House of David adalah salon terkemuka di Surabaya. yang
@@ -67,14 +139,15 @@ const DetailOutlet = () => {
                   1980. Yang saat ini sudah ada 4 cabang tersebar di Surabaya.
                 </p>
                 <p>
-                 David Salon Makeup terkenal dengan haraganya yang sangat <strong>terjangkau</strong> bagi mahasiswa.
-                 Banyak dari kalangan mahasiswa yang berlangganan dengan Davin Salon karena hasilnya sangat memuaskan dengan
-                 harga yang terjangkau pula.
+                  David Salon Makeup terkenal dengan haraganya yang sangat{" "}
+                  <strong>terjangkau</strong> bagi mahasiswa. Banyak dari
+                  kalangan mahasiswa yang berlangganan dengan Davin Salon karena
+                  hasilnya sangat memuaskan dengan harga yang terjangkau pula.
                 </p>
                 {/* <h3>Instagram photos feed</h3>
                 <div id="instagram-feed" className="clearfix" />
                 <hr /> */}
-                <hr/>
+                <hr />
 
                 <h3>
                   Working Hours
@@ -149,271 +222,116 @@ const DetailOutlet = () => {
                   </div>
                 </div>
 
-                <hr/>
-                <h3>Service</h3>
-
-                {/* <div className="salon-book">
-                  <div className="row">
-                    <div className="col-md-12">
-                      <div className="salon-map">
-                        <label className="category">Map</label>
-                        <iframe
-                          src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
-                          frameBorder={0}
-                          style={{ border: 0, borderRadius: 20 }}
-                          allowFullScreen
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* <p>
-                  Iudico omnesque vis at, ius an laboramus adversarium. An
-                  eirmod doctus admodum est, vero numquam et mel, an duo modo
-                  error. No affert timeam mea, legimus ceteros his in. Aperiri
-                  honestatis sit at. Eos aeque fuisset ei, case denique eam ne.
-                  Augue invidunt has ad, ullum debitis mea ei, ne aliquip
-                  dignissim nec.
-                </p> */}
-                {/* <ul className="cbp_tmtimeline">
-                  <li>
-                    <time className="cbp_tmtime" dateTime="09:30">
-                      <span>30 min.</span>
-                      <span>09:30</span>
-                    </time>
-                    <div className="cbp_tmicon">1</div>
-                    <div className="cbp_tmlabel">
-                      <div className="hidden-xs">
-                        <img
-                          src="img/tour_plan_1.jpg"
-                          alt
-                          className="rounded-circle thumb_visit"
-                        />
-                      </div>
-                      <h4>Interior of the cathedral</h4>
-                      <p>
-                        Vero consequat cotidieque ad eam. Ea duis errem qui,
-                        impedit blandit sed eu. Ius diam vivendo ne.
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <time className="cbp_tmtime" dateTime="11:30">
-                      <span>2 hours</span>
-                      <span>11:30</span>
-                    </time>
-                    <div className="cbp_tmicon">2</div>
-                    <div className="cbp_tmlabel">
-                      <div className="hidden-xs">
-                        <img
-                          src="img/tour_plan_2.jpg"
-                          alt
-                          className="rounded-circle thumb_visit"
-                        />
-                      </div>
-                      <h4>Statue of Saint Reparata</h4>
-                      <p>
-                        Vero consequat cotidieque ad eam. Ea duis errem qui,
-                        impedit blandit sed eu. Ius diam vivendo ne.
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <time className="cbp_tmtime" dateTime="13:30">
-                      <span>1 hour</span>
-                      <span>13:30</span>
-                    </time>
-                    <div className="cbp_tmicon">3</div>
-                    <div className="cbp_tmlabel">
-                      <div className="hidden-xs">
-                        <img
-                          src="img/tour_plan_3.jpg"
-                          alt
-                          className="rounded-circle thumb_visit"
-                        />
-                      </div>
-                      <h4>Huge clock decorated</h4>
-                      <p>
-                        Vero consequat cotidieque ad eam. Ea duis errem qui,
-                        impedit blandit sed eu. Ius diam vivendo ne.
-                      </p>
-                    </div>
-                  </li>
-                  <li>
-                    <time className="cbp_tmtime" dateTime="14:30">
-                      <span>2 hours</span>
-                      <span>14:30</span>
-                    </time>
-                    <div className="cbp_tmicon">4</div>
-                    <div className="cbp_tmlabel">
-                      <div className="hidden-xs">
-                        <img
-                          src="img/tour_plan_4.jpg"
-                          alt
-                          className="rounded-circle thumb_visit"
-                        />
-                      </div>
-                      <h4>Vasari's fresco</h4>
-                      <p>
-                        Vero consequat cotidieque ad eam. Ea duis errem qui,
-                        impedit blandit sed eu. Ius diam vivendo ne.
-                      </p>
-                    </div>
-                  </li>
-                </ul> */}
-                <p>
-                  David Salon Makeup memberikan pelayanan yang sangat baik kepada para clientnya. Selain pegawainya yang ramah,
-                  salon ini juga memiliki ruangan yang luas dan ber ac sehingga para client akan merasa nyaman saat datang ke salon kami.
-                  kami pun menyediakan beberapa <strong>pelayanan</strong> diantaranya. 
-                </p>
-                <div className="row">
-                  <div className="col-lg-6">
-                    <ul className="bullets">
-                      <li>Hair Cutting</li>
-                      <li>Hair Coloring</li>
-                      <li>Hair Do</li>
-                      <li>Hair Washing</li>
-                    </ul>
-                  </div>
-                  <div className="col-lg-6">
-                    <ul className="bullets">
-                      <li>Bold Makeup</li>
-                      <li>Barbie Makeup</li>
-                      <li>Wedding Makeup</li>
-                      <li>Natural Makeup</li>
-                    </ul>
-                  </div>
-                </div>
-                {/* /row */}
                 <hr />
-                <h3>Location</h3>
-                {/* <div id="map" className="map map_single add_bottom_30" /> */}
-                <form
-                  id="form-reserve"
-                  action="https://www.hellobeauty.id/profile_salon/add_to_reservation"
-                  method="post"
-                >
-                  <div className="salon-book"  style={{height:"500px"}}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="salon-map">
-                          <label className="category">Map</label>
-                          <iframe
-                            src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
-                            frameBorder={0}
-                            style={{ border: 0, borderRadius: 20, height: 430 }}
-                            allowFullScreen
-                          />
+                <h3>Service</h3>
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th colSpan="2" className="table-secondary">
+                        Haircut
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        Women (by Gracia) <br></br>
+                        <span>40 minutes</span>
+                      </td>
+                      <td class="text-right" >Rp 180.000,00</td>
+                    </tr>
+                  </tbody>
+                </table>
+
+                <hr />
+                <h3>Reviews</h3>
+                <div className="col-lg-8">
+                  <div className="col-md-12 px-0 d-flex flex-row justify-content-between">
+                    <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-top mt-2">
+                      <img
+                        className="m-0"
+                        src={Image}
+                        alt="profile-picture"
+                        style={{
+                          width: 50,
+                          height: 50,
+                          objectFit: "cover",
+                          borderRadius: "50%",
+                          marginLeft: "24px",
+                        }}
+                      />
+                    </div>
+                    <div className="detail col-md-10 ml-0 p-0 mb-0 mt-2">
+                     <div>
+                       <h4>Nuhi Nurhidayah</h4>
+                     </div>
+                      <div>
+                          <span className="mt-0">
+                            28 September 2022
+                          </span>      
+                      </div>
+                      <div>
+                        <p class="text-dark">Thanks Tim Kriwil, pelayanannya bagus dan sudah buat rambutku makin cute</p>
+                      </div>
+                      <div className="mt-2 rating-wrapper ml-0">
+                        {/* <span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-half.svg"></span> */}
+                        <div className="rating d-flex flex-row">
+                          <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                          <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                          <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                          <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                          <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
                         </div>
                       </div>
                     </div>
                   </div>
-                </form>
-                {/* End Map */}
+                </div>
               </section>
-            </div>
 
-            <aside className="col-lg-4" id="sidebar">
-              <div className="box_detail booking" style={{height:"450px", width:"450px", borderRadius:"20px"}}>
-                <form
-                  id="form-reserve"
-                  action="https://www.hellobeauty.id/profile_salon/add_to_reservation"
-                  method="post"
+              {/* Maps */}
+              <aside className="col-md-4" id="sidebar">
+                <div
+                  className="box_detail booking"
+                  style={{
+                    height: "450px",
+                    width: "450px",
+                    borderRadius: "20px",
+                  }}
                 >
-                  <div className="salon-book" style={{height:"400px", width:"400px"}}>
-                    <div className="row">
-                      <div className="col-md-12">
-                        <div className="salon-map">
-                          <label className="category">Map</label>
-                          <iframe 
-                            src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
-                            frameBorder={0}
-                            style={{ border: 0, borderRadius: 20, height: 320 }}
-                            allowFullScreen
-                          />
+                  <form
+                    id="form-reserve"
+                    action="https://www.hellobeauty.id/profile_salon/add_to_reservation"
+                    method="post"
+                  >
+                    <div
+                      className="salon-book"
+                      style={{ height: "400px", width: "400px" }}
+                    >
+                      <div className="row">
+                        <div className="col-md-12">
+                          <div className="salon-map">
+                            <label className="category">Map</label>
+                            <iframe
+                              src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
+                              frameBorder={0}
+                              style={{
+                                border: 0,
+                                borderRadius: 20,
+                                height: 320,
+                              }}
+                              allowFullScreen
+                            />
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </form>
-
-                {/* <div className="price">
-                  <span>
-                    45$ <small>person</small>
-                  </span>
-                  <div className="score">
-                    <span>
-                      Good<em>350 Reviews</em>
-                    </span>
-                    <strong>7.0</strong>
-                  </div>
+                  </form>
                 </div>
-                <div className="form-group input-dates">
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="dates"
-                    placeholder="When.."
-                  />
-                  <i className="icon_calendar" />
-                </div>
-                <div className="panel-dropdown">
-                  <a href="#">
-                    Guests <span className="qtyTotal">1</span>
-                  </a>
-                  <div className="panel-dropdown-content right">
-                    <div className="qtyButtons">
-                      <label>Adults</label>
-                      <input type="text" name="qtyInput" defaultValue={1} />
-                    </div>
-                    <div className="qtyButtons">
-                      <label>Childrens</label>
-                      <input type="text" name="qtyInput" defaultValue={0} />
-                    </div>
-                  </div>
-                </div>
-                <a
-                  href="cart-1.html"
-                  className="btn_1-admin full-width purchase"
-                >
-                  Purchase
-                </a>
-                <a
-                  href="wishlist.html"
-                  className="btn_1-admin full-width outline wishlist"
-                >
-                  <i className="icon_heart" /> Add to wishlist
-                </a>
-                <div className="text-center">
-                  <small>No money charged in this step</small>
-                </div> */}
-              </div>
-              {/* <ul className="share-buttons">
-                <li>
-                  <a className="fb-share" href="#0">
-                    <i className="social_facebook" /> Share
-                  </a>
-                </li>
-                <li>
-                  <a className="twitter-share" href="#0">
-                    <i className="social_twitter" /> Tweet
-                  </a>
-                </li>
-                <li>
-                  <a className="gplus-share" href="#0">
-                    <i className="social_googleplus" /> Share
-                  </a>
-                </li>
-              </ul> */}
-            </aside>
+              </aside>
+            </div>
           </div>
-          {/* /row */}
         </div>
-        {/* /container */}
       </div>
-      {/* /bg_color_1 */}
-      {/* /main */}
       <div id="toTop"></div>
       <FooterClient />
     </div>

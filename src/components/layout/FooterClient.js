@@ -11,12 +11,12 @@ const FooterClient = () => {
               <p>
                 <img src="img/logo/LogoRiasPedia.png" width={160} height={50} alt />
               </p>
-              <p>
+              <p className="ml-1">
                 Rias Pedia merupakan website yang berisi kumpulan Make Up Artist (MUA) di seluruh Indonesia, sehingga mempermudah client 
                 untuk menemukan MUA terdekat. 
               </p>
               <div className="follow_us">
-                <ul>
+                <ul className="ml-1">
                   <li>Follow us</li>
                   <li>
                     <a href="#0">

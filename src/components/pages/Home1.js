@@ -10,7 +10,7 @@ const Home1 = () => {
         <div className="wrapper">
           <div className="container">
             <h3>Rias Pedia</h3>
-            <p>Kunjungi MUA </p>
+            <p>Temukan MUA (Make Up Artist) Pada Aplikasi Rias Pedia Berbasis Website</p>
             <form>
               <div className="row no-gutters custom-search-input-2">
                 <div className="col-lg-4">

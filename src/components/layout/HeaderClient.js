@@ -6,10 +6,6 @@ const HeaderClient = () => {
   return (
     <div id="page">
       <header className="header menu_fixed">
-        {/* <div id="preloader">
-                    <div data-loader="circle-side" />
-                </div> */}
-        {/* /Page Preload */}
         <div id="logo">
           <a href="/">
             <img
@@ -28,71 +24,58 @@ const HeaderClient = () => {
             ></img>
           </a>
         </div>
-        <ul id="top_menu">
-          <li>
-            <Link to="/" id="sign-out" className="login" title="Sign Out">
-              Sign Out
-            </Link>
-          </li>
-        </ul>
-        {/* /top_menu */}
-        <a href="#menu" className="btn_mobile">
-          <div className="hamburger hamburger--spin" id="hamburger">
-            <div className="hamburger-box">
-              <div className="hamburger-inner" />
+        <div className="d-flex flex-row justify-content-end align-items-center">
+          {/* /top_menu */}
+          <a href="#menu" className="btn_mobile">
+            <div className="hamburger hamburger--spin" id="hamburger">
+              <div className="hamburger-box">
+                <div className="hamburger-inner" />
+              </div>
             </div>
-          </div>
-        </a>
-        <nav id="menu" className="main-menu">
-          <ul>
-            <li>
-              <span>
-                <a href="/">Beranda</a>
-              </span>
+          </a>
+          <nav id="menu" className="main-menu">
+            <ul>
+              <li>
+                <span>
+                  <a href="/">Beranda</a>
+                </span>
+              </li>
+              <li>
+                <span>
+                  <a href="#0">Outlet</a>
+                </span>
+                <ul>
+                  <li>
+                    <Link to="/outlet">Rias Pedia Outlet</Link>
+                  </li>
+                  <li>
+                    <Link to="/detail">Rias Pedia Detail Outlet</Link>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <span>
+                  <a href="/profileclient" className="p-0 ">
+                    <img
+                      src={Image}
+                      alt="profile-picture"
+                      style={{
+                        width: 40,
+                        height: 40,
+                        objectFit: "cover",
+                        borderRadius: "50%",
+                        marginLeft: "24px",
+                      }}
+                    />
+                  </a>
+                </span>
+              </li>
+              <li>
+              <a  href="/" class="logout nav-link text-danger"><i class="fa fa-fw fa-sign-out text-danger" ></i>Keluar</a>
             </li>
-            <li>
-              <span>
-                <a href="#0">Outlet</a>
-              </span>
-              <ul>
-                <li>
-                  <Link to="/outlet">Rias Pedia Outlet</Link>
-                </li>
-                <li>
-                  <Link to="/detail">Rias Pedia Detail Outlet</Link>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <span >
-                <a href="/profileclient" className="p-0">
-                <img
-                  src={Image}
-                  alt="profile-picture"
-                  style={{
-                    width: 40,
-                    height: 40,
-                    objectFit: "cover",
-                    borderRadius: "50%",
-                    marginLeft: "24px",
-                  }}
-                />
-
-                </a>
-               
-              </span>
-              {/* <Link to="/profileclient"></Link> */}
-              {/* <ul>
-                <li>
-                  <Link to="/profileclient">Profile</Link>
-                </li>
-                <li>
-                  <Link to="/editprofileclient">Edit Profile</Link>
-                </li>
-              </ul> */}
-            </li>
-          </ul>
-        </nav>
+            </ul>
+          </nav>
+        </div>
       </header>
     </div>
   );

@@ -1,6 +1,6 @@
 import axios, { Axios } from "axios";
 import React, { useState } from "react";
-import { message } from "antd";
+import { message, Checkbox } from "antd";
 import { Link, useHistory } from "react-router-dom";
 import HeaderClient from "../components/layout/HeaderClient";
 import FooterClient from "../components/layout/FooterClient";
@@ -9,6 +9,7 @@ import { baseURL } from "../components/routes/Config";
 
 const Login = () => {
   let history = useHistory();
+  let showPassword = document.getElementById("password");
   const [input, setInput] = useState({
     email: "",
     password: "",
@@ -20,6 +21,16 @@ const Login = () => {
 
     setInput({ ...input, [name]: value });
   };
+
+  function handleShowPassword(e) {
+    // console.log(`checked = ${e.target.checked}`);
+    if (e.target.checked === true) {
+      showPassword.type = "text";
+    } else {
+      showPassword.type = "password";
+    }
+    console.log(showPassword);
+  }
 
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
@@ -56,11 +67,6 @@ const Login = () => {
         }}
       >
         <nav id="menu" className="fake_menu" />
-        {/* <div id="preloader"> */}
-        {/* <div id="">
-            <div data-loader="circle-side" />
-        </div> */}
-
         <div id="login">
           <aside>
             <figure>
@@ -76,12 +82,13 @@ const Login = () => {
             </figure>
             <form>
               <div className="form-group">
-                <label>Email</label>
+                <label>Masukkan Email Anda</label>
                 <input
                   type="email"
                   className="form-control"
                   name="email"
                   id="email"
+                  placeholder="Email"
                   value={input.email}
                   onChange={handleChange}
                   required
@@ -89,12 +96,13 @@ const Login = () => {
                 <i className="icon_mail_alt" />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label>Masukkan Password Anda</label>
                 <input
                   type="password"
                   className="form-control"
                   name="password"
                   id="password"
+                  placeholder="Password"
                   value={input.password}
                   onChange={handleChange}
                   required
@@ -102,16 +110,19 @@ const Login = () => {
                 <i className="icon_lock_alt" />
               </div>
               <div className="clearfix add_bottom_30">
-                <div className="checkboxes float-left">
+              <Checkbox onClick={handleShowPassword}>
+                Tunjukkan Password
+              </Checkbox>
+                {/* <div className="checkboxes float-left">
                   <label className="container_check">
-                    Remember me
+                    Tunjukkan Password
                     <input type="checkbox" />
                     <span className="checkmark"></span>
                   </label>
-                </div>
+                </div> */}
                 <div className="float-right mt-1">
                   <a id="forgot" href="javascript:void(0);">
-                    Forgot Password?
+                    Lupa Password
                   </a>
                 </div>
               </div>
@@ -120,12 +131,12 @@ const Login = () => {
                 className="btn_1 rounded full-width"
                 onClick={handleSubmit}
               >
-                Login to RiasPedia
+                Masuk
               </Link>
               <div className="text-center add_top_10">
-                New to RiasPedia?
+                Belum punya akun?
                 <strong>
-                  <Link to="/register">Sign up!</Link>
+                  <Link to="/register"> Daftar</Link>
                 </strong>
               </div>
             </form>

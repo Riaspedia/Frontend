@@ -91,7 +91,11 @@ const EditProfileClient = () => {
   });
 
   const handleImageChange = (event) => {
-    setInput({ ...input, image: event.target.files[0] });
+    let files = event.target.files || event.dataTransfer.files
+    if(!files.length)
+      return;
+
+    createImage(files[0]);
   };
 
   const handleSubmit = () => {
@@ -111,10 +115,11 @@ const EditProfileClient = () => {
       });
   };
 
-  const handleImageUpload = () => {
+  const handleImageUpload = (e) => {
+    e.preventDefault();
     //urlnya tanya pakde sama variabelnya
     axios
-      .put(
+      .post(
         baseURL + `/api/auth/profile/updateImage`,
         {
           id: Cookies.get("user_id"),
@@ -133,13 +138,16 @@ const EditProfileClient = () => {
       });
   };
 
-  console.log(input);
-  // axios.get('https://dev.farizdotid.com/api/daerahindonesia/provinsi').then((res) => {
-  //   let data = res.data.provinsi
-  //   setInputProvince({data})
-  // })
+  // Create Image from inputed file
+  const createImage = (file) => {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      setInput({ ...input, image: e.target.result });
+    };
+    reader.readAsDataURL(file);
+  };
 
-  // console.log(inputProvince);
+  console.log(input)
 
   return (
     <div className>
@@ -196,7 +204,9 @@ const EditProfileClient = () => {
                       <label>Pilih file dengan ukuran maksimal 512KB</label>
                     </div>
                     <div className="row-md-12">
-                      <button type="submit" onClick={handleImageUpload}>Upload</button>
+                      <button type="submit" onClick={handleImageUpload}>
+                        Upload
+                      </button>
                     </div>
                   </form>
                 </div>

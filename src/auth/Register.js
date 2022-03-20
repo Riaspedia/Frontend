@@ -65,9 +65,6 @@ const Register = () => {
         }}
       >
         <nav id="menu" className="fake_menu" />
-        {/* <div id="preloader">
-            <div data-loader="circle-side" />
-        </div> */}
         <div id="login">
           <aside>
             <figure>
@@ -83,58 +80,57 @@ const Register = () => {
             </figure>
             <form autoComplete="off">
               <div className="form-group">
-                <label>Your Name</label>
+                <label>Masukkan Nama Lengkap Anda</label>
                 <input
                   className="form-control"
                   type="text"
                   name="name"
+                  placeholder="Nama Lengkap"
                   value={input.name}
                   onChange={handleChange}
                 />
                 <i className="ti-user" />
               </div>
-              {/* <div className="form-group">
-                    <label>Your Last Name</label>
-                    <input className="form-control" type="text" />
-                    <i className="ti-user" />
-                </div> */}
               <div className="form-group">
-                <label>Your Email</label>
+                <label>Masukkan Email Anda</label>
                 <input
                   className="form-control"
                   type="email"
                   name="email"
+                  placeholder="Email"
                   value={input.email}
                   onChange={handleChange}
                 />
                 <i className="icon_mail_alt" />
               </div>
               <div className="form-group">
-                <label>Your password</label>
+                <label>Masukkan Password Anda</label>
                 <input
                   className="form-control"
                   type="password"
                   id="password"
                   name="password"
+                  placeholder="Password"
                   value={input.password}
                   onChange={handleChange}
                 />
                 <i className="icon_lock_alt" />
               </div>
               <div className="form-group">
-                <label>Confirm password</label>
+                <label>Kofirmasi password Anda</label>
                 <input
                   className="form-control"
                   type="password"
                   id="password_confirmation"
                   name="password_confirmation"
+                  placeholder="Konfirmasi Password"
                   value={input.password_confirmation}
                   onChange={handleChange}
                 />
                 <i className="icon_lock_alt" />
               </div>
               <Checkbox onClick={handleShowPassword}>
-                Show Your Password
+                Tunjukkan Password
               </Checkbox>
               <div id="pass-info" className="clearfix" />
               {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
@@ -143,12 +139,12 @@ const Register = () => {
                 className="btn_1 rounded full-width add_top_30"
                 onClick={handleSubmit}
               >
-                Register Now!
+                Daftar
               </Link>
               <div className="text-center add_top_10">
-                Already have an acccount?
+                Sudah punya akun?
                 <strong>
-                  <Link to="/login">Sign In</Link>
+                  <Link to="/login"> Masuk</Link>
                 </strong>
                 {/* <strong><a href="login.html">Sign In</a></strong> */}
               </div>
