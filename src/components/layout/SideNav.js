@@ -2,7 +2,7 @@ import React from "react";
 
 export default function SideNav() {
   return (
-    <div>
+    <div >
       <ul className="navbar-nav navbar-sidenav" id="exampleAccordion">
         <li
           className="nav-item"

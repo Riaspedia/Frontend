@@ -21,7 +21,8 @@ const EditProfileAdmin = () => {
           >
             <Breadcrumb>
               <Breadcrumb.Item href="dashboard">Riaspedia </Breadcrumb.Item>
-              <Breadcrumb.Item> My Vendor </Breadcrumb.Item>
+              <Breadcrumb.Item href="profilevendor">My Vendor</Breadcrumb.Item>
+              <Breadcrumb.Item> Edit Vendor </Breadcrumb.Item>
             </Breadcrumb>
           </div>
 
@@ -29,7 +30,7 @@ const EditProfileAdmin = () => {
             <div className="header_box version_2">
               <h2>
                 <i className="fa fa-user" />
-                Vendor details
+                Edit Vendor
               </h2>
             </div>
 
@@ -106,20 +107,7 @@ const EditProfileAdmin = () => {
                   </div>
                 </div>
                 {/* /row*/}
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>State</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <label>Zip Code</label>
-                      <input type="text" className="form-control" />
-                    </div>
-                  </div>
-                </div>
+
                 {/* /row*/}
 
                 {/* /row*/}
@@ -131,7 +119,7 @@ const EditProfileAdmin = () => {
             <div className="header_box version_2">
               <h2>
                 <i className="fa fa-clock-o" />
-                Opening
+                Working Hours
               </h2>
             </div>
             <div className="row">
@@ -667,6 +655,6 @@ const EditProfileAdmin = () => {
       <GoTop />
     </div>
   );
-}
+};
 
-export default EditProfileAdmin
+export default EditProfileAdmin;

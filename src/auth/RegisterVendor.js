@@ -9,14 +9,13 @@ const { Step } = Steps;
 
 const steps = [
   {
-    title: "Owner Profile",
+    title: "Create Account",
     content: <RegisterSteps1 />,
   },
   {
-    title: "Vendor/Outlet Profile",
+    title: "Create Vendor",
     content: <RegisterSteps2 />,
   },
-  
 ];
 
 const RegisterVendor = () => {
@@ -35,7 +34,7 @@ const RegisterVendor = () => {
       style={{
         backgroundImage: "url(img/background/RegisterBg.jpg)",
         backgroundSize: "cover",
-        height: "100vh",
+        minHeight: "100vh",
         padding: "36px",
       }}
     >
@@ -58,9 +57,13 @@ const RegisterVendor = () => {
       >
         {steps[current].content}
       </div>
-      <div className="steps-action" >
+      <div className="steps-action">
         {current < steps.length - 1 && (
-          <Button type="primary" style={{borderRadius:"8px"}} onClick={() => next()}>
+          <Button
+            type="primary"
+            style={{ borderRadius: "8px" }}
+            onClick={() => next()}
+          >
             Next
           </Button>
         )}
@@ -68,14 +71,17 @@ const RegisterVendor = () => {
           <Button
             type="primary"
             href="/login-vendor"
-            style={{borderRadius:"8px"}}
+            style={{ borderRadius: "8px" }}
             onClick={() => message.success("Processing complete!")}
           >
             Done
           </Button>
         )}
         {current > 0 && (
-          <Button style={{ margin: "0 8px", borderRadius:"8px" }}  onClick={() => prev()}>
+          <Button
+            style={{ margin: "0 8px", borderRadius: "8px" }}
+            onClick={() => prev()}
+          >
             Previous
           </Button>
         )}

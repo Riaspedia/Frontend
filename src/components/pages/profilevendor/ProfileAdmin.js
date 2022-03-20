@@ -1,5 +1,6 @@
 import React from "react";
 import AdminHeader from "../../layout/AdminHeader";
+import { MailFilled, PhoneFilled, HomeFilled } from "@ant-design/icons";
 
 import { Breadcrumb, Button, Divider, Image, Space } from "antd";
 
@@ -36,178 +37,151 @@ export default function ProfileAdmin() {
               </Space>
             </div>
             <div className="row">
-              <div className="col-md-3">
+              <div className="col-md-4" style={{marginTop:"40px"}}>
                 <div className="form-group">
-                  <Image
-                    width={400}
-                    src="https://cdn.pixabay.com/photo/2018/03/19/20/17/beauty-parlor-3241097_960_720.jpg"
-                  />
+                  <Image  src="https://cdn.pixabay.com/photo/2018/03/19/20/17/beauty-parlor-3241097_960_720.jpg" />
                 </div>
               </div>
-              <Divider type="vertical" />
-              <div className="col-md-8 add_top_40">
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>Name : </label>
-                        <label>Beauty Vendor</label>
-                      </Space>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>Email : </label>
-                        <label>Rheza@mail.com</label>
-                      </Space>
-                    </div>
-                  </div>
-                </div>
-                {/* /row*/}
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>Telephone : </label>
-                        <label>08583212312498</label>
-                      </Space>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>Zip Code : </label>
-                        <label>60225</label>
-                      </Space>
-                    </div>
-                  </div>
-                </div>
-                <div className="row">
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>City : </label>
-                        <label>Surabaya</label>
-                      </Space>
-                    </div>
-                  </div>
-                  <div className="col-md-6">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <label>Address : </label>
-                        <label>Dukuh Kupang</label>
-                      </Space>
-                    </div>
-                  </div>
-                </div>
-                {/* /row*/}
+              
 
+              <div className="col-md-8 " >
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <label style={{ fontSize: "15pt" }}>
+                          Beauty Vendor
+                        </label>
+                      </Space>
+                    </div>
+                  </div>
+                </div>
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                      <Space direction="vertical">
-                        <label>Description : </label>
-                        <label>The Best Beauty Vendor</label>
+                      <label style={{ fontSize: "12pt", color: "GrayText" }}>
+                        Budi Curly Hair Salon & Reflexology adalah jasa
+                        perawatan rambut yang berspesialisasi ke rambut
+                        bertekstur keriting dan ikal. Didirikan oleh Gracia
+                        Indriani, selaku Founder Kriwil Indonesia. Kriwil juga
+                        menyediakan produk perawatan untuk rambut bertekstur
+                        keriting dan ikal dengan bahan natural dan organik.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <PhoneFilled
+                          style={{ fontSize: "24px" }}
+                          rotate={100}
+                        />
+                        <label
+                          style={{
+                            fontSize: "11pt",
+                            fontWeight: "bolder",
+                          }}
+                        >
+                          08583212312498
+                        </label>
+                      </Space>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <MailFilled style={{ fontSize: "24px" }} />
+                        <label
+                          style={{ fontSize: "11pt", fontWeight: "bolder" }}
+                        >
+                          budi@mail.com
+                        </label>
+                      </Space>
+                    </div>
+                  </div>
+                  <div className="col-md-4">
+                    <div className="form-group">
+                      <Space direction="horizontal">
+                        <HomeFilled style={{ fontSize: "24px" }} />
+                        <label
+                          style={{ fontSize: "12pt", fontWeight: "bolder" }}
+                        >
+                          Dukuh Kupang XXV No.2, Surabaya
+                        </label>
                       </Space>
                     </div>
                   </div>
                 </div>
+                <hr />
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label style={{ fontSize: "15pt" }}>Working Hours</label>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>Sunday :  10 A.M. - 8 P.M.</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>
+                      Monday :  10 A.M. - 8 P.M.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>Tuesday :  10 A.M. - 8 P.M.</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>
+                      Wednesday :  10 A.M. - 8 P.M.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>Thursday :  10 A.M. - 8 P.M.</label>
+                    </div>
+                  </div>
+                  <div className="col-md-6">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>
+                      Friday :  10 A.M. - 8 P.M.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <label style={{ fontSize: "12pt" }}>Saturday :  10 A.M. - 8 P.M.</label>
+                    </div>
+                  </div>
+                 
+                </div>
+
+                {/* /row*/}
 
                 {/* /row*/}
               </div>
             </div>
           </div>
           {/* /box_general*/}
-          <div className="box_general padding_bottom">
-            <div className="header_box version_2">
-              <h2>
-                <i className="fa fa-clock-o" />
-                Opening
-              </h2>
-            </div>
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Monday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            {/* /row*/}
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Tuesday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            {/* /row*/}
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Wednesday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            {/* /row*/}
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Thursday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            {/* /row*/}
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Friday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Saturday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-md-2">
-                <label className="fix_spacing">Sunday</label>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-              <div className="col-md-5">
-                <div className="form-group"></div>
-              </div>
-            </div>
-          </div>
 
           {/* /row*/}
         </div>

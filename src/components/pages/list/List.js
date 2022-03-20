@@ -25,7 +25,7 @@ export default function List() {
             <div className="header_box version_2">
               <h2>
                 <i className="fa fa-file" />
-                Basic info
+                Add Service
               </h2>
             </div>
             <div className="row">
@@ -58,16 +58,6 @@ export default function List() {
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
-                  <label>Keywords</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Keywords should be separated by commas"
-                  />
-                </div>
-              </div>
-              <div className="col-md-3">
-                <div className="form-group">
                   <label>Service Duration</label>
                   <input
                     type="text"
@@ -76,7 +66,7 @@ export default function List() {
                   />
                 </div>
               </div>
-              <div className="col-md-3">
+              <div className="col-md-6">
                 <div className="form-group">
                   <label>Price</label>
                   <input
@@ -179,9 +169,9 @@ export default function List() {
           {/* /container-fluid*/}
         </div>
         <FooterAdmin />
+        <GoTop />
       </div>
 
-      <GoTop />
       {/* /container-wrapper*/}
     </div>
   );

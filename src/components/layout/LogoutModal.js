@@ -29,8 +29,8 @@ const LogoutModal = () => {
         visible={isModalVisible}
         onCancel={handleCancel}
         footer={[
-          <Button type="primary" >Cancel</Button>,
-          <Button href="/" type="">
+          <Button onClick={handleCancel}>Cancel</Button>,
+          <Button href="/" type="danger">
             Logout
           </Button>,
         ]}
