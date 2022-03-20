@@ -2,74 +2,24 @@ import React, { useState } from "react";
 import { message, Checkbox, Steps, Button } from "antd";
 import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
+import RegisterSteps1 from "./RegisterSteps1";
+import RegisterSteps2 from "./RegisterSteps2";
 
 const { Step } = Steps;
 
 const steps = [
   {
     title: "Owner Profile",
-    content: "First-content",
+    content: <RegisterSteps1 />,
   },
   {
     title: "Vendor/Outlet Profile",
-    content: "Second-content",
+    content: <RegisterSteps2 />,
   },
-  {
-    title: "Verification Mail",
-    content: "Last-content",
-  },
+  
 ];
 
 const RegisterVendor = () => {
-  let history = useHistory();
-  let showPassword = document.getElementById("password");
-  let showPassword2 = document.getElementById("password_confirmation");
-
-  const [input, setInput] = useState({
-    name: "",
-    email: "",
-    password: "",
-    password_confirmation: "",
-  });
-
-  function handleShowPassword(e) {
-    // console.log(`checked = ${e.target.checked}`);
-    if (e.target.checked === true) {
-      showPassword.type = "text";
-      showPassword2.type = "text";
-    } else {
-      showPassword.type = "password";
-      showPassword2.type = "password";
-    }
-    console.log(showPassword);
-  }
-
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
-
-    setInput({ ...input, [name]: value });
-  };
-
-  const handleSubmit = () => {
-    //urlnya tanya pakde sama variabelnya
-    axios
-      .post(`htpps://127.0.0.1/api/auth/register`, {
-        name: input.name,
-        email: input.email,
-        password: input.password,
-        password_confirmation: input.password_confirmation,
-      })
-
-      .then((res) => {
-        history.push("/login");
-      })
-
-      .catch((err) => {
-        message.error("Email atau password salah", 3);
-      });
-  };
-
   const [current, setCurrent] = React.useState(0);
 
   const next = () => {
@@ -83,22 +33,34 @@ const RegisterVendor = () => {
   return (
     <div
       style={{
-        //backgroundImage: "url(img/background/RegisterBg.jpg)",
-        //backgroundSize: "contain",
-        //height: "100vh",
-        margin: "15vh",
+        backgroundImage: "url(img/background/RegisterBg.jpg)",
+        backgroundSize: "cover",
+        height: "100vh",
+        padding: "36px",
       }}
     >
-      <Steps current={current}>
+      <Steps
+        current={current}
+        style={{
+          backgroundColor: "white",
+          borderRadius: "10px",
+          padding: "16px",
+        }}
+      >
         {steps.map((item) => (
           <Step key={item.title} title={item.title} />
         ))}
       </Steps>
 
-      <div className="steps-content">{steps[current].content}</div>
-      <div className="steps-action">
+      <div
+        className="steps-content"
+        style={{ padding: "16px", borderRadius: "10px" }}
+      >
+        {steps[current].content}
+      </div>
+      <div className="steps-action" >
         {current < steps.length - 1 && (
-          <Button type="primary" onClick={() => next()}>
+          <Button type="primary" style={{borderRadius:"8px"}} onClick={() => next()}>
             Next
           </Button>
         )}
@@ -106,13 +68,14 @@ const RegisterVendor = () => {
           <Button
             type="primary"
             href="/login-vendor"
+            style={{borderRadius:"8px"}}
             onClick={() => message.success("Processing complete!")}
           >
             Done
           </Button>
         )}
         {current > 0 && (
-          <Button style={{ margin: "0 8px" }} onClick={() => prev()}>
+          <Button style={{ margin: "0 8px", borderRadius:"8px" }}  onClick={() => prev()}>
             Previous
           </Button>
         )}
