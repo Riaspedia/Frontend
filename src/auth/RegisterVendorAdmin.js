@@ -1,33 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { message, Checkbox } from "antd";
 import axios, { Axios } from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { baseURL } from "../components/routes/Config";
 import CardLoginRegisterAdmin from "./CardLoginRegisterAdmin";
+import Cookies from "js-cookie";
 
 const RegisterVendorAdmin = () => {
   let history = useHistory();
-  let showPassword = document.getElementById("password");
-  let showPassword2 = document.getElementById("password_confirmation");
+  const [inputProvince, setInputProvince] = useState([]);
 
   const [input, setInput] = useState({
     name: "",
     email: "",
-    password: "",
-    password_confirmation: "",
+    category: "",
+    address: "",
+    phone: "",
+    province: "",
+    city: "",
+    description: "",
+    latitude: "",
+    longitude: "",
   });
-
-  function handleShowPassword(e) {
-    // console.log(`checked = ${e.target.checked}`);
-    if (e.target.checked === true) {
-      showPassword.type = "text";
-      showPassword2.type = "text";
-    } else {
-      showPassword.type = "password";
-      showPassword2.type = "password";
-    }
-    console.log(showPassword);
-  }
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -36,28 +30,92 @@ const RegisterVendorAdmin = () => {
     setInput({ ...input, [name]: value });
   };
 
+  const dataProvinces = async () => {
+    let result = await axios.get(
+      `https://api.binderbyte.com/wilayah/provinsi?api_key=7ed0f4ec831869da8045fec939a8deffcbdbc57b208cfb0069794c237de69083`
+    );
+    let data = result.data.value;
+    console.log(data);
+    setInputProvince({
+      province: data.map((key) => {
+        return {
+          id: key.id,
+          name: key.name,
+        };
+      }),
+    });
+  };
+
+  useEffect(() => {
+    dataProvinces();
+  }, []);
+
+  const dataCity = async (id) => {
+    console.log(id);
+    let resultCity = await axios.get(
+      `https://api.binderbyte.com/wilayah/kabupaten?api_key=079fc527c1d3fdf63c64cc384bc51b9e6fff9b7552c8eb493db7b2035d70c421&id_provinsi=${id}`
+    );
+    let data = resultCity.data.value;
+    setInputProvince({
+      ...inputProvince,
+      cities: data.map((key) => {
+        return {
+          id: key.id,
+          id_province: key.id_provinsi,
+          name: key.name,
+        };
+      }),
+    });
+  };
+
+  const handleProvinceSelect = (event) => {
+    let dataProvince = event.split(",");
+    console.log(dataProvince);
+    setInput({ ...input, province: dataProvince[0] });
+
+    dataCity(dataProvince[1]);
+  };
+
+  const handleCitySelect = (event) => {
+    let dataCity = event.split(",");
+    setInput({ ...input, city: dataCity[0] });
+  };
+
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
     axios
-      .post(baseURL + `/api/auth/register`, {
-        name: input.name,
-        email: input.email,
-        password: input.password,
-        password_confirmation: input.password_confirmation,
-      })
+      .post(
+        baseURL + `/api/auth/addVendor`,
+        {
+          name: input.name,
+          category: input.category,
+          address: input.address,
+          email: input.email,
+          phone: input.phone,
+          city: input.city,
+          description: input.description,
+          latitude: input.latitude,
+          longitude: input.longitude,
+        },
+        {
+          headers: {
+            Authorization: `bearer ` + Cookies.get("token"),
+          },
+        }
+      )
 
       .then((res) => {
-        history.push("/login");
+        history.push("/list");
       })
 
       .catch((err) => {
-        message.error("Email atau password salah", 3);
+        message.error(err)
       });
   };
 
   return (
     <div>
-      <div class="row justify-content-evenly mt-5">
+      <div class="row justify-content-evenly align-items-center mt-5">
         <div class="col-sm-4 mx-auto ">
           <CardLoginRegisterAdmin />
         </div>
@@ -85,7 +143,7 @@ const RegisterVendorAdmin = () => {
                       <input
                         className="form-control"
                         placeholder="Nama Vendor"
-                          id="name"
+                        id="name"
                         type="text"
                         name="name"
                         value={input.name}
@@ -108,11 +166,11 @@ const RegisterVendorAdmin = () => {
                       <label>Alamat</label>
                       <textarea
                         className="form-control"
-                        placeholder="Deskripsi"
+                        placeholder="Alamat"
                         type="text"
-                        id="description"
-                        name="descrption"
-                        value={input.descrption}
+                        id="address"
+                        name="address"
+                        value={input.address}
                         onChange={handleChange}
                       />
                     </div>
@@ -159,23 +217,22 @@ const RegisterVendorAdmin = () => {
                           padding: "10px",
                           borderColor: "#d2d8dd",
                         }}
+                        onChange={(e) => handleProvinceSelect(e.target.value)}
                       >
                         <option defaultValue="">Provinsi</option>
-                        {/* {inputProvince.province && (
-                              <>
-                                {inputProvince.province.map((province) => {
-                                  return (
-                                    <>
-                                      <option
-                                        value={[province.name, province.id]}
-                                      >
-                                        {province.name}
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                              </>
-                            )} */}
+                        {inputProvince.province && (
+                          <>
+                            {inputProvince.province.map((province) => {
+                              return (
+                                <>
+                                  <option value={[province.name, province.id]}>
+                                    {province.name}
+                                  </option>
+                                </>
+                              );
+                            })}
+                          </>
+                        )}
                       </select>
                     </div>
                   </div>
@@ -190,23 +247,22 @@ const RegisterVendorAdmin = () => {
                           padding: "10px",
                           borderColor: "#d2d8dd",
                         }}
+                        onChange={(e) => handleCitySelect(e.target.value)}
                       >
                         <option defaultValue="">Kota</option>
-                        {/* {inputProvince.province && (
-                              <>
-                                {inputProvince.province.map((province) => {
-                                  return (
-                                    <>
-                                      <option
-                                        value={[province.name, province.id]}
-                                      >
-                                        {province.name}
-                                      </option>
-                                    </>
-                                  );
-                                })}
-                              </>
-                            )} */}
+                        {inputProvince.cities && (
+                          <>
+                            {inputProvince.cities.map((city) => {
+                              return (
+                                <>
+                                  <option value={[city.name, city.id]}>
+                                    {city.name}
+                                  </option>
+                                </>
+                              );
+                            })}
+                          </>
+                        )}
                       </select>
                     </div>
                   </div>
@@ -263,7 +319,7 @@ const RegisterVendorAdmin = () => {
                 </Checkbox> */}
                 <div id="pass-info" className="clearfix" />
                 <Link
-                  to="/register-vendor-admin"
+                  to="/list"
                   className="btn_1 rounded full-width add_top_30"
                   onClick={handleSubmit}
                 >

@@ -1,13 +1,207 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import HeaderAdmin from "../../layout/HeaderAdmin";
 import { Breadcrumb, Button, Space } from "antd";
 import FooterAdmin from "../../layout/FooterAdmin";
 import GoTop from "../../layout/GoTop";
-import UploadBox from "../../global/UploadBox";
 import Image from "../../../assests/img/MUA1.jpg";
-import { TextEditor } from "../../global/TextEditor";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { baseURL } from "../../routes/Config";
 
 const EditProfileAdmin1 = () => {
+  const id = Cookies.get('user_id');
+  const [inputProvince, setInputProvince] = useState([]);
+
+  const [hours, setHours] = useState([
+    {
+      day_id: 1,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 2,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 3,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 4,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 5,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 6,
+      open: "",
+      close: "",
+    },
+    {
+      day_id: 7,
+      open: "",
+      close: "",
+    },
+  ]);
+
+  const [input, setInput] = useState({
+    name: "",
+    description: "",
+    address: "",
+    email: "",
+    phone: "",
+    city: "",
+    image: null,
+  });
+
+  const handleChange = (event) => {
+    let value = event.target.value;
+    let name = event.target.name;
+
+    setInput({ ...input, [name]: value });
+  };
+
+  const dataProvinces = async () => {
+    let result = await axios.get(
+      `https://api.binderbyte.com/wilayah/provinsi?api_key=7ed0f4ec831869da8045fec939a8deffcbdbc57b208cfb0069794c237de69083`
+    );
+    let data = result.data.value;
+    console.log(data);
+    setInputProvince({
+      province: data.map((key) => {
+        return {
+          id: key.id,
+          name: key.name,
+        };
+      }),
+    });
+  };
+
+  useEffect(() => {
+    dataProvinces();
+  }, []);
+
+  const dataCity = async (id) => {
+    console.log(id);
+    let resultCity = await axios.get(
+      `https://api.binderbyte.com/wilayah/kabupaten?api_key=079fc527c1d3fdf63c64cc384bc51b9e6fff9b7552c8eb493db7b2035d70c421&id_provinsi=${id}`
+    );
+    let data = resultCity.data.value;
+    setInputProvince({
+      ...inputProvince,
+      cities: data.map((key) => {
+        return {
+          id: key.id,
+          id_province: key.id_provinsi,
+          name: key.name,
+        };
+      }),
+    });
+  };
+
+  const handleCheckBox = (event) => {
+    setInput({ ...input, gender: event.target.value });
+  };
+
+  const handleProvinceSelect = (event) => {
+    let dataProvince = event.split(",");
+    console.log(dataProvince);
+    setInput({ ...input, province: dataProvince[0] });
+
+    dataCity(dataProvince[1]);
+  };
+
+  const handleCitySelect = (event) => {
+    let dataCity = event.split(",");
+    setInput({ ...input, city: dataCity[0] });
+  };
+
+  let reqIntsance = axios.create({
+    headers: {
+      Authorization: `bearer` + Cookies.get("token"),
+    },
+  });
+
+  const handleImageChange = (event) => {
+    let files = event.target.files || event.dataTransfer.files;
+    if (!files.length) return;
+
+    createImage(files[0]);
+  };
+
+  const handleSubmit = () => {
+    //urlnya tanya pakde sama variabelnya
+    reqIntsance
+      .post(baseURL + `/api/auth/updateVendor/${id}`, {
+        name: input.name,
+        category: input.category,
+        address: input.address,
+        email: input.email,
+        phone: input.phone,
+        city: input.city,
+        description: input.description,
+        latitude: input.latitude,
+        longitude: input.longitude,
+      })
+      .then((res) => {
+        console.clear();
+        console.log(res);
+      });
+
+    Object.values(hours).map((hour) => {
+      reqIntsance
+        .post(baseURL + `/api/vendor/updateHour/${id}`, {
+          day_id: hour.day_id,
+          open: hour.open,
+          close: hour.close
+        })
+        .then((res) => {
+          console.clear();
+          console.log(res);
+        });
+    });
+  };
+
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    //urlnya tanya pakde sama variabelnya
+    axios
+      .post(
+        baseURL + `/api/auth/profile/updateImage`,
+        {
+          id: Cookies.get("user_id"),
+          image: input.image,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + Cookies.get("token"),
+            "content-type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        console.clear();
+        console.log(res);
+      });
+  };
+
+  // Create Image from inputed file
+  const createImage = (file) => {
+    let reader = new FileReader();
+    reader.onload = (e) => {
+      setInput({ ...input, image: e.target.result });
+    };
+    reader.readAsDataURL(file);
+  };
+
+  console.log(input);
+
   return (
     <div className="fixed-nav sticky-footer" id="page-top">
       <HeaderAdmin />
@@ -29,7 +223,7 @@ const EditProfileAdmin1 = () => {
             <div class="col-6">
               <div
                 className="box_general padding_bottom"
-                style={{height: "100%"}}
+                style={{ height: "100%" }}
               >
                 <div className="header_box version_2">
                   <h2>
@@ -75,16 +269,6 @@ const EditProfileAdmin1 = () => {
                 </div>
 
                 <div className="row">
-                  {/* <div className="col-md-6"> */}
-                  {/* <div className="form-group">
-                  <label>Vendor photo</label>
-                  <UploadBox />
-                </div> */}
-                  {/* <div className="form-group">
-                  <label>Description</label>
-                  <TextEditor />
-                </div> */}
-                  {/* </div> */}
                   <div className="col-md-12 add_top_30">
                     <div className="row wrapper">
                       <div className="col-md-12">
@@ -94,6 +278,10 @@ const EditProfileAdmin1 = () => {
                             type="text"
                             className="form-control"
                             placeholder="Nama Vendor"
+                            id="name"
+                            name="name"
+                            value={input.name}
+                            onChange={handleChange}
                           />
                         </div>
                         <div className="form-group">
@@ -102,6 +290,10 @@ const EditProfileAdmin1 = () => {
                             type="text"
                             className="form-control"
                             placeholder="Deskripsi"
+                            id="description"
+                            name="description"
+                            value={input.description}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -113,6 +305,10 @@ const EditProfileAdmin1 = () => {
                         type="text"
                         className="form-control"
                         placeholder="Alamat"
+                        id="address"
+                        name="address"
+                        value={input.address}
+                        onChange={handleChange}
                       />
                     </div>
                     <div class="row justify-content-start">
@@ -123,6 +319,10 @@ const EditProfileAdmin1 = () => {
                             type="email"
                             className="form-control"
                             placeholder="Email"
+                            id="email"
+                            name="email"
+                            value={input.email}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -130,9 +330,13 @@ const EditProfileAdmin1 = () => {
                         <div className="form-group">
                           <label>Telepon</label>
                           <input
-                            type="text"
+                            type="number"
                             className="form-control"
                             placeholder="Telepon"
+                            id="phone"
+                            name="phone"
+                            value={input.phone}
+                            onChange={handleChange}
                           />
                         </div>
                       </div>
@@ -149,9 +353,12 @@ const EditProfileAdmin1 = () => {
                               padding: "10px",
                               borderColor: "#d2d8dd",
                             }}
+                            onChange={(e) =>
+                              handleProvinceSelect(e.target.value)
+                            }
                           >
                             <option defaultValue="">Provinsi</option>
-                            {/* {inputProvince.province && (
+                            {inputProvince.province && (
                               <>
                                 {inputProvince.province.map((province) => {
                                   return (
@@ -165,7 +372,7 @@ const EditProfileAdmin1 = () => {
                                   );
                                 })}
                               </>
-                            )} */}
+                            )}
                           </select>
                         </div>
                       </div>
@@ -180,23 +387,22 @@ const EditProfileAdmin1 = () => {
                               padding: "10px",
                               borderColor: "#d2d8dd",
                             }}
+                            onChange={(e) => handleCitySelect(e.target.value)}
                           >
                             <option defaultValue="">Kota</option>
-                            {/* {inputProvince.province && (
+                            {inputProvince.cities && (
                               <>
-                                {inputProvince.province.map((province) => {
+                                {inputProvince.cities.map((city) => {
                                   return (
                                     <>
-                                      <option
-                                        value={[province.name, province.id]}
-                                      >
-                                        {province.name}
+                                      <option value={[city.name, city.id]}>
+                                        {city.name}
                                       </option>
                                     </>
                                   );
                                 })}
                               </>
-                            )} */}
+                            )}
                           </select>
                         </div>
                       </div>
@@ -208,8 +414,11 @@ const EditProfileAdmin1 = () => {
               </div>
             </div>
 
-            <div class="col-6" >
-              <div className="box_general padding_bottom " style={{height: "100%"}}>
+            <div class="col-6">
+              <div
+                className="box_general padding_bottom "
+                style={{ height: "100%" }}
+              >
                 <div className="header_box version_2">
                   <h2>
                     <i className="fa fa-clock-o" />
@@ -222,70 +431,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[0].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [0]: { ...hours[0], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[0].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [0]: { ...hours[0], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -296,70 +469,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[1].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [1]: { ...hours[1], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[1].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [1]: { ...hours[1], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -370,70 +507,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[2].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [2]: { ...hours[2], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[2].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [2]: { ...hours[2], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -444,70 +545,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[3].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [3]: { ...hours[3], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[3].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [3]: { ...hours[3], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -518,70 +583,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[4].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [4]: { ...hours[4], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[4].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [4]: { ...hours[4], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -591,70 +620,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[5].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [5]: { ...hours[5], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[5].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [5]: { ...hours[5], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -664,70 +657,34 @@ const EditProfileAdmin1 = () => {
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Opening Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Open Time"
+                        value={hours[6].open}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [6]: { ...hours[6], open: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                   <div className="col-md-5">
                     <div className="form-group">
-                      <div className="styled-select-admin">
-                        <select>
-                          <option>Closing Time</option>
-                          <option>Closed</option>
-                          <option>1 AM</option>
-                          <option>2 AM</option>
-                          <option>3 AM</option>
-                          <option>4 AM</option>
-                          <option>5 AM</option>
-                          <option>6 AM</option>
-                          <option>7 AM</option>
-                          <option>8 AM</option>
-                          <option>9 AM</option>
-                          <option>10 AM</option>
-                          <option>11 AM</option>
-                          <option>12 AM</option>
-                          <option>1 PM</option>
-                          <option>2 PM</option>
-                          <option>3 PM</option>
-                          <option>4 PM</option>
-                          <option>5 PM</option>
-                          <option>6 PM</option>
-                          <option>7 PM</option>
-                          <option>8 PM</option>
-                          <option>9 PM</option>
-                          <option>10 PM</option>
-                          <option>11 PM</option>
-                          <option>12 PM</option>
-                        </select>
-                      </div>
+                      <input
+                        type="time"
+                        className="form-control"
+                        placeholder="Closing Time"
+                        value={hours[6].close}
+                        onChange={(e) =>
+                          setHours({
+                            ...hours,
+                            [6]: { ...hours[6], close: e.target.value },
+                          })
+                        }
+                      />
                     </div>
                   </div>
                 </div>
@@ -739,7 +696,11 @@ const EditProfileAdmin1 = () => {
 
           {/* /row*/}
 
-          <Button href="/profilevendor" className="btn_1-admin medium mt-3 mb-3" >
+          <Button
+            href="/profilevendor"
+            className="btn_1-admin medium mt-3 mb-3"
+            onClick={handleSubmit}
+          >
             Simpan
           </Button>
         </div>

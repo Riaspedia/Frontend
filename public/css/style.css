@@ -9558,3 +9558,13 @@ ul.plan-features {
   }
 }
 
+.register-user input {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.register-user .input-group-text{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

@@ -4,6 +4,7 @@ import axios, { Axios } from "axios";
 import { Link, useHistory } from "react-router-dom";
 import { baseURL } from "../components/routes/Config";
 import CardLoginRegisterAdmin from "./CardLoginRegisterAdmin";
+import Cookies from "js-cookie";
 
 const RegisterUserAdmin = () => {
   let history = useHistory();
@@ -47,20 +48,45 @@ const RegisterUserAdmin = () => {
       })
 
       .then((res) => {
-        history.push("/login");
+        let inOneHours = new Date(new Date().getTime() + 60 * 60 * 1000);
+        axios
+          .post(baseURL + `/api/auth/login`, {
+            email: input.email,
+            password: input.password,
+          })
+
+          .then((res) => {
+            let token = res.data.access_token;
+            let userId = res.data.user_id;
+
+            Cookies.set("token", token, { expires: inOneHours });
+            Cookies.set("user_id", userId, { expires: inOneHours });
+            history.push("/register-vendor-admin");
+          })
+
+          .catch((err) => {
+            message.error("Email atau password salah", 3);
+          });
       })
 
       .catch((err) => {
         message.error("Email atau password salah", 3);
       });
+
+    setInput({
+      ...input,
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    });
   };
 
   return (
     <div>
-      
-      <div class="row justify-content-evenly mt-5">
+      <div class="row justify-content-evenly align-items-center mt-5">
         <div class="col-sm-4 mx-auto ">
-        <CardLoginRegisterAdmin />
+          <CardLoginRegisterAdmin />
         </div>
 
         <div class="col-sm-4 mx-auto ">
@@ -79,55 +105,63 @@ const RegisterUserAdmin = () => {
               </figure>
               <hr class="mt-2" />
               <form autoComplete="off">
-                <div className="form-group">
+                <div className="form-group register-user">
                   <label>Masukkan Nama Lengkap Anda</label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="name"
-                    placeholder="Nama Lengkap"
-                    value={input.name}
-                    onChange={handleChange}
-                  />
-                  <i className="ti-user" />
+                  <div className="input-group">
+                    <i className="ti-user input-group-text" />
+                    <input
+                      className="form-control"
+                      type="text"
+                      name="name"
+                      placeholder="Nama Lengkap"
+                      value={input.name}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
+                <div className="form-group register-user">
                   <label>Masukkan Email Anda</label>
-                  <input
-                    className="form-control"
-                    type="email"
-                    name="email"
-                    placeholder="Email"
-                    value={input.email}
-                    onChange={handleChange}
-                  />
-                  <i className="icon_mail_alt" />
+                  <div className="input-group">
+                    <i className="icon_mail_alt input-group-text" />
+                    <input
+                      className="form-control"
+                      type="email"
+                      name="email"
+                      placeholder="Email"
+                      value={input.email}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
+                <div className="form-group register-user">
                   <label>Masukkan Password Anda</label>
-                  <input
-                    className="form-control"
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password"
-                    value={input.password}
-                    onChange={handleChange}
-                  />
-                  <i className="icon_lock_alt" />
+                  <div className="input-group">
+                    <i className="icon_lock_alt input-group-text" />
+                    <input
+                      className="form-control"
+                      type="password"
+                      id="password"
+                      name="password"
+                      placeholder="Password"
+                      value={input.password}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
-                <div className="form-group">
+                <div className="form-group register-user">
                   <label>Kofirmasi password Anda</label>
-                  <input
-                    className="form-control"
-                    type="password"
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    placeholder="Konfirmasi Password"
-                    value={input.password_confirmation}
-                    onChange={handleChange}
-                  />
-                  <i className="icon_lock_alt" />
+                  <div className="input-group">
+                    <i className="icon_lock_alt input-group-text" />
+                    <input
+                      className="form-control"
+                      type="password"
+                      id="password_confirmation"
+                      name="password_confirmation"
+                      placeholder="Konfirmasi Password"
+                      value={input.password_confirmation}
+                      onChange={handleChange}
+                    />
+                  </div>
                 </div>
                 <Checkbox onClick={handleShowPassword}>
                   Tunjukkan Password
