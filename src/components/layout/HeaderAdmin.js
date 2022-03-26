@@ -2,7 +2,7 @@ import React from "react";
 import LogoutModal from "./LogoutModal";
 import SideNav from "./SideNav";
 
-const AdminHeader = () => {
+const HeaderAdmin = () => {
   return (
     <div>
       {/* Navigation*/}
@@ -12,7 +12,7 @@ const AdminHeader = () => {
       >
         <a className="navbar-brand" href="dashboard">
           <img
-            src="img/logo.png"
+            src="/img/logo/LogoRiasPedia.png"
             data-retina="true"
             alt
             width={150}
@@ -40,4 +40,4 @@ const AdminHeader = () => {
   );
 };
 
-export default AdminHeader;
+export default HeaderAdmin

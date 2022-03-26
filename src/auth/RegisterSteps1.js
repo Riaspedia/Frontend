@@ -52,57 +52,81 @@ const RegisterSteps1 = () => {
       });
   };*/
   return (
-    <form autoComplete="off">
-      <div className="form-group">
-        <label>Your Name</label>
-        <input
-          style={{ textAlign: "center" }}
-          className="form-control"
-          type="text"
-          name="name"
-          value={input.name}
-          onChange={handleChange}
-        />
+    <div id="login">
+      {/* <aside> */}
+      <div>
+        <a href="#">
+          <img
+            src="img/logo/LogoRiasPedia.png"
+            width="150"
+            height="36"
+            alt=""
+            class="logo_normal"
+          ></img>
+        </a>
+        <hr class="mt-3 wrapper" />
       </div>
 
-      <div className="form-group">
-        <label>Your Email</label>
-        <input
-          style={{ textAlign: "center" }}
-          className="form-control"
-          type="email"
-          name="email"
-          value={input.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Your password</label>
-        <input
-          style={{ textAlign: "center" }}
-          className="form-control"
-          type="password"
-          id="password"
-          name="password"
-          value={input.password}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="form-group">
-        <label>Confirm password</label>
-        <input
-          style={{ textAlign: "center" }}
-          className="form-control"
-          type="password"
-          id="password_confirmation"
-          name="password_confirmation"
-          value={input.password_confirmation}
-          onChange={handleChange}
-        />
-      </div>
-      <Checkbox onClick={handleShowPassword}>Show Your Password</Checkbox>
-      <div id="pass-info" className="clearfix" />
-    </form>
+      <form autoComplete="off"  class="ml-100%">
+        <div className="form-group" style={{ textAlign: "start" }}>
+          <label>Masukkan Nama Lengkap Anda</label>
+          <input
+            style={{ textAlign: "start" }}
+            className="form-control"
+            type="text"
+            name="name"
+            placeholder="Nama Lengkap"
+            value={input.name}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div className="form-group" style={{ textAlign: "start" }}>
+          <label>Masukkan Email Anda</label>
+          <input
+            style={{ textAlign: "start" }}
+            className="form-control"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={input.email}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group" style={{ textAlign: "start" }}>
+          <label>Masukkan Password Anda</label>
+          <input
+            style={{ textAlign: "start" }}
+            className="form-control"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            value={input.password}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group" style={{ textAlign: "start" }}>
+          <label>Konfirmasi Password Anda</label>
+          <input
+            style={{ textAlign: "start" }}
+            className="form-control"
+            type="password"
+            id="password_confirmation"
+            name="password_confirmation"
+            placeholder="Konfirmasi Password"
+            value={input.password_confirmation}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group" style={{ textAlign: "start" }}>
+          <Checkbox onClick={handleShowPassword}>Show Your Password</Checkbox>
+        </div>
+
+        <div id="pass-info" className="clearfix" />
+      </form>
+      {/* </aside> */}
+    </div>
   );
 };
 

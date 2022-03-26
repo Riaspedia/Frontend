@@ -1,16 +1,15 @@
 import React from "react";
-import AdminHeader from "../../layout/AdminHeader";
 import { MailFilled, PhoneFilled, HomeFilled } from "@ant-design/icons";
-
-import { Breadcrumb, Button, Divider, Image, Space } from "antd";
-
+import { Breadcrumb, Button, Divider, Space } from "antd";
 import FooterAdmin from "../../layout/FooterAdmin";
 import GoTop from "../../layout/GoTop";
+import HeaderAdmin from "../../layout/HeaderAdmin";
+import Image from "../../../assests/img/MUA1.jpg";
 
 export default function ProfileAdmin() {
   return (
     <div className="fixed-nav sticky-footer" id="page-top">
-      <AdminHeader />
+      <HeaderAdmin />
       <div className="content-wrapper">
         <div className="container-fluid">
           {/* Breadcrumbs*/}
@@ -29,32 +28,74 @@ export default function ProfileAdmin() {
               <Space direction="horizontal">
                 <h2>
                   <i className="fa fa-user" />
-                  Vendor details
+                  Detail Vendor
                 </h2>
-                <Button href="editprofilevendor" type="secondary">
-                  Edit
-                </Button>
               </Space>
+              <Button
+                href="/editprofilevendor"
+                //   onClick={handleDetail}
+                type="danger"
+                ghost
+                style={{ borderRadius: 8, float: "right", height: "100%" }}
+              >
+                Edit Vendor
+              </Button>
             </div>
             <div className="row">
-              <div className="col-md-4" style={{marginTop:"40px"}}>
-                <div className="form-group">
-                  <Image  src="https://cdn.pixabay.com/photo/2018/03/19/20/17/beauty-parlor-3241097_960_720.jpg" />
+              <div className="col-md-2 " >
+                <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-center">
+                  <img
+                    src={Image}
+                    alt="profile-picture"
+                    style={{
+                      width: 150,
+                        height: 150,
+                        objectFit: "cover",
+                        borderRadius: "50%",
+                        marginLeft: "24px",
+                    }}
+                  />
                 </div>
               </div>
-              
 
-              <div className="col-md-8 " >
+              <div className="col-md-10 ">
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
                       <Space direction="horizontal">
-                        <label style={{ fontSize: "15pt" }}>
-                          Beauty Vendor
-                        </label>
+                        <label style={{ fontSize: "15pt" }}>Kriwil Salon</label>
                       </Space>
                     </div>
                   </div>
+                </div>
+
+                {/* /row*/}
+                <div className="row">
+                  <div className="col-md-4 pb-0">
+                    <div className="form-group">
+                      <span>
+                        <i className="fa fa-phone" /> 081585196656{" "}
+                      </span>
+                      <span>
+                        <i className="fa fa-envelope-o ml-4" /> kriwilsalon@gmail.com{" "}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="col-md-4 pt-0">
+                    <div className="form-group">
+                      <span>
+                        <i className="fa fa-map-marker" /> Jl. Boulevard Hijau
+                        Blok B.8 No. 25-26. Harapan Indah. Bekasi Kota Bekasi,
+                        Jawa Barat{" "}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <hr />
+                <div className="form-group">
+                  <label style={{ fontSize: "15pt" }}>Description</label>
                 </div>
                 <div className="row">
                   <div className="col-md-12">
@@ -70,52 +111,6 @@ export default function ProfileAdmin() {
                     </div>
                   </div>
                 </div>
-
-                {/* /row*/}
-                <div className="row">
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <PhoneFilled
-                          style={{ fontSize: "24px" }}
-                          rotate={100}
-                        />
-                        <label
-                          style={{
-                            fontSize: "11pt",
-                            fontWeight: "bolder",
-                          }}
-                        >
-                          08583212312498
-                        </label>
-                      </Space>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <MailFilled style={{ fontSize: "24px" }} />
-                        <label
-                          style={{ fontSize: "11pt", fontWeight: "bolder" }}
-                        >
-                          budi@mail.com
-                        </label>
-                      </Space>
-                    </div>
-                  </div>
-                  <div className="col-md-4">
-                    <div className="form-group">
-                      <Space direction="horizontal">
-                        <HomeFilled style={{ fontSize: "24px" }} />
-                        <label
-                          style={{ fontSize: "12pt", fontWeight: "bolder" }}
-                        >
-                          Dukuh Kupang XXV No.2, Surabaya
-                        </label>
-                      </Space>
-                    </div>
-                  </div>
-                </div>
                 <hr />
                 <div className="row">
                   <div className="col-md-12">
@@ -124,16 +119,87 @@ export default function ProfileAdmin() {
                     </div>
                   </div>
                 </div>
-                <div className="row">
+                <div className="row mb10">
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Monday</div>
+                      <div className="hour">
+                        {/* 10:00 AM - 08:00 PM */}
+                        12.00 AM - 12.30 AM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Tuesday</div>
+                      <div className="hour">
+                        {/* 10:00 AM - 08:00 PM */}
+                        10.00 AM - 09.00 PM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Wednesday</div>
+                      <div className="hour">
+                        {/* Closed */}
+                        10.00 AM - 09.00 PM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="today-open">
+                        <div className="hb-small">Today</div>
+                      </div>
+                      <div className="hb-semi-font black bold">Thursday</div>
+                      <div className="hour">
+                        {/* 08:00 AM - 10:00 PM */}
+                        10.00 AM - 09.00 PM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Friday</div>
+                      <div className="hour">
+                        {/* Closed */}
+                        10.00 AM - 09.00 PM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Saturday</div>
+                      <div className="hour">
+                        {/* 08:00 AM - 10:00 PM */}
+                        10.00 AM - 09.00 PM
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-xs-6 sm-6 col-md-4">
+                    <div className="schedule-card">
+                      <div className="hb-semi-font black bold">Sunday</div>
+                      <div className="hour">
+                        {/* Closed */}
+                        Closed
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label style={{ fontSize: "12pt" }}>Sunday :  10 A.M. - 8 P.M.</label>
+                      <label style={{ fontSize: "12pt" }}>
+                        Sunday : 10 A.M. - 8 P.M.
+                      </label>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group">
                       <label style={{ fontSize: "12pt" }}>
-                      Monday :  10 A.M. - 8 P.M.
+                        Monday : 10 A.M. - 8 P.M.
                       </label>
                     </div>
                   </div>
@@ -141,13 +207,15 @@ export default function ProfileAdmin() {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label style={{ fontSize: "12pt" }}>Tuesday :  10 A.M. - 8 P.M.</label>
+                      <label style={{ fontSize: "12pt" }}>
+                        Tuesday : 10 A.M. - 8 P.M.
+                      </label>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group">
                       <label style={{ fontSize: "12pt" }}>
-                      Wednesday :  10 A.M. - 8 P.M.
+                        Wednesday : 10 A.M. - 8 P.M.
                       </label>
                     </div>
                   </div>
@@ -155,13 +223,15 @@ export default function ProfileAdmin() {
                 <div className="row">
                   <div className="col-md-6">
                     <div className="form-group">
-                      <label style={{ fontSize: "12pt" }}>Thursday :  10 A.M. - 8 P.M.</label>
+                      <label style={{ fontSize: "12pt" }}>
+                        Thursday : 10 A.M. - 8 P.M.
+                      </label>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="form-group">
                       <label style={{ fontSize: "12pt" }}>
-                      Friday :  10 A.M. - 8 P.M.
+                        Friday : 10 A.M. - 8 P.M.
                       </label>
                     </div>
                   </div>
@@ -169,11 +239,12 @@ export default function ProfileAdmin() {
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
-                      <label style={{ fontSize: "12pt" }}>Saturday :  10 A.M. - 8 P.M.</label>
+                      <label style={{ fontSize: "12pt" }}>
+                        Saturday : 10 A.M. - 8 P.M.
+                      </label>
                     </div>
                   </div>
-                 
-                </div>
+                </div> */}
 
                 {/* /row*/}
 

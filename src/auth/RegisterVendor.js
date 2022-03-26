@@ -36,6 +36,8 @@ const RegisterVendor = () => {
         backgroundSize: "cover",
         minHeight: "100vh",
         padding: "36px",
+        display: "flex",
+        flexDirection: "column"
       }}
     >
       <Steps
@@ -44,6 +46,8 @@ const RegisterVendor = () => {
           backgroundColor: "white",
           borderRadius: "10px",
           padding: "16px",
+          width: "80%",
+          marginLeft: "10%",
         }}
       >
         {steps.map((item) => (
@@ -51,42 +55,61 @@ const RegisterVendor = () => {
         ))}
       </Steps>
 
-      <div
-        className="steps-content"
-        style={{ padding: "16px", borderRadius: "10px" }}
-      >
-        {steps[current].content}
-      </div>
-      <div className="steps-action">
-        {current < steps.length - 1 && (
-          <Button
-            type="primary"
-            style={{ borderRadius: "8px" }}
-            onClick={() => next()}
-          >
-            Next
-          </Button>
-        )}
-        {current === steps.length - 1 && (
-          <Button
-            type="primary"
-            href="/login-vendor"
-            style={{ borderRadius: "8px" }}
-            onClick={() => message.success("Processing complete!")}
-          >
-            Done
-          </Button>
-        )}
-        {current > 0 && (
-          <Button
-            style={{ margin: "0 8px", borderRadius: "8px" }}
-            onClick={() => prev()}
-          >
-            Previous
-          </Button>
-        )}
+      <div style={{
+        display: "grid",
+        backgroundColor: "aliceblue"
+      }}>
+        {/* Card */}
+        <div
+          className="steps-content"
+          style={{
+            padding: "16px",
+            borderRadius: "10px",
+            width: "30%",
+            height: "70vh",
+            marginBlockStart: "16px",
+            marginRight: "10%",
+          }}
+        >
+          {steps[current].content}
+        </div>
+
+        {/* Next Button */}
+        <div className="steps-action">
+          {current < steps.length - 1 && (
+            <Button
+              type="primary"
+              style={{
+                borderRadius: "8px",
+                marginRight: "10%",
+              }}
+              onClick={() => next()}
+            >
+              Next
+            </Button>
+          )}
+          {current === steps.length - 1 && (
+            <Button
+              type="primary"
+              href="/login-vendor"
+              style={{ borderRadius: "8px" }}
+              onClick={() => message.success("Processing complete!")}
+            >
+              Done
+            </Button>
+          )}
+          {current > 0 && (
+            <Button
+              style={{ margin: "0 8px", borderRadius: "8px" }}
+              onClick={() => prev()}
+            >
+              Previous
+            </Button>
+          )}
+        </div>
       </div>
     </div>
+
     /* <div>
     <div
       className="cover"

@@ -9,14 +9,14 @@ const HeaderClient = () => {
         <div id="logo">
           <a href="/">
             <img
-              src="img/logo/LogoRiasPedia.png"
+              src="/img/logo/LogoRiasPedia.png"
               width="150"
               height="36"
               alt=""
               class="logo_normal"
             ></img>
             <img
-              src="img/logo/LogoRiasPedia.png"
+              src="/img/logo/LogoRiasPedia.png"
               width="150"
               height="36"
               alt=""
@@ -49,7 +49,7 @@ const HeaderClient = () => {
                     <Link to="/outlet">Rias Pedia Outlet</Link>
                   </li>
                   <li>
-                    <Link to="/detail">Rias Pedia Detail Outlet</Link>
+                    <Link to="/detailOutlet">Rias Pedia Detail Outlet</Link>
                   </li>
                 </ul>
               </li>
