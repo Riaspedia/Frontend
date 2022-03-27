@@ -78,7 +78,7 @@ export default function SideNav() {
           data-placement="right"
           title="Services List"
         >
-          <a className="nav-link" href="list">
+          <a className="nav-link" href="/list">
             <i className="fa fa-fw fa-list" />
             <span className="nav-link-text pl-2">Daftar Pelayanan</span>
           </a>
@@ -126,7 +126,7 @@ export default function SideNav() {
           data-placement="right"
           title="My Vendor"
         >
-          <a className="nav-link" href="profilevendor">
+          <a className="nav-link" href="/profilevendor">
             <i className="fa fa-fw fa-user" />
             <span className="nav-link-text pl-2">Vendor</span>
           </a>

@@ -29,17 +29,17 @@ const Outlet = () => {
       <div className="container margin_60_35">
         <div className="col-lg-12">
           <div className="row no-gutters custom-search-input-2 inner">
-            <div className="col-lg-4">
+            <div className="col-lg-10">
               <div className="form-group">
                 <input
                   className="form-control"
                   type="text"
-                  placeholder="What are you looking for..."
+                  placeholder="Cari Lokasi Kota, Kategori, Nama Vendor..."
                 />
                 <i className="icon_search" />
               </div>
             </div>
-            <div className="col-lg-3">
+            {/* <div className="col-lg-3">
               <div className="form-group">
                 <input
                   className="form-control"
@@ -48,16 +48,17 @@ const Outlet = () => {
                 />
                 <i className="icon_pin_alt" />
               </div>
-            </div>
-            <div className="col-lg-3">
-              <select className="wide">
-                <option>All Categories</option>
-                <option>Churches</option>
-                <option>Historic</option>
-                <option>Museums</option>
-                <option>Walking tours</option>
-              </select>
-            </div>
+            </div> */}
+            {/* <div className="col-lg-3">
+              <div className="form-group">
+                <input
+                  className="form-control"
+                  type="text"
+                  placeholder="Where"
+                />
+                <i className="icon_pin_alt" />
+              </div>
+            </div> */}
             <div className="col-lg-2">
               <input
                 type="submit"

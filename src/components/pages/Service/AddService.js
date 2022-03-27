@@ -4,10 +4,12 @@ import { Breadcrumb, Button } from "antd";
 import FooterAdmin from "../../layout/FooterAdmin";
 import GoTop from "../../layout/GoTop";
 import Cookies from "js-cookie";
+import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import { baseURL } from "../../routes/Config";
 
 const AddService = () => {
+  const history = useHistory()
   const [input, setInput] = useState({
     name: "",
     price: 0,
@@ -40,7 +42,10 @@ const AddService = () => {
     );
 
     setInput({ ...input, name: "", price: 0, duration: 0, category: "" });
+    history.push("/list")
   };
+
+  console.log(input)
 
   return (
     <div className="fixed-nav sticky-footer min-vh-100" id="page-top">
@@ -133,14 +138,13 @@ const AddService = () => {
 
             {/* /box_general*/}
 
-            <Button
+            <Link
               type="submit"
-              href="/list"
               className="btn_1-admin medium"
               onClick={handleSubmit}
             >
               Simpan
-            </Button>
+            </Link>
           </form>
         </div>
         <br />

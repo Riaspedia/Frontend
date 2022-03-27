@@ -18,7 +18,7 @@ const Home = () => {
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="City..."
+                      placeholder="Temukan Pelayanan..."
                     />
                     <i className="icon_pin_alt" />
                   </div>

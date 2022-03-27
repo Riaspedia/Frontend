@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { message } from "antd";
 import { Link, useHistory } from "react-router-dom";
-import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import { baseURL } from "../components/routes/Config";
 
 const LoginVendor = () => {
@@ -29,12 +29,12 @@ const LoginVendor = () => {
       })
 
       .then((res) => {
-        let token = res.data.access_token
-        let userId = res.data.user_id
+        let token = res.data.access_token;
+        let userId = res.data.user_id;
 
-        Cookies.set('token', token, {expires: inOneHours})
-        Cookies.set('user_id', userId, {expires: inOneHours})
-        history.push("/dashboard");
+        Cookies.set("token", token, { expires: inOneHours });
+        Cookies.set("user_id", userId, { expires: inOneHours });
+        history.push("/list");
       })
 
       .catch((err) => {
@@ -61,16 +61,25 @@ const LoginVendor = () => {
         <div id="login">
           <aside>
             <figure>
-              <a href="index.html">RiasPedia</a>
+              <a href="#0">
+                <img
+                  src="img/logo/LogoRiasPedia.png"
+                  width="150"
+                  height="36"
+                  alt=""
+                  class="logo_normal"
+                ></img>
+              </a>
             </figure>
             <form>
               <div className="form-group">
-                <label>Email</label>
+                <label>Masukkan Email Anda</label>
                 <input
                   type="email"
                   className="form-control"
                   name="email"
                   id="email"
+                  placeholder="Email"
                   value={input.email}
                   onChange={handleChange}
                   required
@@ -78,12 +87,13 @@ const LoginVendor = () => {
                 <i className="icon_mail_alt" />
               </div>
               <div className="form-group">
-                <label>Password</label>
+                <label>Masukkan Password Anda</label>
                 <input
                   type="password"
                   className="form-control"
                   name="password"
                   id="password"
+                  placeholder="Password"
                   value={input.password}
                   onChange={handleChange}
                   required
@@ -93,7 +103,7 @@ const LoginVendor = () => {
               <div className="clearfix add_bottom_30">
                 <div className="checkboxes float-left">
                   <label className="container_check">
-                    Remember me
+                    Tunjukkan Password
                     <input type="checkbox" />
                     <span className="checkmark"></span>
                   </label>
@@ -105,16 +115,15 @@ const LoginVendor = () => {
                 </div>
               </div>
               <Link
-                to="/dashboard"
                 className="btn_1 rounded full-width"
                 onClick={handleSubmit}
               >
-                Login to RiasPedia
+                Masuk Sebagai Admin
               </Link>
               <div className="text-center add_top_10">
-                New to RiasPedia?
+                Belum punya akun?
                 <strong>
-                  <Link to="/register-vendor">Sign up!</Link>
+                  <Link to="/register-user-admin"> Daftar</Link>
                 </strong>
               </div>
             </form>

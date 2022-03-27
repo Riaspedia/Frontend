@@ -112,6 +112,7 @@ const RegisterVendorAdmin = () => {
         message.error(err)
       });
   };
+  console.log(input)
 
   return (
     <div>
@@ -319,7 +320,6 @@ const RegisterVendorAdmin = () => {
                 </Checkbox> */}
                 <div id="pass-info" className="clearfix" />
                 <Link
-                  to="/list"
                   className="btn_1 rounded full-width add_top_30"
                   onClick={handleSubmit}
                 >

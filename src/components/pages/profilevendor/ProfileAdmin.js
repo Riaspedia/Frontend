@@ -16,11 +16,6 @@ const ProfileAdmin = () => {
   moment.locale("id", idLocale);
   const id = Cookies.get("user_id");
   const [input, setInput] = useState();
-  // const [review, setReview] = useState({
-  //   vendorId: id,
-  //   description: "",
-  //   score: 0,
-  // });
 
   const fetchData = async () => {
     let result = await axios.get(baseURL + `/api/vendor/${id}`, {
@@ -35,37 +30,13 @@ const ProfileAdmin = () => {
       day_id: dayId,
       days: days,
     });
+
   };
-
-  // const handleChange = (event) => {
-  //   let value = event.target.value;
-
-  //   setReview({ ...review, description: value });
-  // };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   //urlnya tanya pakde sama variabelnya
-  //   await axios.post(
-  //     baseURL + `/api/vendor/addReview/`,
-  //     {
-  //       vendorId: review.vendorId,
-  //       description: review.description,
-  //       score: review.score,
-  //     },
-  //     {
-  //       headers: {
-  //         Authorization: `bearer` + Cookies.get("token"),
-  //       },
-  //     }
-  //   );
-
-  //   setReview({ ...review, description: "" });
-  // };
 
   useEffect(() => {
     fetchData();
   }, []);
+
 
   if (input != undefined) {
     return (
@@ -128,6 +99,16 @@ const ProfileAdmin = () => {
                            {input.data.name}
                           </label>
                         </Space>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="row">
+                    <div className="col-md-4 pb-0">
+                      <div className="form-group">
+                        <span>
+                        {input.data.category}
+                        </span>
                       </div>
                     </div>
                   </div>

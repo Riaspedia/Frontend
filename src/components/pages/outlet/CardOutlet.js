@@ -62,6 +62,8 @@ const CardOutlet = () => {
                         {vendor.name}
                       </Link>
                     </h3>
+                    <p>{vendor.category}</p>
+
                     <p>{vendor.description}</p>
                     {/* <span className="price">
                     Start From <strong>50k</strong> /per person

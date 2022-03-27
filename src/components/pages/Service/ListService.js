@@ -20,7 +20,7 @@ const ListService = () => {
   const [services, setServices] = useState();
 
   const dataService = async () => {
-    let result = await axios.get(baseURL + `/api/service`, {
+    let result = await axios.get(baseURL + `/api/vendor/service/${id}`, {
       headers: {
         Authorization: "Bearer " + Cookies.get("token"),
       },

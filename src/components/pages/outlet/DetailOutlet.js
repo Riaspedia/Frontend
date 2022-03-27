@@ -9,8 +9,8 @@ import { baseURL } from "../../routes/Config";
 import moment from "moment";
 
 const DetailOutlet = () => {
-  let idLocale = require('moment/locale/id')
-  moment.locale('id', idLocale)
+  let idLocale = require("moment/locale/id");
+  moment.locale("id", idLocale);
   const { id } = useParams();
   const [input, setInput] = useState();
   const [review, setReview] = useState({
@@ -253,37 +253,41 @@ const DetailOutlet = () => {
                   <h3>Reviews</h3>
                   <div className="col-lg-9">
                     <div className="col-md-12 px-0 d-flex flex-column justify-content-between">
-                      {input.data.reviews.map((review) => (
-                        <div className="col-md-12 px-0 d-flex flex-row">
-                          <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-top mt-2">
-                            <img
-                              className="m-0"
-                              src={Image}
-                              alt="profile-picture"
-                              style={{
-                                width: 50,
-                                height: 50,
-                                objectFit: "cover",
-                                borderRadius: "50%",
-                                marginLeft: "24px",
-                              }}
-                            />
+                      {(input.data.reviews.length > 0) ? (
+                        input.data.reviews.map((review) => (
+                          <div className="col-md-12 px-0 d-flex flex-row">
+                            <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-top mt-2">
+                              <img
+                                className="m-0"
+                                src={Image}
+                                alt="profile-picture"
+                                style={{
+                                  width: 50,
+                                  height: 50,
+                                  objectFit: "cover",
+                                  borderRadius: "50%",
+                                  marginLeft: "24px",
+                                }}
+                              />
+                            </div>
+                            <div className="detail col-md-12  p-0 mb-0 mt-2 ml-3">
+                              <div>
+                                <h4>{review.user.name}</h4>
+                              </div>
+                              <div>
+                                <span className="mt-0">
+                                  {moment(review.created_at).format("LL")}
+                                </span>
+                              </div>
+                              <div>
+                                <p class="text-dark">{review.description}</p>
+                              </div>
+                            </div>
                           </div>
-                          <div className="detail col-md-12  p-0 mb-0 mt-2 ml-3">
-                            <div>
-                              <h4>{review.user.name}</h4>
-                            </div>
-                            <div>
-                              <span className="mt-0">{moment(review.created_at).format('LL')}</span>
-                            </div>
-                            <div>
-                              <p class="text-dark">
-                                {review.description}
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                        ))
+                      ) : (
+                        <div></div>
+                      )}
                       <div class="row-md-12">
                         <form
                           className="row-md-12 d-flex justify-contennt-end flex-column ml-5"

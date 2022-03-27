@@ -127,7 +127,6 @@ const Login = () => {
                 </div>
               </div>
               <Link
-                to="/home"
                 className="btn_1 rounded full-width"
                 onClick={handleSubmit}
               >
