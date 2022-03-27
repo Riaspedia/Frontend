@@ -8269,12 +8269,6 @@ ul.share-buttons li i {
   color: #fc5b62;
 }
 
-.card {
-  border-radius: 0;
-  border: 0;
-  margin-bottom: 5px;
-}
-
 /*-------- 3.3 List --------*/
 ul.list_ok {
   list-style: none;
@@ -9564,3 +9558,13 @@ ul.plan-features {
   }
 }
 
+.register-user input {
+  border-left: none;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.register-user .input-group-text{
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}

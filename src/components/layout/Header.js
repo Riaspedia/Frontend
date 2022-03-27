@@ -135,13 +135,13 @@ const Header = () => {
           visible={isRegisterVisible}
           onCancel={handleCancel}
         >
-          <Button type="danger" block href="/register-vendor">
+          <Button type="danger" block href="/register-user-admin">
             Register as Admin
           </Button>
           <div className="divider">
             <span>Or</span>
           </div>
-          <Button className="btn btn-outline-danger" block danger>
+          <Button className="btn btn-outline-danger" block danger href="/register">
             Register as Client
           </Button>
         </Modal>

@@ -7,16 +7,10 @@ import FooterCliennt from "../../layout/FooterClient";
 import CardOutlet from "./CardOutlet";
 import { baseURL } from "../../routes/Config";
 
-
 const Outlet = () => {
-  
   return (
     <div id="page">
       <HeaderClient />
-      {/* <div id="preloader">
-                    <div data-loader="circle-side" />
-                </div> */}
-      {/* /Page Preload */}
       <section className="hero_in tours">
         <div className="wrapper">
           <div className="container">
@@ -72,9 +66,7 @@ const Outlet = () => {
               />
             </div>
           </div>
-          {/* /row */}
         </div>
-      
         <CardOutlet />
       </div>
       <FooterCliennt />

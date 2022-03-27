@@ -2,12 +2,12 @@ import React from "react";
 import { Breadcrumb } from "antd";
 import FooterAdmin from "../../layout/FooterAdmin";
 import GoTop from "../../layout/GoTop";
-import AdminHeader from "../../layout/AdminHeader";
+import HeaderAdmin from "../../layout/HeaderAdmin";
 
 export default function Dashboard() {
   return (
     <div className="fixed-nav sticky-footer" id="page-top">
-      <AdminHeader />
+      <HeaderAdmin />
       {/* /Navigation*/}
       <div className="content-wrapper">
         <div className="container-fluid">
@@ -25,7 +25,6 @@ export default function Dashboard() {
           {/* Icon Cards*/}
           {/* /cards */}
           <h2 />
-          
         </div>
         {/* /.container-fluid*/}
         <FooterAdmin />

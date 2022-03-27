@@ -201,10 +201,10 @@ const EditProfileClient = () => {
                       />
                     </div>
                     <div className="row-md-12">
-                      <label>Pilih file dengan ukuran maksimal 512KB</label>
+                      <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
                     </div>
                     <div className="row-md-12">
-                      <button type="submit" onClick={handleImageUpload}>
+                      <button class="btn btn-danger pt-1" type="submit" onClick={handleImageUpload}>
                         Upload
                       </button>
                     </div>
