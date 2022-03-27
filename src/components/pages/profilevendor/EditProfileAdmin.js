@@ -7,6 +7,7 @@ import FooterAdmin from "../../layout/FooterAdmin";
 import GoTop from "../../layout/GoTop";
 import UploadBox from "../../global/UploadBox";
 import { TextEditor } from "../../global/TextEditor";
+import Maps from "../../global/Maps";
 
 const EditProfileAdmin = () => {
   return (
@@ -45,7 +46,7 @@ const EditProfileAdmin = () => {
                   <TextEditor />
                 </div>
               </div>
-              <div className="col-md-6 add_top_30">
+              <div className="col-md-6 ">
                 <div className="row">
                   <div className="col-md-12">
                     <div className="form-group">
@@ -103,6 +104,14 @@ const EditProfileAdmin = () => {
                         className="form-control"
                         placeholder="ex. 250, Fifth Avenue..."
                       />
+                    </div>
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-md-12">
+                    <div className="form-group">
+                      <Maps />
                     </div>
                   </div>
                 </div>
