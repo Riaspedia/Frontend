@@ -55,3 +55,13 @@
 .steps-action {
   margin-top: 24px;
 }
+
+#map {
+  height: 30vh;
+  width: 100%;
+}
+
+.Popup {
+  width: 15vh;
+  height: 5vh;
+}

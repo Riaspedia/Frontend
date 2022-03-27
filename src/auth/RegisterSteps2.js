@@ -1,6 +1,8 @@
 import React from "react";
 import { TextEditor } from "../components/global/TextEditor";
 import UploadBox from "../components/global/UploadBox";
+import "leaflet";
+import Maps from "../components/global/Maps";
 
 function RegisterSteps2() {
   return (
@@ -16,7 +18,7 @@ function RegisterSteps2() {
             <TextEditor />
           </div>
         </div>
-        <div className="col-md-5 add_top_30">
+        <div className="col-md-5 ">
           <div className="row">
             <div className="col-md-12">
               <div className="form-group">
@@ -79,6 +81,14 @@ function RegisterSteps2() {
                   className="form-control"
                   placeholder="ex. 250, Fifth Avenue..."
                 />
+              </div>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-md-12">
+              <div className="form-group">
+                <Maps/>
               </div>
             </div>
           </div>
