@@ -82,6 +82,8 @@ const RegisterVendorAdmin = () => {
   };
 
   const handleSubmit = () => {
+    console.log("kenapa ndak mau masuk");
+    let inOneHours = new Date(new Date().getTime() + 60 * 60 * 1000);
     //urlnya tanya pakde sama variabelnya
     axios
       .post(
@@ -92,7 +94,7 @@ const RegisterVendorAdmin = () => {
           address: input.address,
           email: input.email,
           phone: input.phone,
-          city: input.city,
+          city: input.city.toLocaleLowerCase(),
           description: input.description,
           latitude: input.latitude,
           longitude: input.longitude,
@@ -105,14 +107,15 @@ const RegisterVendorAdmin = () => {
       )
 
       .then((res) => {
+        Cookies.set("vendor_id", res.data.data, { expires: inOneHours });
         history.push("/list");
       })
 
       .catch((err) => {
-        message.error(err)
+        message.error(err);
       });
   };
-  console.log(input)
+  console.log(input);
 
   return (
     <div>
@@ -143,7 +146,7 @@ const RegisterVendorAdmin = () => {
                       <label>Nama Vendor</label>
                       <input
                         className="form-control"
-                        placeholder="Nama Vendor"
+                        placeholder="Masukkan Nama Vendor"
                         id="name"
                         type="text"
                         name="name"
@@ -155,7 +158,7 @@ const RegisterVendorAdmin = () => {
                       <label>Kategori Vendor</label>
                       <input
                         className="form-control"
-                        placeholder="Kategori Vendor"
+                        placeholder="Masukkan Kategori Vendor"
                         id="category"
                         type="text"
                         name="category"
@@ -167,7 +170,7 @@ const RegisterVendorAdmin = () => {
                       <label>Alamat</label>
                       <textarea
                         className="form-control"
-                        placeholder="Alamat"
+                        placeholder="Masukkan Alamat"
                         type="text"
                         id="address"
                         name="address"
@@ -183,7 +186,7 @@ const RegisterVendorAdmin = () => {
                       <label>Email</label>
                       <input
                         className="form-control"
-                        placeholder="Email"
+                        placeholder="Masukkan Email"
                         type="email"
                         id="email"
                         name="email"
@@ -200,6 +203,7 @@ const RegisterVendorAdmin = () => {
                         className="form-control"
                         id="phone"
                         name="phone"
+                        placeholder="Masukkan Telepon"
                         value={input.phone}
                         onChange={handleChange}
                       />
@@ -268,57 +272,22 @@ const RegisterVendorAdmin = () => {
                     </div>
                   </div>
                 </div>
-
-                {/* <div className="form-group">
-                  <label>Nama Vendor </label>
-                  <input
-                    className="form-control"
-                    type="text"
-                    name="name"
-                    placeholder="Nama Vendor"
-                    value={input.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label> Email </label>
-                  <input
-                    className="form-control"
-                    type="email"
-                    name="email"
-                    placeholder="Email Vendor"
-                    value={input.email}
-                    onChange={handleChange}
-                  />
-                </div> */}
-                {/* <div className="form-group">
-                  <label>Masukkan Password Vendor</label>
-                  <input
-                    className="form-control"
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Password Vendor"
-                    value={input.password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="form-group">
-                  <label>Kofirmasi password Vendor</label>
-                  <input
-                    className="form-control"
-                    type="password"
-                    id="password_confirmation"
-                    name="password_confirmation"
-                    placeholder="Konfirmasi Password Vendor"
-                    value={input.password_confirmation}
-                    onChange={handleChange}
-                  />
-                </div>
-                <Checkbox onClick={handleShowPassword}>
-                  Tunjukkan Password
-                </Checkbox> */}
                 <div id="pass-info" className="clearfix" />
+                {/* <div class="d-grid gap-2 col-6 mx-auto">
+                  <Link
+                    className="btn btn-primary" type="button"
+                    onClick={handleSubmit}
+                  >
+                    Daftar Vendor
+                  </Link>
+                  <Link
+                    to="/register-user-admin"
+                    className="btn btn-primary" type="button"
+                    onClick={handleSubmit}
+                  >
+                    Kembali
+                  </Link>
+                </div> */}
                 <Link
                   className="btn_1 rounded full-width add_top_30"
                   onClick={handleSubmit}
@@ -332,21 +301,7 @@ const RegisterVendorAdmin = () => {
                 >
                   Kembali
                 </Link>
-                {/* <div className="text-center add_top_10">
-                  Sudah punya akun?
-                  <strong>
-                    <Link to="/login"> Masuk</Link>
-                  </strong>
-                </div> */}
               </form>
-
-              {/* <p class="card-text">
-                  With supporting text below as a natural lead-in to additional
-                  content.
-                </p>
-                <a href="#" class="btn btn-primary">
-                  Go somewhere
-                </a> */}
             </div>
           </div>
         </div>

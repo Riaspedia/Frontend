@@ -1,8 +1,40 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Image from "../../assests/img/MUA1.jpg";
+import Cookies from "js-cookie";
+import { Input } from "antd";
+import axios from "axios";
+import { baseURL } from "../routes/Config";
 
 const HeaderClient = () => {
+  const [image, setImage] = useState();
+  const onLogout = () => {
+    Cookies.remove("token");
+    Cookies.remove("user_id");
+    Cookies.remove("vendor_id");
+    return;
+  };
+
+  useEffect(() => {
+    //nnit kalau adami benya request disini. sampai sininyi dlu bisa.. cobamin nnti kalau adami api req profile dari be harusnya bisami.. sbaeb kalo get nya nanti
+    //adapi response nya baru tak ubah yang pas get nya?
+
+    axios
+      .get(baseURL + `/api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        //ini nnti sesuaikan sama response yang dikirim dari backend, biasanya kek bgitu bentuknya.
+        setImage(res.data.image);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  
   return (
     <div id="page">
       <header className="header menu_fixed">
@@ -37,27 +69,19 @@ const HeaderClient = () => {
             <ul>
               <li>
                 <span>
-                  <a href="/">Beranda</a>
+                  <a href="/home">Beranda</a>
                 </span>
               </li>
               <li>
                 <span>
-                  <a href="#0">Outlet</a>
+                  <a href="/outlet">Outlet</a>
                 </span>
-                <ul>
-                  <li>
-                    <Link to="/outlet">Rias Pedia Outlet</Link>
-                  </li>
-                  <li>
-                    <Link to="/detailOutlet">Rias Pedia Detail Outlet</Link>
-                  </li>
-                </ul>
               </li>
               <li>
                 <span>
                   <a href="/profileclient" className="p-0 ">
                     <img
-                      src={Image}
+                      src={image}
                       alt="profile-picture"
                       style={{
                         width: 40,
@@ -71,8 +95,14 @@ const HeaderClient = () => {
                 </span>
               </li>
               <li>
-              <a  href="/" class="logout nav-link text-danger"><i class="fa fa-fw fa-sign-out text-danger" ></i>Keluar</a>
-            </li>
+                <a
+                  onClick={onLogout}
+                  href="/"
+                  class="logout nav-link text-danger"
+                >
+                  <i class="fa fa-fw fa-sign-out text-danger ml-3"></i>Keluar
+                </a>
+              </li>
             </ul>
           </nav>
         </div>

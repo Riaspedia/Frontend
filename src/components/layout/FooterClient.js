@@ -9,11 +9,17 @@ const FooterClient = () => {
           <div className="row">
             <div className="col-lg-5 col-md-12 p-r-5">
               <p>
-                <img src="/img/logo/LogoRiasPedia.png" width={160} height={50} alt />
+                <img
+                  src="/img/logo/LogoRiasPedia.png"
+                  width={160}
+                  height={50}
+                  alt
+                />
               </p>
               <p className="ml-1">
-                Rias Pedia merupakan website yang berisi kumpulan Make Up Artist (MUA) di seluruh Indonesia, sehingga mempermudah client 
-                untuk menemukan MUA terdekat. 
+                Rias Pedia merupakan website yang berisi kumpulan Make Up Artist
+                (MUA) di seluruh Indonesia, sehingga mempermudah client untuk
+                menemukan MUA terdekat.
               </p>
               <div className="follow_us">
                 <ul className="ml-1">
@@ -79,6 +85,9 @@ const FooterClient = () => {
                     <i className="ti-email" /> info@otakkanan.co.id
                   </a>
                 </li>
+                {/* <p class="mt-4" style={{fontSize:"20px"}}>Support by:</p>
+                
+                <p  style={{fontSize:"20px"}}>PT. OTAK KANAN</p> */}
               </ul>
             </div>
           </div>
@@ -116,12 +125,12 @@ const FooterClient = () => {
             </div>
             <div className="col-lg-6">
               <ul id="additional_links">
-                {/* <li>
-                  <a href="#0">Terms and conditions</a>
+                <li>
+                  <a href="#0">PT. Otak Kanan</a>
                 </li>
                 <li>
                   <a href="#0">Privacy</a>
-                </li> */}
+                </li>
                 <li>
                   <span>@ 2022 Rias Pedia</span>
                 </li>
@@ -130,10 +139,8 @@ const FooterClient = () => {
           </div>
         </div>
       </footer>
-      {/*/footer*/}
-      {/* page */}
     </div>
   );
-}
+};
 
-export default FooterClient
+export default FooterClient;

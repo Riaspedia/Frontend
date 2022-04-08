@@ -5,13 +5,31 @@ import axios from "axios";
 import Moment from "moment";
 import { baseURL } from "../../routes/Config";
 
-const CardOutlet = () => {
+const CardOutlet = (props) => {
   const [input, setInput] = useState([]);
 
+  const [sort, setSort] = useState({
+    name: props.name,
+    city: props.city,
+    category: props.category,
+  });
+
   const fetchData = async () => {
-    let result = await axios.get(baseURL + `/api/vendor`, {
-      headers: { Authorization: "Bearer " + Cookies.get("token") },
-    });
+    // let result = await axios.get(baseURL + `/api/vendor/sort`, {
+    //   headers: { Authorization: "Bearer " + Cookies.get("token") },
+    // });
+
+    let result = await axios.post(
+      baseURL + `/api/vendor/sort`,
+      {
+        city: sort.city,
+        name: sort.name,
+        category: sort.category,
+      },
+      {
+        headers: { Authorization: "Bearer " + Cookies.get("token") },
+      }
+    );
 
     let data = result.data.data;
     let dayId = result.data.day.id;
@@ -27,10 +45,14 @@ const CardOutlet = () => {
   };
 
   useEffect(() => {
+    setSort({
+      ...sort,
+      city: props.city,
+      category: props.category,
+      name: props.name,
+    });
     fetchData();
-  }, []);
-
-  console.log(input);
+  }, [props]);
 
   const Card = () => {
     return (
@@ -43,13 +65,9 @@ const CardOutlet = () => {
                 <div className="col-lg-5">
                   <figure>
                     <Link to={`/detailOutlet/${vendor.id}`}>
-                      <img
-                        src="img/background/HairCut.jpg"
-                        className="img-fluid"
-                      />
+                      <img src={vendor.image} className="img-fluid" />
                       <div className="read_more">
                         <span>Read more</span>
-                        {/* <a href="/detail">Read more</a> */}
                       </div>
                     </Link>
                   </figure>
@@ -65,11 +83,7 @@ const CardOutlet = () => {
                     <p>{vendor.category}</p>
 
                     <p>{vendor.description}</p>
-                    {/* <span className="price">
-                    Start From <strong>50k</strong> /per person
-                  </span> */}
                   </div>
-
                   {/* Panggil jamnya */}
                   <ul className="m-0">
                     <i className="icon_clock_alt mr-2" />

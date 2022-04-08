@@ -14,7 +14,7 @@ import axios from "axios";
 const ProfileAdmin = () => {
   let idLocale = require("moment/locale/id");
   moment.locale("id", idLocale);
-  const id = Cookies.get("user_id");
+  const id = Cookies.get("vendor_id");
   const [input, setInput] = useState();
 
   const fetchData = async () => {
@@ -30,58 +30,55 @@ const ProfileAdmin = () => {
       day_id: dayId,
       days: days,
     });
-
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
-
   if (input != undefined) {
     return (
       <div className="fixed-nav sticky-footer" id="page-top">
         <HeaderAdmin />
         <div className="content-wrapper">
-          <div className="container-fluid">
+          <div className="container-fluid ml-5">
             {/* Breadcrumbs*/}
             <div
               className="breadcrumb"
-              style={{ paddingLeft: 15, paddingTop: 10 }}
+              style={{ paddingTop: 10, marginLeft: 50, marginRight: 50 }}
             >
               <Breadcrumb>
                 <Breadcrumb.Item href="dashboard">Riaspedia </Breadcrumb.Item>
-                <Breadcrumb.Item> My Vendor </Breadcrumb.Item>
+                <Breadcrumb.Item> Profil </Breadcrumb.Item>
               </Breadcrumb>
             </div>
 
-            <div className="box_general padding_bottom">
+            <div className="box_general padding_bottom ml-5 mr-5">
               <div className="header_box version_2">
                 <Space direction="horizontal">
                   <h2>
                     <i className="fa fa-user" />
-                    Detail Vendor
+                    Detail Profil 
                   </h2>
                 </Space>
                 <Button
                   href="/editprofilevendor"
-                  //   onClick={handleDetail}
                   type="danger"
                   ghost
                   style={{ borderRadius: 8, float: "right", height: "100%" }}
                 >
-                  Edit Vendor
+                  Edit Profil
                 </Button>
               </div>
               <div className="row">
                 <div className="col-md-2 ">
                   <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-center">
                     <img
-                      src={Image}
+                      src={input.data.image}
                       alt="profile-picture"
                       style={{
-                        width: 150,
-                        height: 150,
+                        width: 144,
+                        height: 144,
                         objectFit: "cover",
                         borderRadius: "50%",
                         marginLeft: "24px",
@@ -96,7 +93,7 @@ const ProfileAdmin = () => {
                       <div className="form-group">
                         <Space direction="horizontal">
                           <label style={{ fontSize: "15pt" }}>
-                           {input.data.name}
+                            {input.data.name}
                           </label>
                         </Space>
                       </div>
@@ -106,9 +103,7 @@ const ProfileAdmin = () => {
                   <div className="row">
                     <div className="col-md-4 pb-0">
                       <div className="form-group">
-                        <span>
-                        {input.data.category}
-                        </span>
+                        <span>{input.data.category}</span>
                       </div>
                     </div>
                   </div>
@@ -131,7 +126,8 @@ const ProfileAdmin = () => {
                     <div className="col-md-4 pt-0">
                       <div className="form-group">
                         <span>
-                          <i className="fa fa-map-marker" /> {input.data.address}
+                          <i className="fa fa-map-marker" />{" "}
+                          {input.data.address}
                         </span>
                       </div>
                     </div>
@@ -144,7 +140,7 @@ const ProfileAdmin = () => {
                     <div className="col-md-12">
                       <div className="form-group">
                         <label style={{ fontSize: "12pt", color: "GrayText" }}>
-                        {input.data.description}
+                          {input.data.description}
                         </label>
                       </div>
                     </div>

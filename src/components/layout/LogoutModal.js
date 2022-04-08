@@ -1,6 +1,7 @@
 import { Modal, Button } from "antd";
 import { React, useState } from "react";
 import "antd/dist/antd.css";
+import Cookies from "js-cookie";
 
 const LogoutModal = () => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -17,6 +18,13 @@ const LogoutModal = () => {
     setIsModalVisible(false);
   };
 
+  const onLogout = () => {
+    Cookies.remove("token");
+    Cookies.remove("user_id");
+    Cookies.remove("vendor_id");
+    return;
+  };
+
   return (
     <>
       <a class="nav-link" onClick={showModal}>
@@ -30,7 +38,7 @@ const LogoutModal = () => {
         onCancel={handleCancel}
         footer={[
           <Button onClick={handleCancel}>Cancel</Button>,
-          <Button href="/" type="danger">
+          <Button onClick={onLogout} href="/" type="danger">
             Logout
           </Button>,
         ]}

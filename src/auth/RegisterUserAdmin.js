@@ -38,7 +38,6 @@ const RegisterUserAdmin = () => {
   };
 
   const handleSubmit = () => {
-    //urlnya tanya pakde sama variabelnya
     axios
       .post(baseURL + `/api/auth/register`, {
         name: input.name,
@@ -56,12 +55,7 @@ const RegisterUserAdmin = () => {
           })
 
           .then((res) => {
-            let token = res.data.access_token;
-            let userId = res.data.user_id;
-
-            Cookies.set("token", token, { expires: inOneHours });
-            Cookies.set("user_id", userId, { expires: inOneHours });
-            history.push("/register-vendor-admin");
+            history.push("/login-vendor");
           })
 
           .catch((err) => {
@@ -106,35 +100,35 @@ const RegisterUserAdmin = () => {
               <hr class="mt-2" />
               <form autoComplete="off">
                 <div className="form-group register-user">
-                  <label>Masukkan Nama Lengkap Anda</label>
+                  <label>Nama Lengkap</label>
                   <div className="input-group">
                     <i className="ti-user input-group-text" />
                     <input
                       className="form-control"
                       type="text"
                       name="name"
-                      placeholder="Nama Lengkap"
+                      placeholder="Masukkan Nama Lengkap Anda"
                       value={input.name}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className="form-group register-user">
-                  <label>Masukkan Email Anda</label>
+                  <label>Email</label>
                   <div className="input-group">
                     <i className="icon_mail_alt input-group-text" />
                     <input
                       className="form-control"
                       type="email"
                       name="email"
-                      placeholder="Email"
+                      placeholder="Masukkan Email Anda"
                       value={input.email}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className="form-group register-user">
-                  <label>Masukkan Password Anda</label>
+                  <label>Password</label>
                   <div className="input-group">
                     <i className="icon_lock_alt input-group-text" />
                     <input
@@ -142,14 +136,14 @@ const RegisterUserAdmin = () => {
                       type="password"
                       id="password"
                       name="password"
-                      placeholder="Password"
+                      placeholder="Masukkan Password Anda"
                       value={input.password}
                       onChange={handleChange}
                     />
                   </div>
                 </div>
                 <div className="form-group register-user">
-                  <label>Kofirmasi password Anda</label>
+                  <label>Kofirmasi Password</label>
                   <div className="input-group">
                     <i className="icon_lock_alt input-group-text" />
                     <input
@@ -157,7 +151,7 @@ const RegisterUserAdmin = () => {
                       type="password"
                       id="password_confirmation"
                       name="password_confirmation"
-                      placeholder="Konfirmasi Password"
+                      placeholder="Konfirmasi Password Anda"
                       value={input.password_confirmation}
                       onChange={handleChange}
                     />
@@ -167,30 +161,20 @@ const RegisterUserAdmin = () => {
                   Tunjukkan Password
                 </Checkbox>
                 <div id="pass-info" className="clearfix" />
-                {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
                 <Link
-                  to="/register-vendor-admin"
+                  to="/login-vendor"
                   className="btn_1 rounded full-width add_top_30"
                   onClick={handleSubmit}
                 >
-                  Next
+                  Daftar
                 </Link>
                 <div className="text-center add_top_10">
                   Sudah punya akun?
                   <strong>
-                    <Link to="/login"> Masuk</Link>
+                    <Link to="/login-vendor"> Masuk</Link>
                   </strong>
-                  {/* <strong><a href="login.html">Sign In</a></strong> */}
                 </div>
               </form>
-
-              {/* <p class="card-text">
-                With supporting text below as a natural lead-in to additional
-                content.
-              </p>
-              <a href="#" class="btn btn-primary">
-                Go somewhere
-              </a> */}
             </div>
           </div>
         </div>

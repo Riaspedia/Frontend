@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from "react";
 import FooterClient from "../../layout/FooterClient";
 import HeaderClient from "../../layout/HeaderClient";
-import { Button } from "antd";
-import { Row, Col, Radio, Space } from "antd";
+import { Row, Col, Radio, Space, message } from "antd";
 import { Link } from "react-router-dom";
-import LabelText from "../../global/LabelText";
-import Image from "../../../assests/img/MUA1.jpg";
+import Image from "../../../assests/img/Profile.png";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { baseURL } from "../../routes/Config";
 
 const EditProfileClient = () => {
+  let formData = new FormData();
+  // terakhir taruh paling atas untuk deklarasi variablenya
+  const [images, setImages] = useState({ selectedImages: undefined });
+
+  const [image, setImage] = useState(Image);
   const [inputProvince, setInputProvince] = useState([]);
+  const [sizeError, setSizeError] = useState(false);
 
   const [input, setInput] = useState({
     name: "",
@@ -21,6 +25,54 @@ const EditProfileClient = () => {
     city: "",
     image: null,
   });
+
+  // versi kak salam
+  const handleImageUpload = (e) => {
+    e.preventDefault();
+    console.log("kendapa ndk masuk kseini");
+    var formDataIm = new FormData();
+    formDataIm.append("image", images.selectedImages[0]);
+
+    // disini ndk ada fungsi reload tapi reload sendiri
+    // Yang dikomen ini untuk upload banyak gambar
+    // for (let index = 0; index < image.selectedImages.length; index++) {
+    //   formData.append('data[' + index + ']', image.selectedImages[index])
+    // } routenya yg tdi dimanaki
+    axios
+      .post(baseURL + `/api/auth/profile/uploadImage`, formDataIm, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+          // "content-type": "application/form-data",
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        console.log("request success");
+        window.location.reload();
+        // disini tambai logic setelah request/bisa taruh alert atau sembarang
+      })
+      .catch((err) => {
+        console.log(err);
+        console.log("request gagal");
+        message.error("upload gagal", 3);
+      });
+  };
+
+  // ini ditaruh bagian atas untuk handleki input formnya
+  const handleChangeImage = (event) => {
+    let images_temp = [];
+
+    for (let i = 0; i < event.target.files.length; i++) {
+      images_temp.push(event.target.files[i]);
+    }
+
+    setImages({
+      selectedImages: images_temp,
+    });
+    console.log("request success");
+    console.log(images_temp);
+  };
 
   const handleChange = (event) => {
     let value = event.target.value;
@@ -46,6 +98,23 @@ const EditProfileClient = () => {
   };
 
   useEffect(() => {
+    //nnit kalau adami benya request disini. sampai sininyi dlu bisa.. cobamin nnti kalau adami api req profile dari be harusnya bisami.. sbaeb kalo get nya nanti
+    //adapi response nya baru tak ubah yang pas get nya?
+
+    axios
+      .get(baseURL + `/api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        //ini nnti sesuaikan sama response yang dikirim dari backend, biasanya kek bgitu bentuknya.
+        setImage(res.data.image);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     dataProvinces();
   }, []);
 
@@ -90,13 +159,11 @@ const EditProfileClient = () => {
     },
   });
 
-  const handleImageChange = (event) => {
-    let files = event.target.files || event.dataTransfer.files
-    if(!files.length)
-      return;
-
-    createImage(files[0]);
-  };
+  // const handleImageChange = (event) => {
+  //   let files = event.target.files || event.dataTransfer.files;
+  //   setInput({ ...input, image: files[0] });
+  //   createImage(files[0]);
+  // };
 
   const handleSubmit = () => {
     //urlnya tanya pakde sama variabelnya
@@ -115,28 +182,52 @@ const EditProfileClient = () => {
       });
   };
 
-  const handleImageUpload = (e) => {
-    e.preventDefault();
-    //urlnya tanya pakde sama variabelnya
-    axios
-      .post(
-        baseURL + `/api/auth/profile/updateImage`,
-        {
-          id: Cookies.get("user_id"),
-          image: input.image,
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + Cookies.get("token"),
-            "content-type": "multipart/form-data",
-          },
-        }
-      )
-      .then((res) => {
-        console.clear();
-        console.log(res);
-      });
-  };
+  // const handleImageUpload = (e) => {
+  //   e.preventDefault();
+  //   axios
+  //     .post(
+  //       baseURL + `/api/auth/profile/uploadImage`,
+  //       {
+  //         id: Cookies.get("user_id"),
+  //         image: input.image,
+  //       },
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + Cookies.get("token"),
+  //           "content-type": "multipart/form-data",
+  //         },
+  //       }
+  //     )
+  //     .then((res) => {
+  //       console.clear();
+  //       console.log(res);
+  //     });
+  // };
+
+  //fungsi baru
+  // const functionUploadImage = (formdata) => {
+  //   axios
+  //     .post(`/api/auth/profile/uploadImage${Cookies.get("id")}`, formdata, {
+  //       headers: { Authorization: "Bearer " + Cookies.get("token") },
+  //     })
+  //     .then((res) => {});
+  // };
+
+  // const onImageChange = (event) => {
+  //   let formdata = new FormData();
+  //   let size = event.target.files[0].size;
+
+  //   if (size > 524288) {
+  //     setSizeError(true);
+  //   } else if (event.target.files && event.target.files[0]) {
+  //     setSizeError(false);
+  //     let img = event.target.files[0];
+  //     formdata.append("image", img);
+
+  //     functionUploadImage(formdata);
+  //     setInput({ ...input, photo: URL.createObjectURL(img) });
+  //   }
+  // };
 
   // Create Image from inputed file
   const createImage = (file) => {
@@ -147,7 +238,7 @@ const EditProfileClient = () => {
     reader.readAsDataURL(file);
   };
 
-  console.log(input)
+  console.log(input);
 
   return (
     <div className>
@@ -176,7 +267,7 @@ const EditProfileClient = () => {
                 <div className="col-lg-3 col-md-12 p-0">
                   <div className="form-group">
                     <img
-                      src={Image}
+                      src={image}
                       alt="profile-picture"
                       style={{
                         width: 144,
@@ -189,30 +280,51 @@ const EditProfileClient = () => {
                   </div>
                 </div>
                 <div className="col-md-9">
-                  <form onSubmit={handleImageUpload}>
+                  <form
+                  // onSubmit={handleImageUpload}
+                  // encType="multipart/form-data"
+                  >
                     <div className="row-md-12">
                       <input
                         type="file"
                         style={{ border: "none" }}
                         name="image"
                         id="image"
+                        title=" "
                         className="form-control p-0"
-                        onChange={handleImageChange}
+                        onChange={(e) => handleChangeImage(e)}
+                        // onChange={handleImage}
                       />
+                      {sizeError === true && (
+                        <label
+                          text="Ukuran foto melebihi 512KB!"
+                          fontSize={12}
+                          fontColor="#EA3A3A"
+                        />
+                      )}
                     </div>
                     <div className="row-md-12">
-                      <label class="pt-0">Pilih file dengan ukuran maksimal 1MB</label>
+                      <label class="pt-0">
+                        Pilih file dengan ukuran maksimal 1MB
+                      </label>
                     </div>
                     <div className="row-md-12">
-                      <button class="btn btn-danger pt-1" type="submit" onClick={handleImageUpload}>
-                        Upload
+                      <button
+                        type="submit"
+                        className="btn btn-success btn-sm mb-2"
+                        style={{
+                          width: "100px",
+                          height: "40px",
+                          padding: "10px",
+                        }}
+                        onClick={handleImageUpload}
+                      >
+                        <i class="fa fa-cloud-upload" aria-hidden="true"></i>{" "}
+                        Unggah
                       </button>
                     </div>
                   </form>
                 </div>
-
-                {/* <label>Your photo</label>
-                  <form action="/file-upload" className="dropzone" /> */}
               </div>
               <div className="col-md-12">
                 <form onSubmit={handleSubmit}>
@@ -233,7 +345,7 @@ const EditProfileClient = () => {
                         </div>
                       </div>
                     </div>
-                    {/* /row*/}
+
                     <div className="row">
                       <div className="col-md-12 p-0">
                         <div className="form-group">
@@ -250,7 +362,7 @@ const EditProfileClient = () => {
                         </div>
                       </div>
                     </div>
-                    {/* /row*/}
+
                     <div className="row">
                       <div className="col-md-12 p-0">
                         <div className="form-group">
@@ -322,11 +434,6 @@ const EditProfileClient = () => {
                                 })}
                               </>
                             )}
-                            {/* {inputProvince.province.map((province) => (
-                            <option value={[province.name, province.id]}>
-                              {province.name}
-                            </option>
-                          ))} */}
                           </select>
                         </div>
                       </div>
@@ -360,22 +467,7 @@ const EditProfileClient = () => {
                                 })}
                               </>
                             )}
-                            {/* {inputProvince.cities.map((city) => (
-                            <option value={[city.name, city.id]}>
-                              {city.name}
-                            </option>
-                          ))} */}
                           </select>
-
-                          {/* <input
-                          type="text"
-                          className="form-control"
-                          placeholder="Kota"
-                          name="city"
-                          id="city"
-                          value={input.city}
-                          onChange={handleChange}
-                        /> */}
                         </div>
                       </div>
                     </div>

@@ -17,8 +17,8 @@ const CardLoginRegisterAdmin = () => {
               ></img>
             </div>
             <div class="col-8">
-              <p class="bold mb-0">Kemudahan Mencari Vendor MUA</p>
-              <p>Dengan Rias Pedia, Anda dapat dengan mudah mempromosikan vendor anda</p>
+              <p class="bold mb-0">Kemudahan Mencari Salon</p>
+              <p>Dengan Rias Pedia, Anda dapat dengan mudah menemukan salon terdekat</p>
             </div>
           </div>
           <hr class="mt-0"/>
@@ -32,7 +32,7 @@ const CardLoginRegisterAdmin = () => {
             </div>
             <div class="col-8">
               <p class="bold mb-0">Kemudahan Mencari Pelayanan Salon</p>
-              <p>Dengan Rias Pedia, Anda dapat dengan mudah mempromosikan vendor anda</p>
+              <p>Dengan Rias Pedia, Anda dapat dengan mudah menemukan salon yang diinginkan</p>
             </div>
           </div>
           <hr class="mt-0"/>
@@ -45,8 +45,8 @@ const CardLoginRegisterAdmin = () => {
               ></img>
             </div>
             <div class="col-8">
-              <p class="bold mb-0">Kemudahan Mempromoskan Vendor </p>
-              <p>Dengan Rias Pedia, Anda dapat dengan mudah mempromosikan vendor anda</p>
+              <p class="bold mb-0">Kemudahan Mempromoskan Salon </p>
+              <p>Dengan Rias Pedia, Anda dapat dengan mudah mempromosikan salon anda</p>
             </div>
           </div>
         </div>

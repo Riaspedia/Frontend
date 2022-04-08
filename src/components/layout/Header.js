@@ -36,14 +36,14 @@ const Header = () => {
         <div id="logo">
           <a href="/">
             <img
-              src="img/logo/LogoRiasPedia.png"
+              src="/img/logo/LogoRiasPedia.png"
               width="150"
               height="36"
               alt=""
               class="logo_normal"
             ></img>
             <img
-              src="img/logo/LogoRiasPedia.png"
+              src="/img/logo/LogoRiasPedia.png"
               width="150"
               height="36"
               alt=""
@@ -62,53 +62,26 @@ const Header = () => {
           {
             <ul>
               <li>
-                <Button type="primary" onClick={showRegisterModal} danger>
-                  Register
+                <Button
+                  type="primary"
+                  style={{ width: "100px" }}
+                  href="/register"
+                  danger
+                >
+                  Daftar
                 </Button>
               </li>
               &nbsp;&nbsp;
               <li>
-                <Button danger onClick={showLoginModal}>
-                  Login
+                <Button danger style={{ width: "100px" }} href="/login">
+                  Masuk
                 </Button>
               </li>
             </ul>
-
-            // !isLogin() ? (
-            // <ul>
-            //   <li>
-            //     <a
-            //       className="btn btn-danger btn-sm"
-            //       role="button"
-            //       onClick={showRegisterModal}
-            //     >
-            //       Register
-            //     </a>
-            //   </li>
-            // &nbsp;&nbsp;
-            //   <li>
-            //     <a
-            //       className="btn btn-outline-danger btn-sm"
-            //       id="sign-in"
-            //       title="Sign In"
-            //       role="button"
-            //       onClick={showLoginModal}
-            //     >
-            //       Login
-            //     </a>
-            //   </li>
-            // </ul>
-            // ) : (
-            //     isAdmin ? (
-            //         <AdminHeader/>
-            //     ) : (
-            //         <ClientHeader/>
-            //     )
-            // )
           }
         </nav>
 
-        <Modal
+        {/* <Modal
           centered={true}
           closable={false}
           footer={null}
@@ -124,10 +97,8 @@ const Header = () => {
           <Button className="btn btn-outline-danger" href="/login" block danger>
             Login as Client
           </Button>
-
-          {/* <a className="btn btn-outline-danger btn-lg btn-block btn-sm" href="login.html" role="button">Login as Client</a> */}
-        </Modal>
-
+        </Modal> */}
+        {/* 
         <Modal
           centered={true}
           closable={false}
@@ -144,7 +115,7 @@ const Header = () => {
           <Button className="btn btn-outline-danger" block danger href="/register">
             Register as Client
           </Button>
-        </Modal>
+        </Modal> */}
       </header>
     </div>
   );

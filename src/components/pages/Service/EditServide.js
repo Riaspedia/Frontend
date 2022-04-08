@@ -9,7 +9,7 @@ import axios from "axios";
 import { baseURL } from "../../routes/Config";
 
 const EditService = () => {
-    let history = useHistory()
+  let history = useHistory()
   const { id } = useParams()
 
   const [input, setInput] = useState({
@@ -74,11 +74,11 @@ const EditService = () => {
     <div className="fixed-nav sticky-footer min-vh-100" id="page-top">
       <HeaderAdmin />
       <div className="content-wrapper d-flex flex-column">
-        <div className="container-fluid">
+        <div className="container-fluid ml-5">
           {/* Breadcrumbs*/}
           <div
             className="breadcrumb"
-            style={{ paddingLeft: 15, paddingTop: 10 }}
+            style={{ paddingTop: 10, marginLeft: 50, marginRight: 50 }}
           >
             <Breadcrumb>
               <Breadcrumb.Item href="dashboard">Riaspedia </Breadcrumb.Item>
@@ -87,10 +87,9 @@ const EditService = () => {
           </div>
 
           <form onSubmit={handleSubmit}>
-            <div className="box_general padding_bottom">
+            <div className="box_general padding_bottom ml-5 mr-5 ">
               <div className="header_box version_2">
-                <h2>
-                  <i className="fa fa-file" />
+                <h2 className="d-inline-block">
                   Edit Pelayanan
                 </h2>
               </div>
@@ -163,7 +162,7 @@ const EditService = () => {
 
             <a
               type="submit"
-              className="btn_1-admin medium"
+              className="btn_1-admin medium ml-5"
               onClick={handleSubmit}
             >
               Simpan

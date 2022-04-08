@@ -3,28 +3,29 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import HeaderClient from "../../layout/HeaderClient";
+import Header from "../../layout/Header";
 import FooterClient from "../../layout/FooterClient";
 import Image from "../../../assests/img/MUA1.jpg";
 import { baseURL } from "../../routes/Config";
 import moment from "moment";
 
 const DetailOutlet = () => {
+  const [image, setImage] = useState();
   let idLocale = require("moment/locale/id");
   moment.locale("id", idLocale);
   const { id } = useParams();
   const [input, setInput] = useState();
   const [review, setReview] = useState({
     vendorId: id,
+    service_id: "",
     description: "",
-    score: 0,
+    score: "",
   });
 
   const fetchData = async () => {
     let result = await axios.get(baseURL + `/api/vendor/${id}`, {
       headers: { Authorization: "Bearer " + Cookies.get("token") },
     });
-
-    console.log(result);
     let data = result.data.data;
     let dayId = result.data.current_day.id;
     let days = result.data.days;
@@ -35,10 +36,27 @@ const DetailOutlet = () => {
     });
   };
 
+  useEffect(() => {
+    axios
+      .get(baseURL + `/api/auth/profile`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      })
+      .then((res) => {
+        console.log(res.data);
+        setImage(res.data.image);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const handleChange = (event) => {
     let value = event.target.value;
+    let name = event.target.name;
 
-    setReview({ ...review, description: value });
+    setReview({ ...review, [name]: value });
   };
 
   const handleSubmit = async (e) => {
@@ -50,6 +68,7 @@ const DetailOutlet = () => {
         vendorId: review.vendorId,
         description: review.description,
         score: review.score,
+        service_id: review.service_id,
       },
       {
         headers: {
@@ -58,34 +77,28 @@ const DetailOutlet = () => {
       }
     );
 
-    setReview({ ...review, description: "" });
+    setReview({ ...review, description: "", service_id: "" });
+    window.location.reload(false);
   };
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  console.log(review);
 
   if (input != undefined) {
     return (
       <div id="page">
-        <HeaderClient />
+        {Cookies.get("token") != null ? <HeaderClient /> : <Header />}
         <section className="hero_in tours_detail">
           <div className="wrapper">
             <div className="container">
-              <h1 className="fadeInUp">
-                <span>{input.data.name}</span>
+              <h1 className="fadeInUp text-white">
+                <span class="w-50">{input.data.name}</span>
               </h1>
             </div>
             <span className="magnific-gallery">
-              <a
-                href="img/gallery/tour_list_1.jpg"
-                className="btn_photos"
-                title="Photo title"
-                data-effect="mfp-zoom-in"
-              >
-                View photos
-              </a>
               <a
                 href="img/gallery/tour_list_2.jpg"
                 title="Photo title"
@@ -101,23 +114,6 @@ const DetailOutlet = () => {
         </section>
 
         <div className="bg_color_1">
-          <nav className="secondary_nav sticky_horizontal">
-            <div className="container mt-2">
-              <ul className="clearfix m-0">
-                <li>
-                  <a href="#description" className="active">
-                    Description
-                  </a>
-                </li>
-                <li>
-                  <a href="#reviews">Reviews</a>
-                </li>
-                <li>
-                  <a href="#sidebar">Booking</a>
-                </li>
-              </ul>
-            </div>
-          </nav>
           <div className="container margin_60_35">
             <div className="row">
               <div className="col-lg-12">
@@ -125,7 +121,7 @@ const DetailOutlet = () => {
                   <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-center">
                     <img
                       className="m-0"
-                      src={Image}
+                      src={input.data.image}
                       alt="profile-picture"
                       style={{
                         width: 120,
@@ -137,13 +133,14 @@ const DetailOutlet = () => {
                     />
 
                     <div className="mt-2 rating-wrapper align-items-center">
-                      {/* <span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-full.svg"></span><span class="rating-love"><img src="https://www.hellobeauty.id/assets/images/rating-half.svg"></span> */}
                       <div className="rating d-flex flex-row">
-                        <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
-                        <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
-                        <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
-                        <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
-                        <img src="https://www.hellobeauty.id/assets/images/rating-full.svg" />
+                        <span className="rating">
+                          <i className="fa fa-fw fa-star yellow" />
+                          <i className="fa fa-fw fa-star yellow" />
+                          <i className="fa fa-fw fa-star yellow" />
+                          <i className="fa fa-fw fa-star yellow" />
+                          <i className="fa fa-fw fa-star" />
+                        </span>
                       </div>
                       <div className="rating-total">
                         <div className="hb-small">
@@ -170,27 +167,25 @@ const DetailOutlet = () => {
                   </div>
                   <div className="detail col-md-10 ml-4">
                     <div className="hb-head">
-                      <h3>Kriwil Salon </h3>
+                      <h3>{input.data.name} </h3>
                       {/* Salon angel */}
                     </div>
                     <div className="profile-contact">
                       <a href="tel:081585196656" className="hb-semi-font black">
                         <span>
-                          <i className="fa fa-phone" /> 081585196656{" "}
+                          <i className="fa fa-phone" /> {input.data.phone}
                         </span>
                       </a>
                       <span style={{ fontSize: 20, margin: "0 5px" }}>·</span>
                       <a href="mailto:" className="hb-semi-font black">
                         <span>
-                          <i className="fa fa-envelope-o" />{" "}
-                          kriwilsalon@gmail.com{" "}
+                          <i className="fa fa-envelope-o" /> {input.data.email}
                         </span>
                       </a>
                     </div>
                     <div className="profile-address">
                       <div className="hb-semi-font black">
                         <i className="fa fa-map-marker" /> {input.data.address}
-                        {/*  EV Hive at IFC Tower 1,11th Floor. Jl. Jend. Sudirman Kav 22-23, DKI Jakarta 12920 */}
                       </div>
                     </div>
                   </div>
@@ -198,16 +193,13 @@ const DetailOutlet = () => {
               </div>
               <div className="col-md-12 mt-4 d-flex flex-row">
                 <section id="description" className="col-md-6">
-                  <h2>Description</h2>
+                  <h2>Deskripsi</h2>
                   <p>{input.data.description}</p>
                   {/* <h3>Instagram photos feed</h3>
                   <div id="instagram-feed" className="clearfix" />
                   <hr /> */}
                   <hr />
-                  <h3>
-                    Working Hours
-                    {/* Program <small>(60 minutes)</small> */}
-                  </h3>
+                  <h3>Jam Kerja</h3>
                   <div className="row mb10">
                     {input.data.hours.map((hour) => (
                       <div className="col-xs-6 sm-6 col-md-4">
@@ -226,7 +218,7 @@ const DetailOutlet = () => {
                     ))}
                   </div>
                   <hr />
-                  <h3>Service</h3>
+                  <h3>Pelayanan</h3>
                   <table className="table">
                     {input.data.services.map((service) => (
                       <>
@@ -250,16 +242,16 @@ const DetailOutlet = () => {
                     ))}
                   </table>
                   <hr />
-                  <h3>Reviews</h3>
-                  <div className="col-lg-9">
+                  <h3>Ulasan</h3>
+                  <div className="col-lg-9" id="reviews">
                     <div className="col-md-12 px-0 d-flex flex-column justify-content-between">
-                      {(input.data.reviews.length > 0) ? (
+                      {input.data.reviews.length > 0 ? (
                         input.data.reviews.map((review) => (
                           <div className="col-md-12 px-0 d-flex flex-row">
                             <div className="profile-image px-0 col-md-2 d-flex flex-column justify-content-top mt-2">
                               <img
                                 className="m-0"
-                                src={Image}
+                                src={review.user.image}
                                 alt="profile-picture"
                                 style={{
                                   width: 50,
@@ -273,42 +265,99 @@ const DetailOutlet = () => {
                             <div className="detail col-md-12  p-0 mb-0 mt-2 ml-3">
                               <div>
                                 <h4>{review.user.name}</h4>
-                              </div>
-                              <div>
-                                <span className="mt-0">
+                                <span className="mt-0 mb-0">
                                   {moment(review.created_at).format("LL")}
                                 </span>
+                                <p className="mb-0">{review.service.name}</p>
+                                {/* <p>{review.score}/5</p> */}
                               </div>
                               <div>
                                 <p class="text-dark">{review.description}</p>
+                                <p>Score {" "}{review.score}/5</p>
                               </div>
+                         
+                              {/* <div>
+                                <span className="mt-0 mb-0">
+                                  {moment(review.created_at).format("LL")}
+                                </span>
+                              </div> */}
                             </div>
                           </div>
                         ))
                       ) : (
                         <div></div>
                       )}
-                      <div class="row-md-12">
-                        <form
-                          className="row-md-12 d-flex justify-contennt-end flex-column ml-5"
-                          onSubmit={handleSubmit}
-                        >
-                          <textarea
-                            className="form-control col-md-12 ml-3"
-                            rows="3"
-                            id="description"
-                            name="description"
-                            placeholder="Write your review"
-                            value={review.description}
-                            onChange={handleChange}
-                          ></textarea>
-                          <button className="btn btn-success mt-2 ml-3">
-                            Kirim
-                          </button>
-                        </form>
-                      </div>
                     </div>
                   </div>{" "}
+                  <h3>Tinggalkan Ulasan</h3>
+                  <div class="row-12">
+                    <form
+                      className="row-md-12 d-flex justify-contennt-end flex-column"
+                      onSubmit={handleSubmit}
+                    >
+                      <textarea
+                        className="form-control col-md-12"
+                        rows="3"
+                        id="description"
+                        name="description"
+                        placeholder="Write your review"
+                        value={review.description}
+                        onChange={handleChange}
+                      ></textarea>
+                      <div class="row justify-content-start">
+                        <div class="col-9">
+                          <div className="form-group">
+                            <select
+                              className="mt-3 w-100 input-group-select"
+                              style={{
+                                height: "42px",
+                                borderRadius: "3px",
+                                padding: "10px",
+                                borderColor: "#d2d8dd",
+                              }}
+                              onChange={handleChange}
+                              name="service_id"
+                            >
+                              <option defaultValue="">Service</option>
+                              {input.data.services.map((service) => {
+                                return (
+                                  <>
+                                    <option value={service.id}>
+                                      {service.name}
+                                    </option>
+                                  </>
+                                );
+                              })}
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-3">
+                          <div className="form-group">
+                            <input
+                              type="number"
+                              min="0"
+                              max="5"
+                              className="score form-control mt-3"
+                              name="score"
+                              value={review.score}
+                              onChange={handleChange}
+                              placeholder="score"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <button
+                        type="submit"
+                        className="btn btn-success mt-2"
+                        style={{ width: "20%" }}
+                      >
+                        Kirim
+                      </button>
+                    </form>
+                    {/* <button className="btn btn-success mt-2" style={{width: "20%"}}>Kirim</button> */}
+                  </div>
                 </section>
 
                 {/* Maps */}
@@ -335,7 +384,7 @@ const DetailOutlet = () => {
                             <div className="salon-map">
                               <label className="category">Map</label>
                               <iframe
-                                src="https://maps.google.com/maps?q=-6.186037913066488,106.9800299633655&hl=es;z=14&output=embed"
+                                src={`https://maps.google.com/maps?q=${input.data.latitude},${input.data.longitude}&hl=es;z=14&output=embed`}
                                 frameBorder={0}
                                 style={{
                                   border: 0,

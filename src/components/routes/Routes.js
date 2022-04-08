@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Login from "../../auth/Login";
 import LoginVendor from "../../auth/LoginVendor";
 import Register from "../../auth/Register";
-import RegisterVendor from "../../auth/RegisterVendor";
 import Dashboard from "../pages/dashboard/Dashboard";
 import Home from "../pages/home/Home";
 import Home1 from "../pages/Home1";
@@ -12,7 +11,7 @@ import DetailOutlet from "../pages/outlet/DetailOutlet";
 import Outlet from "../pages/outlet/Outlet";
 import EditProfileClient from "../pages/profile/EditProfileClient";
 import ProfileClient from "../pages/profile/ProfileClient";
-import EditProfileAdmin1 from "../pages/profilevendor/EditProfileAdmin1";
+import EditProfileAdmin from "../pages/profilevendor/EditProfileAdmin";
 import ProfileAdmin from "../pages/profilevendor/ProfileAdmin";
 import Review from "../pages/review/Review";
 import EditService from "../pages/Service/EditServide";
@@ -21,6 +20,8 @@ import RegisterUserAdmin from "../../auth/RegisterUserAdmin";
 import RegisterVendorAdmin from "../../auth/RegisterVendorAdmin";
 import CardLoginRegisterAdmin from "../../auth/CardLoginRegisterAdmin";
 import Maps from "../pages/location/Maps";
+import CardDetailMaps from "../pages/location/CardDetailMaps";
+import GalleryService from "../pages/Service/GalleryService";
 
 export default function Routes() {
   return (
@@ -54,9 +55,6 @@ export default function Routes() {
           <Route path="/login-vendor" exact>
             <LoginVendor />
           </Route>
-          <Route path="/register-vendor" exact>
-            <RegisterVendor />
-          </Route>
           <Route path="/dashboard" exact>
             <Dashboard />
           </Route>
@@ -64,33 +62,39 @@ export default function Routes() {
             <Review />
           </Route>
           <Route path="/list" exact>
-            <ListService/>
+            <ListService />
           </Route>
           <Route path="/profilevendor" exact>
             <ProfileAdmin />
           </Route>
           <Route path="/editprofilevendor" exact>
-            <EditProfileAdmin1 />
+            <EditProfileAdmin />
           </Route>
           <Route path="/tambah-service" exact>
-            <AddService/>
+            <AddService />
           </Route>
           <Route path="/edit-service/:id" exact>
-            <EditService/>
+            <EditService />
           </Route>
           <Route path="/register-user-admin" exact>
-            <RegisterUserAdmin/>
+            <RegisterUserAdmin />
           </Route>
           <Route path="/register-vendor-admin" exact>
-            <RegisterVendorAdmin/>
+            <RegisterVendorAdmin />
           </Route>
           <Route path="/card" exact>
-            <CardLoginRegisterAdmin/>
+            <CardLoginRegisterAdmin />
           </Route>
-          <Route path="/lokasi-maps" exact>
-            <Maps/>
+          <Route path="/card-maps" exact>
+            <CardDetailMaps />
           </Route>
 
+          <Route path="/lokasi-maps" exact>
+            <Maps />
+          </Route>
+          <Route path="/gallery-service" exact>
+            <GalleryService />
+          </Route>
 
           {/* <Route path="/register" {Register}/> */}
         </Switch>

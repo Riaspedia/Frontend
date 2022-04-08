@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import axios from "axios";
 import LabelText from "../../global/LabelText";
 import { ContextProfile } from "../../context/ContextProfile";
-import Image from "../../../assests/img/MUA1.jpg"
+import Image from "../../../assests/img/Profile.png";
 import { baseURL } from "../../routes/Config";
 
 const ProfileClient = () => {
@@ -19,13 +19,14 @@ const ProfileClient = () => {
     });
 
     let data = result.data;
-    console.log(result);
+    console.log(result.data);
     setInput({
       name: data.name,
       email: data.email,
       gender: data.gender,
       province: data.province,
       city: data.city,
+      image: data.image,
     });
   };
   useEffect(() => {
@@ -66,18 +67,17 @@ const ProfileClient = () => {
             <div className="row">
               <div className="col-md-4">
                 <div className="form-group">
-                <img
-                      src={Image}
-                      alt="profile-picture"
-                      style={{
-                        width: 144,
-                        height: 144,
-                        objectFit: "cover",
-                        borderRadius: 8,
-                        boxShadow: "0 0 0 1px #CED4DA",
-                      }}
-                    />
-                 
+                  <img
+                    src={input.image}
+                    alt="profile-picture"
+                    style={{
+                      width: 144,
+                      height: 144,
+                      objectFit: "cover",
+                      borderRadius: 8,
+                      boxShadow: "0 0 0 1px #CED4DA",
+                    }}
+                  />
                 </div>
               </div>
               <div className="col-md-8 p-0">

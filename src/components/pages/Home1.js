@@ -10,15 +10,29 @@ const Home1 = () => {
         <div className="wrapper">
           <div className="container">
             <h3>Rias Pedia</h3>
-            <p>Temukan MUA (Make Up Artist) Pada Aplikasi Rias Pedia Berbasis Website</p>
-            <form>
-              <div className="row no-gutters custom-search-input-2">
+            <p>
+              Temukan Pelayanan Jasa Tata Rias Pada Aplikasi Rias Pedia Berbasis
+              Website
+            </p>
+
+            <div className="col-lg-12">
+              <div className="row no-gutters custom-search-input-2 inner">
                 <div className="col-lg-4">
                   <div className="form-group">
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="City tes..."
+                      placeholder="Cari nama vendor..."
+                    />
+                    <i className="icon_search" />
+                  </div>
+                </div>
+                <div className="col-lg-3">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Kota"
                     />
                     <i className="icon_pin_alt" />
                   </div>
@@ -28,29 +42,12 @@ const Home1 = () => {
                     <input
                       className="form-control"
                       type="text"
-                      name="dates"
-                      placeholder="When.."
+                      placeholder="Kategori"
                     />
-                    <i className="icon_calendar" />
+                    <i className="" />
                   </div>
                 </div>
-                <div className="col-lg-3">
-                  <div className="panel-dropdown">
-                    <a href="#">
-                      Guests <span className="qtyTotal">1</span>
-                    </a>
-                    <div className="panel-dropdown-content">
-                      <div className="qtyButtons">
-                        <label>Adults</label>
-                        <input type="text" name="qtyInput" defaultValue={1} />
-                      </div>
-                      <div className="qtyButtons">
-                        <label>Childrens</label>
-                        <input type="text" name="qtyInput" defaultValue={0} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div className="col-lg-2">
                   <input
                     type="submit"
@@ -59,7 +56,7 @@ const Home1 = () => {
                   />
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </section>
@@ -68,8 +65,8 @@ const Home1 = () => {
           <span>
             <em />
           </span>
-          <h2>Browse & Discover</h2>
-          <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p>
+          <h2>Detail Informasi</h2>
+          {/* <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p> */}
         </div>
         <div className="banner mb-0">
           <div
@@ -77,15 +74,15 @@ const Home1 = () => {
             data-opacity-mask="rgba(0, 0, 0, 0.3)"
           >
             <div>
-              <small>Adventure</small>
+              <small>Rias Pedia</small>
               <h3>
-                Discover Salon, Beauty Clinics,
+                Beauty Salon, Make Up Artist, Wedding Make Up
                 <br />
-                Make Up Artist, And Many More
+                dan masih banyak lainnya...
               </h3>
-              <p>Activities and accommodations</p>
-              <a href="adventure.html" className="btn_1-admin">
-                Read more
+              <p>Percantiklah dirimu hanya di Rias Pedia</p>
+              <a href="/outlet" className="btn_1-admin">
+                Baca Selengkapnya
               </a>
             </div>
           </div>
@@ -103,9 +100,9 @@ const Home1 = () => {
                       src="img/background/photoshoot.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
+                    {/* <div className="read_more">
                       <span>Read more</span>
-                    </div>
+                    </div> */}
                   </a>
                   <small>Photoshoot Makeup</small>
                 </figure>
@@ -121,9 +118,6 @@ const Home1 = () => {
                       src="img/background/bold.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Look Bold Makeup</small>
                 </figure>
@@ -139,9 +133,6 @@ const Home1 = () => {
                       src="img/background/natural.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Basic Makeup</small>
                 </figure>
@@ -157,9 +148,6 @@ const Home1 = () => {
                       src="img/background/eyelash.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Eyelash Extension</small>
                 </figure>
@@ -175,9 +163,6 @@ const Home1 = () => {
                       src="img/background/wedding.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Wedding Makeup</small>
                 </figure>
@@ -193,9 +178,6 @@ const Home1 = () => {
                       src="img/background/nailart.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Nail Art</small>
                 </figure>
@@ -209,11 +191,7 @@ const Home1 = () => {
       </div>
 
       <div className="bg_color_1">
-        <div className="main_title_2">
-          {/* <span>
-                <em />
-              </span> */}
-        </div>
+        <div className="main_title_2"></div>
       </div>
       <FooterClient />
     </div>

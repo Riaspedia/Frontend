@@ -1,26 +1,71 @@
-import React from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Header from "../../layout/Header";
 import FooterClient from "../../layout/FooterClient";
+import Cookies from "js-cookie";
+import HeaderClient from "../../layout/Header";
+import axios from "axios";
+import { baseURL } from "../../routes/Config";
 
-const Home = () => {
+const Home = (props) => {
+  const [input, setInput] = useState([]);
+
+  const [sort, setSort] = useState({
+    name: props.name,
+    city: props.city,
+    category: props.category,
+  });
+
+  const fetchData = async () => {
+    // let result = await axios.get(baseURL + `/api/vendor/sort`, {
+    //   headers: { Authorization: "Bearer " + Cookies.get("token") },
+    // });
+
+    let result = await axios.post(
+      baseURL + `/api/vendor/sort`,
+      {
+        city: sort.city,
+        name: sort.name,
+        category: sort.category,
+      },
+      {
+        headers: { Authorization: "Bearer " + Cookies.get("token") },
+      }
+    );
+  };
+
+  useEffect(() => {
+    setSort({
+      ...sort,
+      city: props.city,
+      category: props.category,
+      name: props.name,
+    });
+    fetchData();
+  }, [props]);
+
   return (
     <div id="page">
-      <Header />
+      {Cookies.get("user_id") == null ? <Header /> : <HeaderClient />}
+      {/* <Header /> */}
       <section className="hero_single version_2">
         <div className="wrapper">
           <div className="container">
-            <h3>Rias Pedia</h3>
-            <p>Temukan MUA (Make Up Artist) yang Terdekat </p>
-            <form>
-              <div className="row no-gutters custom-search-input-2">
+            <h3 class="text-white">Rias Pedia</h3>
+            <p>
+              Temukan Pelayanan Jasa Tata Rias Pada Aplikasi Rias Pedia Berbasis
+              Website
+            </p>
+
+            <div className="col-lg-12">
+              <div className="row no-gutters custom-search-input-2 inner">
                 <div className="col-lg-4">
                   <div className="form-group">
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="Temukan Pelayanan..."
+                      placeholder="Cari nama vendor..."
                     />
-                    <i className="icon_pin_alt" />
+                    <i className="icon_search" />
                   </div>
                 </div>
                 <div className="col-lg-3">
@@ -28,27 +73,43 @@ const Home = () => {
                     <input
                       className="form-control"
                       type="text"
-                      name="dates"
-                      placeholder="When.."
+                      placeholder="Kota"
                     />
-                    <i className="icon_calendar" />
+                    <i className="icon_pin_alt" />
                   </div>
                 </div>
                 <div className="col-lg-3">
-                  <div className="panel-dropdown">
-                    <a href="#">
-                      Guests <span className="qtyTotal">1</span>
-                    </a>
-                    <div className="panel-dropdown-content">
-                      <div className="qtyButtons">
-                        <label>Adults</label>
-                        <input type="text" name="qtyInput" defaultValue={1} />
-                      </div>
-                      <div className="qtyButtons">
-                        <label>Childrens</label>
-                        <input type="text" name="qtyInput" defaultValue={0} />
-                      </div>
-                    </div>
+                  <div className="form-group ">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Kategori"
+                    />
+                   <i class="icon-caret-right"></i> 
+                  </div>
+                </div>
+
+                <div className="col-lg-2">
+                  <input
+                    type="submit"
+                    className="btn_search"
+                    defaultValue="Search"
+                  />
+                </div>
+              </div>
+              {/* /row */}
+            </div>
+
+            {/* <form>
+              <div className="row no-gutters custom-search-input-2">
+                <div className="col-lg-10">
+                  <div className="form-group">
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Cari Lokasi Kota, Kategori, Nama Vendor..."
+                    />
+                    <i className="icon_search" />
                   </div>
                 </div>
                 <div className="col-lg-2">
@@ -59,7 +120,7 @@ const Home = () => {
                   />
                 </div>
               </div>
-            </form>
+            </form> */}
           </div>
         </div>
       </section>
@@ -68,7 +129,7 @@ const Home = () => {
           <span>
             <em />
           </span>
-          <h2>Browse & Discover</h2>
+          <h2>Detail Informasi</h2>
           {/* <p>Cum doctus civibus efficiantur in imperdiet deterruisset.</p> */}
         </div>
         <div className="banner mb-0">
@@ -77,15 +138,15 @@ const Home = () => {
             data-opacity-mask="rgba(0, 0, 0, 0.3)"
           >
             <div>
-              <small>Discover</small>
+              <small>Rias Pedia</small>
               <h3>
-                Discover Salon, Beauty Clinics, Make Up Artist,
+                Beauty Salon, Make Up Artist, Wedding Make Up
                 <br />
-                And Many More
+                dan masih banyak lainnya...
               </h3>
-              <p>Find Your MUA in Rias Pedia</p>
-              <a href="adventure.html" className="btn_1-admin">
-                Read more
+              <p>Percantiklah dirimu hanya di Rias Pedia</p>
+              <a href="/outlet" className="btn_1-admin">
+                Baca Selengkapnya
               </a>
             </div>
           </div>
@@ -103,9 +164,6 @@ const Home = () => {
                       src="img/background/photoshoot.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Photoshoot Makeup</small>
                 </figure>
@@ -121,9 +179,6 @@ const Home = () => {
                       src="img/background/bold.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Look Bold Makeup</small>
                 </figure>
@@ -139,9 +194,6 @@ const Home = () => {
                       src="img/background/natural.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Basic Makeup</small>
                 </figure>
@@ -157,9 +209,9 @@ const Home = () => {
                       src="img/background/eyelash.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
+                    {/* <div className="read_more">
                       <span>Read more</span>
-                    </div>
+                    </div> */}
                   </a>
                   <small>Eyelash Extension</small>
                 </figure>
@@ -175,9 +227,6 @@ const Home = () => {
                       src="img/background/wedding.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Wedding Makeup</small>
                 </figure>
@@ -193,9 +242,6 @@ const Home = () => {
                       src="img/background/nailart.jpg"
                       style={{ borderRadius: 12 }}
                     />
-                    <div className="read_more">
-                      <span>Read more</span>
-                    </div>
                   </a>
                   <small>Nail Art</small>
                 </figure>

@@ -80,50 +80,50 @@ const Register = () => {
             </figure>
             <form autoComplete="off">
               <div className="form-group">
-                <label>Masukkan Nama Lengkap Anda</label>
+                <label>Nama Lengkap</label>
                 <input
                   className="form-control"
                   type="text"
                   name="name"
-                  placeholder="Nama Lengkap"
+                  placeholder="Masukkan Nama Lengkap Anda"
                   value={input.name}
                   onChange={handleChange}
                 />
                 <i className="ti-user" />
               </div>
               <div className="form-group">
-                <label>Masukkan Email Anda</label>
+                <label>Email</label>
                 <input
                   className="form-control"
                   type="email"
                   name="email"
-                  placeholder="Email"
+                  placeholder="Masukkan Email Anda"
                   value={input.email}
                   onChange={handleChange}
                 />
                 <i className="icon_mail_alt" />
               </div>
               <div className="form-group">
-                <label>Masukkan Password Anda</label>
+                <label>Password</label>
                 <input
                   className="form-control"
                   type="password"
                   id="password"
                   name="password"
-                  placeholder="Password"
+                  placeholder="Masukkan Password Anda"
                   value={input.password}
                   onChange={handleChange}
                 />
                 <i className="icon_lock_alt" />
               </div>
               <div className="form-group">
-                <label>Kofirmasi password Anda</label>
+                <label>Kofirmasi Password</label>
                 <input
                   className="form-control"
                   type="password"
                   id="password_confirmation"
                   name="password_confirmation"
-                  placeholder="Konfirmasi Password"
+                  placeholder="Kofirmasi Password Anda"
                   value={input.password_confirmation}
                   onChange={handleChange}
                 />
@@ -133,7 +133,6 @@ const Register = () => {
                 Tunjukkan Password
               </Checkbox>
               <div id="pass-info" className="clearfix" />
-              {/* <a href="login.html" className="btn_1-admin rounded full-width add_top_30">Register Now!</a> */}
               <Link
                 className="btn_1 rounded full-width add_top_30"
                 onClick={handleSubmit}
@@ -145,7 +144,6 @@ const Register = () => {
                 <strong>
                   <Link to="/login"> Masuk</Link>
                 </strong>
-                {/* <strong><a href="login.html">Sign In</a></strong> */}
               </div>
             </form>
           </aside>
