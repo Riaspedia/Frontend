@@ -85,7 +85,6 @@ const DetailOutlet = () => {
     fetchData();
   }, []);
 
-  console.log(review);
 
   if (input != undefined) {
     return (
@@ -269,7 +268,7 @@ const DetailOutlet = () => {
                                   {moment(review.created_at).format("LL")}
                                 </span>
                                 <p className="mb-0">{review.service.name}</p>
-                                {/* <p>{review.score}/5</p> */}
+                                <p>{review.score}/5</p>
                               </div>
                               <div>
                                 <p class="text-dark">{review.description}</p>
